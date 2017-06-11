@@ -1,0 +1,86 @@
+<%= stylesheet_link_tag    "application", :media => "all" %>
+
+<!-- Basic fixed sidebar -->
+
+<!-- Nav menu -->
+<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth">
+  <div class="container-fluid"> 
+      <!-- Sidebar Toggle Button-->
+      <div class="navbar-header">
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons">menu</i></a>
+          <!-- BRANDING LOCATION-->
+          <%= link_to root_path do %><span class="navbar-brand" style="color: yellow;">BRAND</span> <% end %> 
+
+      </div>
+      
+      <!-- Navbar Right icon (Search) open up hidden search box -->    
+      <div class="pmd-navbar-right-icon pull-right"> 
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" id='navbar-search-container' onclick="clickShow('log-in')"><i class="material-icons pmd-sm" id='navbar-icons-search'>search</i></a>
+      </div> 
+  </div>
+</nav>
+    
+<!-- Sidebar -->
+<section id="pmd-main">
+    <!-- Left sidebar -->
+    <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-left-fixed pmd-sidebar-left pmd-z-depth sidebar-hide-custom" role="navigation">
+        <ul class="nav pmd-sidebar-nav">
+          <!-- My Account Info -->
+          <li class="pmd-user-info">
+              <%= link_to root_path do %>
+                  <div class="media-left">
+                    <% if signed_in? -%>
+                      <!-- If Signed In Show Profile Pic Thumb -->
+                      <% if current_user.profilepic.thumb.url != nil %>
+                        <%=image_tag current_user.profilepic.thumb.url, class:"card-thumb"%>
+                      <% else -%> 
+                      <!-- If Signed In But No Profile Pic Thumb Show Blank Profile Pic-->
+                        <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                      <% end -%>
+                    <% else -%> 
+                    <!-- If Not Signed Show Blank Profile Pic-->
+                      <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                    <% end -%>
+                  </div>
+                  <div class="media-body media-middle">
+                    <% if signed_in? -%>
+                        <% if current_user.first_name != nil -%>
+                           <!-- If Signed In Show Full Name -->
+                          My Account: <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                        <% end -%>
+                      <% else -%> 
+                        <!-- If Not Signed In Show Name is Guest -->
+                        Guest
+                      <% end -%>
+                  </div>
+              <% end %>
+            </li>
+
+            <!-- Sidebar Link Items -->
+
+            <!-- Link to ???? -->
+            <li class="pmd-ripple-effect"><!-- <%#= link_to listings_path do %> --><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">????</span><!-- <%# end %> --></li>
+
+            <!-- Link to Search -->
+            <li class="pmd-ripple-effect"><a onclick="clickShow('log-in')"><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search ???</span></a></li>
+
+            <!-- Link to Log off if signed in -->
+            <% if signed_in? -%>
+              <li class="pmd-ripple-effect">
+                <%= link_to sign_out_path(@users), method: :delete do %><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Logout</span><% end %>
+              </li>
+            <% else %>
+              <!-- Links to Log In or Sign up if not logged in Modals-->
+              <li class="pmd-ripple-effect">
+                <a data-target="#form-dialog" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Login</span></a>
+              </li>
+              <li class="pmd-ripple-effect">
+                <a data-target="#form-dialog-signup" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Sign Up</span></a>
+              </li>
+            <% end %>
+        </ul>
+    </aside>
+</section>
+
+
+

@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap-datetimepicker';
+@import 'typography.css';
+@import 'button.css';
+@import 'google-icons.css';
+@import 'textfield.css';
+@import 'card.css';
+@import 'bootstrap-datetimepicker.css';
+@import 'pmd-datetimepicker.css';
+@import 'navbar.css';
+@import 'dropdown.css';
+@import 'list.css';
+@import 'modal.css';
+@import 'radio.css';
+@import 'checkbox.css';
+@import 'sidebar.css';
+@import 'textfield.css';
+@import 'tab.css';
+@import 'nouislider.min.css';
+@import 'range-slider.css';
+@import 'select2.min.css';
+@import 'select2-bootstrap.css';
+@import 'pmd-select2.css';
+
+/*----- Navbar -----*/
+
+	/*navbar color*/
+	.navbar-inverse {
+	    background-color: red;
+	    border-color: red;
+	}
+
+	/*navbar icons*/
+	#navbar-icons-menu, #navbar-icons-search, #navbar-search-container {
+		color: white;
+		border: none;
+	}
+
+	/*navbar icons hover*/
+	#navbar-icons-menu:hover, #navbar-icons-search:hover, navbar-search-container:hover {
+		color: black;
+		background-color: transparent;
+	}
+
+	/*navbar brand hover*/
+	.navbar-brand:hover, .navbar-brand:focus {
+	    color: #fff;
+	    background-color: transparent;
+	}
+
+/*----- Floating Action Button -----*/
+	
+#floating-bottom-button {
+	background-color: blue;
+	bottom: 24px;
+	color: white;
+	position: fixed;
+	right: 24px;
+	z-index: 1000;
+}

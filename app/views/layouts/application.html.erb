@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Team4</title>
-    <%= csrf_meta_tags %>
+  <title>Team4</title>
+  <!-- <%#= favicon_link_tag 'connections-dark.png' %> -->
+	<%= csrf_meta_tag %>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   </head>
 
   <body>
@@ -22,6 +31,88 @@
       <%# end %>
     </div> -->
 
+    <%= render partial: "layouts/navbar" %>
+    <div style="margin-top: 80px;">
+
+    <!-- Lower Left raised circle button with ripple effect -->
+    <button class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect" type="button" id='floating-bottom-button'><i class="material-icons pmd-sm">add</i></button>
+
+    <!-- Log In Modal -->
+    <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Log In</h2><!-- Title -->
+          </div>
+          <%= form_for :session, url: session_path do |form| %>
+          <div class="modal-body">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="first-name">Email Address</label>
+              <input type="text" class="mat-input form-control" name=session[email]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="first-name">Password</label>
+              <input type="password" class="mat-input form-control" name=session[password]>
+            </div>
+          
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Log In</button><% end %>
+            <img id="facebook_login" class=".pmd-z-depth-3" src="/assets/facebook_login.png" alt="Sign In With Facebook" height='40px'>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div tabindex="-1" class="modal fade" id="form-dialog-signup" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Sign Up</h2><!-- Title -->
+          </div>
+          <%= form_for :user, url: users_path do |form| %>
+          <div class="modal-body">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="first-name">First Name</label>
+              <input type="text" class="mat-input form-control" name=user[first_name]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="last-name">Last Name</label>
+              <input type="text" class="mat-input form-control" name=user[last_name]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="email">Email Address</label>
+              <input type="text" class="mat-input form-control" name=user[email]>
+            </div>
+            <div>
+              <label for="profilepic">Profile Picture</label>
+              <%= form.file_field :profilepic %>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="first-name">Password</label>
+              <input type="password" class="mat-input form-control" name=user[password]>
+            </div>
+            <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
+              <input type="checkbox" value="">
+              <span class="pmd-checkbox"> Accept Terms and conditions</span> 
+            </label>
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Sign Up</button><% end %>
+            <img id="facebook_login" class=".pmd-z-depth-3" src="/assets/facebook_login.png" alt="Sign In With Facebook" height='40px'>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
+
+    <div class="pmd-sidebar-overlay"></div>
+    </section>
   </body>
 </html>

@@ -34,6 +34,7 @@ gem 'jquery-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'clearance'
 gem 'figaro'
 gem 'omniauth'
