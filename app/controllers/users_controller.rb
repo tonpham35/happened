@@ -18,6 +18,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if current_user == User.find(params[:id])
+       @user = current_user
+    else
+      redirect_to root_path
+    end
   end
 
   # PATCH/PUT /users/1

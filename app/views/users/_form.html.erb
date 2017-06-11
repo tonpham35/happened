@@ -1,9 +1,14 @@
 <div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, type: 'first_name' %>
 </div>
 
-<div class="password-field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+<div class="text-field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, type: 'last_name' %>
+</div>
+
+<div>
+  <label for="profilepic">Profile Picture</label>
+  <%= form.file_field :profilepic %>
 </div>
