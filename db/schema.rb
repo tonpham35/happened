@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611111517) do
+ActiveRecord::Schema.define(version: 20170612083828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20170611111517) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.datetime "time_taken"
+    t.string "lat"
+    t.string "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,6 +43,9 @@ ActiveRecord::Schema.define(version: 20170611111517) do
     t.string "first_name"
     t.string "last_name"
     t.string "profilepic"
+    t.datetime "datetime"
+    t.string "latituve"
+    t.string "longitude"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

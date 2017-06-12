@@ -8,6 +8,21 @@ class User < ApplicationRecord
 	validates :email, format: { with: /\w*@.*\.\w*/, message: "Invalid email address" } 
 	validates :password, length: { minimum: 6, message: "Password must be at least 6 characters" }, on: :create
 
+	def self.datetime(img_file)
+		data = Exif::Data.new(img_file)
+		return datetime = data.date_time	
+	end
+
+	def self.latitude(img_file)
+		data = Exif::Data.new(img_file)
+		return datetime = data.gps_latitude	
+	end
+
+	def self.longitude(img_file)
+		data = Exif::Data.new(img_file)
+		return datetime = data.gps_longitude
+	end	
+
 # In app/models/user.rb    
 	class User < ApplicationRecord
 	    has_many :authentications, dependent: :destroy
