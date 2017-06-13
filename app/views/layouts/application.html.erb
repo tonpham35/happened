@@ -104,7 +104,7 @@
             </label>
           </div>
           <div class="pmd-modal-action">
-            <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Sign Up</button><% end %>
+            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
             <%= link_to "/auth/facebook" do %>
               <img id="facebook_login" class=".pmd-z-depth-3" src="/assets/facebook_login.png" alt="Sign In With Facebook" height='40px'>
             <% end %>

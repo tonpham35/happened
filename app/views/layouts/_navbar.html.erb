@@ -9,7 +9,7 @@
       <div class="navbar-header">
           <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons">menu</i></a>
           <!-- BRANDING LOCATION-->
-          <%= link_to root_path do %><span class="navbar-brand" style="color: yellow;">BRAND</span> <% end %> 
+          <%= link_to root_path do %><span class="navbar-brand" style="color: white;">BRAND</span> <% end %> 
 
       </div>
       
@@ -59,7 +59,7 @@
             <!-- Sidebar Link Items -->
 
             <!-- Link to ???? -->
-            <li class="pmd-ripple-effect"><!-- <%#= link_to listings_path do %> --><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">????</span><!-- <%# end %> --></li>
+            <li class="pmd-ripple-effect"><%= link_to root_path do %><i class="material-icons media-left media-middle">list</i> <span class="media-body" style="font-size: 15px;">????</span><% end %></li>
 
             <!-- Link to Search -->
             <li class="pmd-ripple-effect"><a onclick="clickShow('log-in')"><i class="material-icons media-left media-middle">search</i> <span class="media-body" style="font-size: 15px;">Search ???</span></a></li>

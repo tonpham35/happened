@@ -16,6 +16,10 @@ class Clearance::UsersController < Clearance::BaseController
 
   def create
     @user = user_from_params
+    # date = User.datetime('/upload/20160424_174952.jpg')
+    # long = User.longitude('/upload/20160424_174952.jpg')
+    # lat = User.latitude('/upload/20160424_174952.jpg')
+    # @user.update(datetime: date, longitude: long, latitude: lat)
 
     if @user.save
       sign_in @user
