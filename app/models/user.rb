@@ -8,6 +8,9 @@ class User < ApplicationRecord
 	validates :email, format: { with: /\w*@.*\.\w*/, message: "Invalid email address" } 
 	validates :password, length: { minimum: 6, message: "Password must be at least 6 characters" }, on: :create
 
+	has_many :stories
+	has_many :events
+
 	def self.datetime(img_file)
 		data = Exif::Data.new(img_file)
 		return datetime = data.date_time	

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612083828) do
+ActiveRecord::Schema.define(version: 20170614035355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,42 @@ ActiveRecord::Schema.define(version: 20170612083828) do
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
+  create_table "event_members", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_members_on_event_id"
+    t.index ["user_id"], name: "index_event_members_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "story_id"
+    t.string "what"
+    t.string "why"
+    t.string "string"
+    t.datetime "when"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_events_on_story_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.datetime "time_taken"
     t.string "lat"
     t.string "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,4 +81,8 @@ ActiveRecord::Schema.define(version: 20170612083828) do
   end
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "event_members", "events"
+  add_foreign_key "event_members", "users"
+  add_foreign_key "events", "stories"
+  add_foreign_key "stories", "users"
 end
