@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story: one
+  what: MyString
+  why: MyString
+  string: MyString
+  when: 2017-06-14 11:51:29
+  photo: MyString
+
+two:
+  story: two
+  what: MyString
+  why: MyString
+  string: MyString
+  when: 2017-06-14 11:51:29
+  photo: MyString
