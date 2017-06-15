@@ -10,7 +10,7 @@
         <span class="pmd-floating-hidden">New Photo</span> 
         <i class="material-icons">add_a_photo</i> 
       </a> 
-      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag"> 
+      <a data-target="#form-dialog-location-tag" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag"> 
         <span class="pmd-floating-hidden">New Location Tag</span> 
         <i class="material-icons">add_location</i> 
       </a> 
@@ -114,6 +114,38 @@
       </div>
     </div>
 
+    <!-- New Location Tag Modals -->
+  	<div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
+          </div>
+          <div class="modal-body text-center">
+          	<div id='places-container' style="height: 100%; width: 100%;">
+	 			<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
+				<div id="map"></div>
+				<!-- Replace the value of the key parameter with your own API key. -->
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcuwxodRcCvOpK1u_o2XK6WFhnA9oeGTg&libraries=places&callback=initAutocomplete" async defer></script>
+          	</div>
+          	<%= form_for :event, url: events_path do |form| %>
+	          	<div>
+					<input type="hidden" id="longitude" name=event[location_longitude] novalidate>
+					<input type="hidden" id="latitude" name=event[location_latitude] novalidate>
+	          		<%= form.hidden_field :story_id, :value => @story.id %>
+	          		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
+
+	          	</div>
+	          </div>
+	          <div class="pmd-modal-action">
+	            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+	          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
 
     <!-- CARDS -->
     <% if @story.events.size > 	0 %>
@@ -156,6 +188,3 @@
 			<% end %>			
 		</div>
 	<% end %>
-
-
-
