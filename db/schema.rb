@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170614035355) do
   create_table "stories", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.string "photo"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

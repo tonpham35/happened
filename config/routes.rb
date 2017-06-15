@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
@@ -19,6 +20,6 @@ Rails.application.routes.draw do
 
   resources :stories, controller: "stories", only: [:create]
 
-  root 'users#home'
+  root 'users#index'
 
 end
