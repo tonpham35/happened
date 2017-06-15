@@ -130,17 +130,18 @@
 				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcuwxodRcCvOpK1u_o2XK6WFhnA9oeGTg&libraries=places&callback=initAutocomplete" async defer></script>
           	</div>
           	<%= form_for :event, url: events_path do |form| %>
-	          	<div>
-					<input type="hidden" id="longitude" name=event[location_longitude] novalidate>
-					<input type="hidden" id="latitude" name=event[location_latitude] novalidate>
-	          		<%= form.hidden_field :story_id, :value => @story.id %>
-	          		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
+          	<div>
+          		<input type="hidden" id="locname" name=event[where]>
+				<input type="hidden" id="longitude" name=event[location_longitude]>
+				<input type="hidden" id="latitude" name=event[location_latitude]>
+          		<%= form.hidden_field :story_id, :value => @story.id %>
+          		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
 
-	          	</div>
-	          </div>
-	          <div class="pmd-modal-action">
-	            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
-	          </div>
+          	</div>
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+          </div>
           <%end%>
         </div>
       </div>

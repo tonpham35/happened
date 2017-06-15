@@ -93,8 +93,10 @@ function initAutocomplete() {
         position: place.geometry.location
       }));
 
+    var location_name = document.getElementById('pac-input')
     var lat = document.getElementById('latitude');
     var	lng = document.getElementById('longitude');
+    	locname.value = location_name
     	lat.value = place.geometry.location.lat();
     	lng.value = place.geometry.location.lng();
 

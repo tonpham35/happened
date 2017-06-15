@@ -8,6 +8,8 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.datetime :when
       t.string :photo
       t.string :where
+      t.float :location_latitude
+      t.float :location_longitude
       t.string :mode_of_transport
       t.string :flight_num
       t.datetime :flight_time
