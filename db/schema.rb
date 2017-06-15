@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 20170614035355) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "story_id"
+    t.string "type_of_event"
     t.string "what"
     t.string "why"
-    t.string "string"
     t.datetime "when"
     t.string "photo"
     t.string "where"
