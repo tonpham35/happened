@@ -9,8 +9,12 @@ class StoriesController < ApplicationController
       end
 	end
 
+  def show
+    @story = Story.find(params[:id])
+  end
+
 	private
     def story_params
-      params.require(:story).permit(:title, :description)
+      params.require(:story).permit(:title, :description, :photo)
     end
 end

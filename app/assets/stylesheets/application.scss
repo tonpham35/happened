@@ -42,6 +42,7 @@
 /*----- Body -----*/
 	body {
 		padding-top: 47px;
+		background-color: whitesmoke;
 	}
 
 /*----- Navbar -----*/
@@ -71,16 +72,6 @@
 	    background-color: transparent;
 	}
 
-/*----- Left Side Column -----*/
-
-#left-side-column {
-	width: 25%;
-	height: 100vh;
-	border: 1px;
-	background-color: green;
-	position: fixed;
-}
-
 /*----- Floating Action Button -----*/
 	
 #floating-bottom-button {
@@ -98,6 +89,11 @@
 	width: 60%;
 	height: 400px;
 	background-color: grey;
+}
+
+/*----- Floating Action Button -----*/
+#card-photo {
+	width: 100%;
 }
 
 /*----- Propeller css for Floating Action Button -----*/

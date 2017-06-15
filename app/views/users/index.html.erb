@@ -1,9 +1,37 @@
 <p id="notice"><%= notice %></p>
-  <div id='left-side-column' >
-    <ul style="margin-top: 10px">
-    <% current_user.stories.each do |story| %>
-      <li><%= story.title %></li>
-    <% end %>
-    </ul>
-  </div>
+    <!-- Primary raised block button with ripple effect -->
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+        <button data-target="#form-dialog-story" data-toggle="modal" class="btn pmd-btn-raised btn-primary btn-block pmd-ripple-effect" type="button" style="margin: 15px; width: 96%;">Make a New Story</button>
+    </div>
+</div>
 
+    <div class="row">
+        <!-- Media, Title, and Description area -->
+        <% if signed_in? %>
+            <% if current_user.stories != nil %>
+                <% current_user.stories.each do |story| %>
+                    <%= link_to story_path(story.id) do %>
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 15px;">
+
+                                <!-- Card media -->
+                                <div class="pmd-card-media">
+                           <!--          <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> -->
+                           <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                </div>
+                                
+                                <!-- Card header -->
+                                <div class="pmd-card-title" style="text-decoration: none;">
+                                    <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
+                                    <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>    
+                <% end %>
+            <% end %>
+        <% end %>
+        
+    </div>  
+  

@@ -9,7 +9,6 @@ class User < ApplicationRecord
 	validates :password, length: { minimum: 6, message: "Password must be at least 6 characters" }, on: :create
 
 	has_many :stories
-	has_many :events
 
 	def self.datetime(img_file)
 		data = Exif::Data.new(img_file)
