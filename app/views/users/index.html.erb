@@ -11,28 +11,24 @@
         <% if signed_in? %>
             <% if current_user.stories != nil %>
                 <% current_user.stories.each do |story| %>
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 15px;">
+                    <%= link_to story_path(story.id) do %>
+                        <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 15px;">
 
-                            <!-- Card media -->
-                            <div class="pmd-card-media">
-                                <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
+                                <!-- Card media -->
+                                <div class="pmd-card-media">
+                           <!--          <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> -->
+                           <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                </div>
+                                
+                                <!-- Card header -->
+                                <div class="pmd-card-title" style="text-decoration: none;">
+                                    <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
+                                    <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
+                                </div>
                             </div>
-                            
-                            <!-- Card header -->
-                            <div class="pmd-card-title">
-                                <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
-                                <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
-                            </div>
-                            
-                            <!-- Card action -->
-                            <div class="pmd-card-actions">
-                                <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-                                <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
-                            </div>
-
                         </div>
-                    </div>
+                    <% end %>    
                 <% end %>
             <% end %>
         <% end %>

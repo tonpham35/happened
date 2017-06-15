@@ -91,6 +91,11 @@
 	background-color: grey;
 }
 
+/*----- Floating Action Button -----*/
+#card-photo {
+	width: 100%;
+}
+
 /*----- Propeller css for Floating Action Button -----*/
 	.pmd-floating-action { bottom: 0; position: fixed;  margin:1em;  right: 0; }
 	.pmd-floating-action-btn { display:block; position: relative; transition: all .2s ease-out;}
