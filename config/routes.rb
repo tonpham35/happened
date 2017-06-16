@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :friendships
-
   resources :events
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

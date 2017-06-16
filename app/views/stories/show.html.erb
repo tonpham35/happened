@@ -2,7 +2,7 @@
 
     <!-- Lower Left raised circle button with ripple effect -->
     <div class="menu pmd-floating-action"  role="navigation" style="z-index: 1001;"> 
-      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Entry"> 
+      <a data-target="#form-dialog-written" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Entry"> 
         <span class="pmd-floating-hidden">New Journal Entry</span> 
         <i class="material-icons">book</i> 
       </a> 
@@ -180,7 +180,7 @@
             <%= form.fields_for :eventphotos do |p| %>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
               <!-- <label for="Photos">Upload Photos</label> -->
-			    <%= p.file_field :photo, multiple: true, name: ":eventphotos_attributes[photos][]" %>
+			    <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
             </div>
             <% end %>
           </div>
@@ -192,7 +192,7 @@
       </div>
     </div>
 
-    <!-- New Photos Modals -->
+    <!-- New Written Entry Modals -->
   	<div tabindex="-1" class="modal fade" id="form-dialog-written" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -203,20 +203,29 @@
           <%= form_for :event, url: events_path do |form| %>
           <div class="modal-body">
           	<div>
-          	<%= form.hidden_field :story_id, :value => @story.id %>
-          	<%= form.hidden_field :type_of_event, :value => 'written' %>
+          		<%= form.hidden_field :story_id, :value => @story.id %>
+          		<%= form.hidden_field :type_of_event, :value => 'written' %>
           	</div>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
-              <label for="What">What Happened</label>
+              <label for="What">What Happened?</label>
               <input type="text" class="mat-input form-control" name=event[what]>
             </div>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
-              <label for="What">What Happened</label>
-              <input type="text" class="mat-input form-control" name=event[what]>
+              <label for="What">Where?</label>
+              <input type="text" class="mat-input form-control" name=event[where]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="What">When?</label>
+              <input type="text" class="mat-input form-control" name=event[when]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="Entry">Entry</label>
+              <textarea required class="form-control mat-input" name=event[why]></textarea>
             </div>
           </div>
+
           <div class="pmd-modal-action">
-            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+          	<%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
           </div>
           <%end%>
         </div>
