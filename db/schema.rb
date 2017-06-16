@@ -49,21 +49,11 @@ ActiveRecord::Schema.define(version: 20170614075224) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "story_id"
-    t.string "type_of_event"
     t.string "what"
     t.string "why"
+    t.string "string"
     t.datetime "when"
-    t.string "where"
-    t.float "location_latitude"
-    t.float "location_longitude"
-    t.string "mode_of_transport"
-    t.string "flight_num"
-    t.datetime "flight_time"
-    t.datetime "flight_date"
-    t.string "accomodation_type"
-    t.string "accomodation_address"
-    t.datetime "accomodation_checkin"
-    t.datetime "accomodation_checkout"
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["story_id"], name: "index_events_on_story_id"
@@ -95,7 +85,6 @@ ActiveRecord::Schema.define(version: 20170614075224) do
   create_table "stories", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "photo"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

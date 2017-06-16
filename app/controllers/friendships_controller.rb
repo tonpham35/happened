@@ -29,6 +29,8 @@ class FriendshipsController < ApplicationController
 
     respond_to do |format|
       if @friendship.save
+        x = User.find(params[:friend_id]).friendships.build(:friend_id => current_user.id)
+        x.save
         format.html { redirect_to current_user, notice: 'Friendship was successfully created.' }
         format.json { render :show, status: :created, location: @friendship }
       else
