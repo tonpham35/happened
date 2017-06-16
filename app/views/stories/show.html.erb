@@ -41,12 +41,12 @@
           <%= form_for :event, url: events_path do |form| %>
           <div class="modal-body">
           	<div>
-          	<%= form.hidden_field :story_id, :value => @story.id %>
+	       	<%= form.hidden_field :story_id, :value => @story.id %>
           	<%= form.hidden_field :type_of_event, :value => 'accomodation' %>
           	</div>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
               <label for="What">What Accomodation</label>
-              <input type="text" class="mat-input form-control" name=event[accomodation_type]>
+              <input type="text" class="mat-input form-control" name=event[what]>
             </div>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
               <label for="Where">Where?</label>
@@ -125,10 +125,8 @@
           </div>
           <div class="modal-body">
           	<div id='places-container' style="height: 100%; width: 100%;">
-	 			<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
-				<div id="map"></div>
-				<!-- Replace the value of the key parameter with your own API key. -->
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcuwxodRcCvOpK1u_o2XK6WFhnA9oeGTg&libraries=places&callback=initAutocomplete" async defer></script>
+	 			       <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
+				      <div id="map"></div>
           	</div>
           	<%= form_for :event, url: events_path do |form| %>
           	<div class="form-group pmd-textfield pmd-textfield-floating-label">
@@ -234,42 +232,122 @@
 
     <!-- CARDS -->
     <% if @story.events.size > 	0 %>
-	  	<div class="row">
-	  		<% @story.events.each do |events| %>
+
+    	<div class="row">
+	  		<% @story.events.each do |event| %>
+
+	  			<!-- ACCOMODATION CARDS -->
+	  			<% if event.type_of_event == 'accomodation' %>				
+		  		  <div class="col-xs-12 col-md-6 col-lg-4" id='left-side-column' >
+					
+						<!--Title, Media, and Action area -->
+  						<div class="pmd-card pmd-card-media-inline pmd-z-depth" style="margin: 15px;">
+  							<!-- Card media -->
+						    <div class="pmd-card-media">
+						    	<!-- Card media heading -->
+						        <div class="media-body">
+						            <h2 class="pmd-card-title-text" style="font-size: 22px;"><%= event.what.upcase %></h2>
+						            <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>	
+						            <span class="pmd-card-subtitle-text">Check-in: <%= event.accomodation_checkin.strftime('%b %d, %Y') %></span><br>
+						            <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>	
+						        </div>
+						        
+						        <!-- Card media image -->
+						        <div class="media-right media-middle">
+						          <img width="152" height="152" src="/assets/cartoon-hotel-21.jpg">
+						        </div>
+						    </div>
+						  </div>
+
+					   </div>
+				  <% end %>
+
+          <!-- TRANSPORTATION CARDS -->
+          <% if event.type_of_event == 'transportation' %>        
+            <div class="col-xs-12 col-md-6 col-lg-4" id='left-side-column' >
+          
+            <!--Title, Media, and Action area -->
+            <div class="pmd-card pmd-card-media-inline pmd-z-depth" style="margin: 15px;">
+              <!-- Card media -->
+                <div class="pmd-card-media">
+                  <!-- Card media heading -->
+                    <div class="media-body">
+                        <h2 class="pmd-card-title-text" style="font-size: 22px;"><%= event.mode_of_transport.upcase %></h2>
+                        <% if event.flight_num != nil %>
+                          <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
+                        <% end %> 
+                        <% if event.flight_date != nil %>
+                          <span class="pmd-card-subtitle-text">Date: <%= event.flight_date.strftime('%b %d, %Y') %></span><br>
+                        <% end %>
+                        <% if event.flight_time != nil %>
+                        <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
+                        <% end %>
+                    </div>
+                    
+                    <!-- Card media image -->
+                    <div class="media-right media-middle">
+                      <% if event.mode_of_transport == 'Bus' %>
+                        <img width="152" height="152" src="/assets/bus.png">
+                      <% elsif event.mode_of_transport == 'Drive' %>
+                        <img width="152" height="152" src="/assets/car.png">
+                      <% elsif event.mode_of_transport == 'Plane' %>
+                        <img width="152" height="152" src="/assets/plane.png">
+                      <% elsif event.mode_of_transport == 'Train' %>
+                        <img width="152" height="152" src="/assets/train.jpg">
+                      <% else %>
+                        <img width="152" height="152" src="/assets/walk.png">
+                      <% end %>
+                    </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% if event.type_of_event == 'location_tag' %>
 				<div class="col-xs-12 col-md-6 col-lg-4" id='left-side-column' >
 				
 					<!--Media, Title, Description and Action area -->
 					<div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 15px;">
-						<!-- Card header -->
-					    <div class="pmd-card-title">
-					        <div class="media-left">
-					            <a href="javascript:void(0);" class="avatar-list-img">
-					                <img width="40" height="40" src="http://propeller.in/assets/images/avatar-icon-40x40.png">
-					            </a>
-					        </div>
-					        <div class="media-body media-middle">
-					            <h3 class="pmd-card-title-text">Two-line item</h3>
-					            <span class="pmd-card-subtitle-text">Secondary text</span>
-					        </div>
-					    </div>
-					    
-					    <!-- Card media -->
-					    <div class="pmd-card-media">
-					        <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png">
-					    </div>
-					    
-					    <!-- Card body -->
-					    <div class="pmd-card-body">
-					        Cards provide context and an entry point to more robust information and views. Don't overload cards with extraneous information or actions.
-					    </div>
-					    
-					    <!-- Card actions -->
-					    <div class="pmd-card-actions">
-					        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-					        <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
-					    </div>
+				    <!-- Card media -->
+				    <div class="pmd-card-media">
+              <div id='places-container' style="height: 100%; width: 100%;">
+				        <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
+                <script>
+                  function initMap<%= event.id %>() {
+                    var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
+
+                    var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                      zoom: 15,
+                      center: myLatLng<%= event.id %>
+                    });
+
+                    var marker<%= event.id %> = new google.maps.Marker({
+                      position: myLatLng<%= event.id %>,
+                      map: map<%= event.id %>,
+                      title: 'Hello World!'
+                    });
+                  }
+                </script>
+              </div>
+				    </div>
+				    
+				    <!-- Card body -->
+				    <div class="pmd-card-body">
+              <div class="media-body media-middle">
+                  <h3 class="pmd-card-title-text"><%= event.what %></h3>
+                  <span class="pmd-card-subtitle-text"><%= event.where %></span>
+              </div>
+              <%= event.why %>
+				    </div>
+
 					</div>
 				</div>
-			<% end %>			
-		</div>
-	<% end %>
+        <% end %>
+      <% end %>     
+    </div>
+  <% end %>
+
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn3JpsPAtnQ-XNPSVcka3aHYg3OG-PQHg&libraries=places&callback=initialize"
+         async defer></script>
+
+  <!--  -->
