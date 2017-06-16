@@ -9,7 +9,7 @@ class User < ApplicationRecord
 	validates :password, length: { minimum: 6, message: "Password must be at least 6 characters" }, on: :create
 
 	has_many :stories
-	has_many :events
+  has_many :events
 	has_many :friendships
 	has_many :friends, :through => :friendships
 	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"

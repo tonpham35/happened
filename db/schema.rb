@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170614075224) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +36,34 @@ ActiveRecord::Schema.define(version: 20170614075224) do
     t.index ["user_id"], name: "index_event_members_on_user_id"
   end
 
+  create_table "eventphotos", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "photo"
+    t.float "lat"
+    t.float "long"
+    t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_eventphotos_on_event_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.bigint "story_id"
+    t.string "type_of_event"
     t.string "what"
     t.string "why"
-    t.string "string"
     t.datetime "when"
-    t.string "photo"
+    t.string "where"
+    t.float "location_latitude"
+    t.float "location_longitude"
+    t.string "mode_of_transport"
+    t.string "flight_num"
+    t.datetime "flight_time"
+    t.datetime "flight_date"
+    t.string "accomodation_type"
+    t.string "accomodation_address"
+    t.datetime "accomodation_checkin"
+    t.datetime "accomodation_checkout"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["story_id"], name: "index_events_on_story_id"
@@ -72,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170614075224) do
   create_table "stories", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.string "photo"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170614075224) do
   add_foreign_key "authentications", "users"
   add_foreign_key "event_members", "events"
   add_foreign_key "event_members", "users"
+  add_foreign_key "eventphotos", "events"
   add_foreign_key "events", "stories"
   add_foreign_key "friends", "users"
   add_foreign_key "stories", "users"
