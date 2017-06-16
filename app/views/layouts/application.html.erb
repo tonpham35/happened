@@ -108,37 +108,7 @@
         </div>
       </div>
     </div>
-
-    <!-- New Story Modal -->
-    <div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header pmd-modal-bordered">
-            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-            <h2 class="pmd-card-title-text">Make A New Travel Story</h2><!-- Title -->
-          </div>
-          <%= form_for :story, url: stories_path do |form| %>
-          <div class="modal-body">
-            <div class="form-group pmd-textfield pmd-textfield-floating-label">
-              <label for="Title">Title</label>
-              <input type="text" class="mat-input form-control" name=story[title]>
-            </div>
-            <div class="form-group pmd-textfield pmd-textfield-floating-label">
-              <label for="description">Description</label>
-              <input type="text" class="mat-input form-control" name=story[description]>
-            </div>
-            <div class="form-group pmd-textfield">
-              <label for="photo">Story Photo</label>
-              <%= form.file_field :photo %>
-            </div>
-          </div>
-          <div class="pmd-modal-action">
-            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
-          </div>
-          <%end%>
-        </div>
-      </div>
-    </div>
+    
     <%= yield %>
 
   <div class="pmd-sidebar-overlay"></div>

@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
   belongs_to :story
-
-  mount_uploader :photo, ImageUploader
+  has_many :eventphotos
+  accepts_nested_attributes_for :eventphotos
 end

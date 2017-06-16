@@ -6,7 +6,6 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.string :what
       t.string :why
       t.datetime :when
-      t.string :photo
       t.string :where
       t.float :location_latitude
       t.float :location_longitude

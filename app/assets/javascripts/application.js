@@ -26,20 +26,13 @@ function clickShow(w) {
     }
 };
 
-// This example adds a search box to a map, using the Google Place Autocomplete
-// feature. People can enter geographical searches. The search box will return a
+// Adds a search box to a map, using the Google Place Autocomplete feature. 
+// People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
-
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 3.136373, lng: 101.628542},
+    center: {lat: 3.14, lng: 101.6177832},
     zoom: 16,
     mapTypeId: 'roadmap'
   });
@@ -96,7 +89,7 @@ function initAutocomplete() {
     var location_name = document.getElementById('pac-input')
     var lat = document.getElementById('latitude');
     var	lng = document.getElementById('longitude');
-    	locname.value = location_name
+    	locname.value = location_name.value
     	lat.value = place.geometry.location.lat();
     	lng.value = place.geometry.location.lng();
 
