@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<h2> Friends <h2>
+  <ul>
+    <% for friendship in @user.friendships %>
+    <li>
+      <%= friendship.friend.first_name %>
+      <%= link_to "remove", friendship, :method => :delete %>
+      <br>
+      <% end %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %>
