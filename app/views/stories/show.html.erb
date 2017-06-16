@@ -6,11 +6,11 @@
         <span class="pmd-floating-hidden">New Journal Entry</span> 
         <i class="material-icons">book</i> 
       </a> 
-       <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Photo"> 
+       <a data-target="#form-dialog-photos" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Photo"> 
         <span class="pmd-floating-hidden">New Photo</span> 
         <i class="material-icons">add_a_photo</i> 
       </a> 
-      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag"> 
+      <a data-target="#form-dialog-location-tag" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag"> 
         <span class="pmd-floating-hidden">New Location Tag</span> 
         <i class="material-icons">add_location</i> 
       </a> 
@@ -22,7 +22,8 @@
         <span class="pmd-floating-hidden">New Accomodations</span> 
         <i class="material-icons">local_hotel</i> 
       </a> 
-      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary">
+      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
+      	<span class="pmd-floating-hidden">Add a New Event</span> 
         <i class="material-icons pmd-sm">add</i> 
       </a> 
     </div>
@@ -114,6 +115,113 @@
       </div>
     </div>
 
+    <!-- New Location Tag Modals -->
+  	<div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
+          </div>
+          <div class="modal-body">
+          	<div id='places-container' style="height: 100%; width: 100%;">
+	 			<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
+				<div id="map"></div>
+				<!-- Replace the value of the key parameter with your own API key. -->
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcuwxodRcCvOpK1u_o2XK6WFhnA9oeGTg&libraries=places&callback=initAutocomplete" async defer></script>
+          	</div>
+          	<%= form_for :event, url: events_path do |form| %>
+          	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="what">What</label>
+              <input type="text" class="mat-input form-control" name=event[what]>
+            </div>
+          	<div>
+          		<input type="hidden" id="locname" name=event[where]>
+				<input type="hidden" id="longitude" name=event[location_longitude]>
+				<input type="hidden" id="latitude" name=event[location_latitude]>
+          		<%= form.hidden_field :story_id, :value => @story.id %>
+          		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
+          	</div>
+          	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="when">When</label>
+              <input type="text" class="mat-input form-control" name=event[when]>
+            </div>
+          	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="why">Why</label>
+              <input type="text" class="mat-input form-control" name=event[why]>
+            </div>
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Photos Modals -->
+  	<div tabindex="-1" class="modal fade" id="form-dialog-photos" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">New Photos</h2><!-- Title -->
+          </div>
+          <%= form_for :event, url: events_path do |form| %>
+          <div class="modal-body">
+          	<div>
+          	<%= form.hidden_field :story_id, :value => @story.id %>
+          	<%= form.hidden_field :type_of_event, :value => 'photos' %>
+          	</div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="What">What Happened</label>
+              <input type="text" class="mat-input form-control" name=event[what]>
+            </div>
+            <%= form.fields_for :eventphotos do |p| %>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <!-- <label for="Photos">Upload Photos</label> -->
+			    <%= p.file_field :photo, multiple: true, name: ":eventphotos_attributes[photos][]" %>
+            </div>
+            <% end %>
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Photos Modals -->
+  	<div tabindex="-1" class="modal fade" id="form-dialog-written" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Written</h2><!-- Title -->
+          </div>
+          <%= form_for :event, url: events_path do |form| %>
+          <div class="modal-body">
+          	<div>
+          	<%= form.hidden_field :story_id, :value => @story.id %>
+          	<%= form.hidden_field :type_of_event, :value => 'written' %>
+          	</div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="What">What Happened</label>
+              <input type="text" class="mat-input form-control" name=event[what]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="What">What Happened</label>
+              <input type="text" class="mat-input form-control" name=event[what]>
+            </div>
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
 
     <!-- CARDS -->
     <% if @story.events.size > 	0 %>
@@ -156,6 +264,3 @@
 			<% end %>			
 		</div>
 	<% end %>
-
-
-
