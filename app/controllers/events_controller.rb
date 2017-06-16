@@ -3,7 +3,6 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		
 		if @event.save
-      byebug
 
       if params[:eventphotos_attributes] != nil
         params[:eventphotos_attributespara]['photo'].each do |a|
