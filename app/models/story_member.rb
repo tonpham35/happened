@@ -1,0 +1,2 @@
+class StoryMember < ApplicationRecord
+end

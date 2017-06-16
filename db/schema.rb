@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616032718) do
+
+ActiveRecord::Schema.define(version: 20170614075224) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +69,21 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.index ["story_id"], name: "index_events_on_story_id"
   end
 
+  create_table "friends", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "friend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "photos", force: :cascade do |t|
     t.datetime "time_taken"
     t.string "lat"
@@ -83,6 +100,15 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_stories_on_user_id"
+  end
+
+  create_table "story_members", force: :cascade do |t|
+    t.bigint "story_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_story_members_on_story_id"
+    t.index ["user_id"], name: "index_story_members_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,5 +133,8 @@ ActiveRecord::Schema.define(version: 20170616032718) do
   add_foreign_key "event_members", "users"
   add_foreign_key "eventphotos", "events"
   add_foreign_key "events", "stories"
+  add_foreign_key "friends", "users"
   add_foreign_key "stories", "users"
+  add_foreign_key "story_members", "stories"
+  add_foreign_key "story_members", "users"
 end

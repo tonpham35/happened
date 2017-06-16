@@ -3,9 +3,10 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
-  
+
   def home
-  end  
+    @user = User.all
+  end
 
   def index
     @users = User.all
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @friend = User.find(params[:id])
   end
 
   # GET /users/1/edit
