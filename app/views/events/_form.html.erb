@@ -1,0 +1,36 @@
+<%= form_with(model: event, local: true) do |form| %>
+
+  <div class="text-field">
+    <%= form.label :what %>
+    <%= form.text_field :what, type: 'what' %>
+  </div>
+
+  <div class="text-field">
+    <%= form.label :where %>
+    <%= form.text_field :where, type: 'where' %>
+  </div>
+
+  <div class="text-field">
+    <%= form.label :who %>
+    <%= form.text_field :who, type: 'where' %>
+  </div>  
+
+  <div class="text-field">
+    <%= form.label :when %>
+    <%= form.text_field :when, type: 'where' %>
+  </div>  
+
+  <!-- <div class="text-field">
+    <%#= form.label :who %>
+    <%#= form.text_field :who, type: 'where' %>
+  </div> -->  
+
+  <div class="field">
+    <%= form.label "Photos" %>
+    <%= form.file_field :photos, multiple: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

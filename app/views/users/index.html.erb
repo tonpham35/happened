@@ -1,8 +1,73 @@
 <p id="notice"><%= notice %></p>
-  <div id='left-side-column' >
-    <ul style="margin-top: 10px">
-    <% current_user.stories.each do |story| %>
-      <li><%= story.title %></li>
+
+<div class="row">
+
+    <!-- Media, Title, and Description area -->
+    <% if signed_in? %>
+        <% if current_user.stories != nil %>
+            <% count = current_user.stories.count %>
+            <% current_user.stories.each do |story| %>
+                <%= link_to story_path(story.id) do %>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 10px;">
+
+                            <!-- Card media -->
+                            <div class="pmd-card-media">
+                       <!--          <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> -->
+                       <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
+                            </div>
+                            
+                            <!-- Card header -->
+                            <div class="pmd-card-title" style="text-decoration: none;">
+                                <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
+                                <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>    
+            <% end %>
+        <% end %>
     <% end %>
-    </ul>
+</div>  
+
+<!-- New Story Modal -->
+<div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pmd-modal-bordered">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h2 class="pmd-card-title-text">Make A New Travel Story</h2><!-- Title -->
+      </div>
+      <%= form_for :story, url: stories_path do |form| %>
+      <div class="modal-body">
+        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+          <label for="Title">Title</label>
+          <input type="text" class="mat-input form-control" name=story[title]>
+        </div>
+        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+          <label for="description">Description</label>
+          <input type="text" class="mat-input form-control" name=story[description]>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="photo">Story Photo</label>
+          <%= form.file_field :photo %>
+        </div>
+      </div>
+      <div class="pmd-modal-action">
+        <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+      </div>
+      <%end%>
+    </div>
   </div>
+<<<<<<< HEAD
+=======
+</div>
+
+<!-- Lower Left raised circle button with ripple effect -->
+<div class="pmd-floating-action"  role="navigation" style="z-index: 1001;"> 
+  <a data-target="#form-dialog-story" data-toggle="modal" class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="New Travel Story">
+    <span class="pmd-floating-hidden">New Travel Story</span> 
+    <i class="material-icons pmd-sm">add</i> 
+  </a> 
+</div>
+>>>>>>> 5d7d1fbbdaa9f763a288e4418529f9122dd77b92
