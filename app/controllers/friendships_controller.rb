@@ -24,11 +24,12 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
-    @friendship = Friendship.new(friendship_params)
+    @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
+    @friendship.user_id = current_user.id
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Friendship was successfully created.' }
         format.json { render :show, status: :created, location: @friendship }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship.destroy
     respond_to do |format|
-      format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'Friendship was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

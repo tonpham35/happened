@@ -5,28 +5,32 @@ class User < ApplicationRecord
 
 	validates :email, presence: {message: "Please fill-in all fields" }
 	validates :email, uniqueness: { message: "must be new"}
-	validates :email, format: { with: /\w*@.*\.\w*/, message: "Invalid email address" } 
+	validates :email, format: { with: /\w*@.*\.\w*/, message: "Invalid email address" }
 	validates :password, length: { minimum: 6, message: "Password must be at least 6 characters" }, on: :create
 
 	has_many :stories
 	has_many :events
+	has_many :friendships
+	has_many :friends, :through => :friendships
+	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 	def self.datetime(img_file)
 		data = Exif::Data.new(img_file)
-		return datetime = data.date_time	
+		return datetime = data.date_time
 	end
 
 	def self.latitude(img_file)
 		data = Exif::Data.new(img_file)
-		return datetime = data.gps_latitude	
+		return datetime = data.gps_latitude
 	end
 
 	def self.longitude(img_file)
 		data = Exif::Data.new(img_file)
 		return datetime = data.gps_longitude
-	end	
+	end
 
-# In app/models/user.rb    
+# In app/models/user.rb
 	class User < ApplicationRecord
 	    has_many :authentications, dependent: :destroy
 
