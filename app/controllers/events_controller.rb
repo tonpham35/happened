@@ -3,13 +3,12 @@ class EventsController < ApplicationController
 		@event = Event.new(event_params)
 		
 		if @event.save
-
-      if params[:eventphotos_attributes] != nil
-        params[:eventphotos_attributespara]['photo'].each do |a|
+      if params[:eventphotos_attributes][:photos] != nil
+        params[:eventphotos_attributes]['photos'].each do |a|
           @eventphotos = @event.eventphotos.create!(:photo => a)
-          lat = Eventphoto.latitude(@eventphotos.path)
-          lng = Eventphoto.longitute(@eventphotos.path)
-          datetime = Eventphoto.datetime(@eventphotos.path)
+          lat = Eventphoto.latitude(a.path)
+          lng = Eventphoto.longitude(a.path)
+          datetime = Eventphoto.datetime(a.path)
           @eventphotos.update(lat: lat, long: lng, datetime: datetime)
         end
       end

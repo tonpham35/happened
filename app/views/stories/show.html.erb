@@ -180,7 +180,7 @@
             <%= form.fields_for :eventphotos do |p| %>
             <div class="form-group pmd-textfield pmd-textfield-floating-label">
               <!-- <label for="Photos">Upload Photos</label> -->
-			    <%= p.file_field :photo, multiple: true, name: ":eventphotos_attributes[photos][]" %>
+			    <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
             </div>
             <% end %>
           </div>
