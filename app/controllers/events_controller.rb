@@ -11,6 +11,7 @@ class EventsController < ApplicationController
           datetime = Eventphoto.datetime(a.path)
           @eventphotos.update(lat: lat, long: lng, datetime: datetime)
         end
+          @event.update(when: @eventphotos.datetime)
       end
 
       redirect_to story_path(@event.story.id)
