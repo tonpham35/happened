@@ -129,6 +129,19 @@
 	display: none;
 }
 
+/*----- Event Card -----*/
+#eventcolumn {
+	padding: 2px;
+}
+
+div.pmd-card.pmd-card-default.pmd-z-depth {
+	margin-bottom: 4px;
+}
+
+div.pmd-card.pmd-card-media-inline.pmd-z-depth {
+	margin-bottom: 4px;
+}
+
 /*----- Google Maps -----*/
 #gmap_canvas {
 height: 700px;
