@@ -8,10 +8,8 @@ class EventsController < ApplicationController
           @eventphotos = @event.eventphotos.create!(:photo => a)
           lat = Eventphoto.latitude(a.path)
           lng = Eventphoto.longitude(a.path)
-          datetime = Eventphoto.datetime(a.path)
-          @eventphotos.update(lat: lat, long: lng, datetime: datetime)
+          @eventphotos.update(lat: lat, long: lng)
         end
-          @event.update(when: @eventphotos.datetime)
       end
 
       redirect_to story_path(@event.story.id)
