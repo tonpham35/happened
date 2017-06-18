@@ -176,11 +176,14 @@
                 <label for="What">What Happened</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
-              <%= form.fields_for :eventphotos do |p| %>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <!-- <label for="Photos">Upload Photos</label> -->
-  			    <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
+                <label for="What">What Happened</label>
+                <input type="text" class="mat-input form-control" name=event[when]>
               </div>
+              <%= form.fields_for :eventphotos do |p| %>
+                <div class="form-group pmd-textfield pmd-textfield-floating-label">
+    			        <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
+                </div>
               <% end %>
             </div>
             <div class="pmd-modal-action">
@@ -308,7 +311,7 @@
                 <div class="pmd-card pmd-card-default pmd-z-depth">
                   <!-- Card media -->
                   <div class="pmd-card-media">
-                    <div id="myCarousel<%= event.id %>" class="carousel slide" data-interval="false" >
+                    <div id="myCarousel<%= event.id %>" class="carousel slide" >
                       <!-- Indicators -->
                       <ol class="carousel-indicators">
                         <li data-target="#myCarousel<%= event.id %>" data-slide-to="0" class="active"></li>
@@ -322,7 +325,7 @@
 
                       <!-- Wrapper for slides -->
                       <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item">
                           <div id='places-container' style="height: 100%; width: 100%;">
                             <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
 
@@ -352,9 +355,6 @@
                                       ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
                                     <% end %>
                                   ];
-                                      
-                                  // Display multiple markers on a map
-                                  var infoWindow = new google.maps.InfoWindow(), marker, i;
                                   
                                   // Loop through our array of markers & place each one on the map  
                                   for( i = 0; i < markers.length; i++ ) {
@@ -402,7 +402,6 @@
                     <div class="media-body media-middle">
                       <h3 class="pmd-card-title-text"><%= event.what %></h3>
                     </div>
-                    <button data-target="#large-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-z-depth" type="button">Large Modal</button>
                   </div>
                 </div>
               <% end %><!-- PHOTO CARDS END -->  
