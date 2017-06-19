@@ -3,8 +3,8 @@ class CreateEventphotos < ActiveRecord::Migration[5.1]
     create_table :eventphotos do |t|
       t.references :event, foreign_key: true
       t.string :photo
-      t.float :lat
-      t.float :long
+      t.string :lat
+      t.string :long
       t.datetime :datetime
 
       t.timestamps

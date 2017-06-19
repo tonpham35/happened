@@ -20,9 +20,10 @@ Rails.application.routes.draw do
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'users/' => 'users#index', :as => :users_index
+  get 'users/' => 'users#home', :as => :users_home
 
   resources :stories, controller: "stories", only: [:create, :show]
 
-  root 'users#index'
+  root 'users#home'
 
 end

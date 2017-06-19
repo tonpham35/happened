@@ -16,6 +16,18 @@
 //= require moment
 //= require_tree .
 
+
+  $(document).ready( function() {
+    //Propeller tabs js
+    $('.pmd-tabs').pmdTab();
+  });
+
+  $('#mapcardAll').on('shown', function (e) {
+
+    google.maps.event.trigger(map, 'resize');
+
+});
+
 // Show/hide specified div
 function clickShow(w) {
     var x = document.getElementById(w);
@@ -82,6 +94,7 @@ function initAutocomplete() {
       markers.push(new google.maps.Marker({
         map: map,
         icon: icon,
+        draggable: true,
         title: place.name,
         position: place.geometry.location
       }));
@@ -106,7 +119,40 @@ function initAutocomplete() {
   $("#form-dialog-location-tag").on("shown.bs.modal", function () {
     google.maps.event.trigger(map, "resize");
     map.setCenter(latlng);
+  });
+}
+
+
+$(document).ready( function() {
+  $('#datetimepicker0').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker1').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#timepicker').datetimepicker({
+		format: 'LT'
+	});
+
+  $('#datetimepicker3').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker4').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker5').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker6').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
 });
+
 
 }
 
@@ -117,3 +163,4 @@ $(document).ready(function() {
 			theme: "bootstrap",
 		})
 	});
+

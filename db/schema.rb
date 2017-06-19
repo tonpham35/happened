@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170616032718) do
   create_table "eventphotos", force: :cascade do |t|
     t.bigint "event_id"
     t.string "photo"
-    t.float "lat"
-    t.float "long"
+    t.string "lat"
+    t.string "long"
     t.datetime "datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
