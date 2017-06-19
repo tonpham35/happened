@@ -23,9 +23,9 @@
   });
 
   $('#mapcardAll').on('shown', function (e) {
-   
+
     google.maps.event.trigger(map, 'resize');
-    
+
 });
 
 // Show/hide specified div
@@ -36,9 +36,9 @@ function clickShow(w) {
     } else {
         x.style.display = '';
     }
-};   
+};
 
-// Adds a search box to a map, using the Google Place Autocomplete feature. 
+// Adds a search box to a map, using the Google Place Autocomplete feature.
 // People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
 
@@ -120,6 +120,36 @@ function initAutocomplete() {
     google.maps.event.trigger(map, "resize");
     map.setCenter(latlng);
   });
-
 }
+
+
+$(document).ready( function() {
+  $('#datetimepicker0').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker1').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#timepicker').datetimepicker({
+		format: 'LT'
+	});
+
+  $('#datetimepicker3').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker4').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker5').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+
+  $('#datetimepicker6').datetimepicker({
+    format: 'DD/MM/YYYY'
+  });
+});
 
