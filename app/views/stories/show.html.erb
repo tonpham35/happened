@@ -418,53 +418,75 @@
                                     <div class="item active">
                                       <div id='places-container' style="height: 100%; width: 100%;">
                                         <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
-
-                                          <script>
-                                            function initMap<%= event.id %>() {
-                                              var bounds = new google.maps.LatLngBounds();
-                                              var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
-                                                scrollwheel: false,
-                                                zoomControl: true,
-                                                mapTypeControl: false,
-                                                zoomControlOptions: {
+                                          <% if count == 1 %>
+                                            <script>
+                                              function initMap<%= event.id %>() {
+                                                var myLatLng<%= event.id %> = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
+                                                var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                                                  zoom: 15,
+                                                  scrollwheel: false,
+                                                  mapTypeControl: false,
+                                                  zoomControlOptions: {
                                                     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
                                                     position: google.maps.ControlPosition.TOP_CENTER
-                                                },
-                                              });
-
-                                              // Multiple Markers
-                                              var markers = [
-                                                <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
-                                                <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
-                                                <% elsif event.eventphotos.count > 2 %>
-                                                  <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
-                                                    <% j += 1 %>
-                                                  <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
-                                                <% end %>
-                                              ];
-
-                                              // Display multiple markers on a map
-                                              var infoWindow = new google.maps.InfoWindow(), marker, i;
-
-                                              // Loop through our array of markers & place each one on the map
-                                              for( i = 0; i < markers.length; i++ ) {
-                                                  var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-                                                  bounds.extend(position);
-                                                  marker = new google.maps.Marker({
-                                                      position: position,
-                                                      map: map,
-                                                      icon: markers[i][0]
-                                                  });
-                                                  // Automatically center the map fitting all markers on the screen
-                                                  map.fitBounds(bounds);
+                                                  },
+                                                  center: myLatLng<%= event.id %>
+                                                });
+                                                var marker<%= event.id %> = new google.maps.Marker({
+                                                  position: myLatLng<%= event.id %>,
+                                                  map: map<%= event.id %>,
+                                                  icon: '<%= event.eventphotos[0].photo.thumb.url %>',
+                                                });
                                               }
-                                            }
-                                          </script>
+                                            </script>
+                                          <% else %>
+                                            <script>
+                                              function initMap<%= event.id %>() {
+                                                var bounds = new google.maps.LatLngBounds();
+                                                var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                                                  scrollwheel: false,
+                                                  zoomControl: true,
+                                                  mapTypeControl: false,
+                                                  zoomControlOptions: {
+                                                      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                                                      position: google.maps.ControlPosition.TOP_CENTER
+                                                  },
+                                                });
+
+                                                // Multiple Markers
+                                                var markers = [
+                                                  <% if event.eventphotos.count == 1 %>
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  <% elsif event.eventphotos.count == 2 %>
+                                                      ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
+                                                      ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                  <% elsif event.eventphotos.count > 2 %>
+                                                    <% for j in 0..(count-2) %>
+                                                      ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                      <% j += 1 %>
+                                                    <% end %>
+                                                    ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  <% end %>
+                                                ];
+
+                                                // Display multiple markers on a map
+                                                var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+                                                // Loop through our array of markers & place each one on the map
+                                                for( i = 0; i < markers.length; i++ ) {
+                                                    var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                                                    bounds.extend(position);
+                                                    marker = new google.maps.Marker({
+                                                        position: position,
+                                                        map: map,
+                                                        icon: markers[i][0]
+                                                    });
+                                                    // Automatically center the map fitting all markers on the screen
+                                                    map.fitBounds(bounds);
+                                                }
+                                              }
+                                            </script>
+                                          <% end %>
 
                                       </div>
 

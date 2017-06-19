@@ -58,13 +58,13 @@
             <% if signed_in? -%>
               <% if current_user.stories != nil %>
                 <li class="pmd">
-                  <%= link_to root_path do %>
+                  <%= link_to users_index_path do %>
                     <span class="media-body" style="font-size: 15px;">My Stories</span>
                   <% end %>
                 <li>
                 <% current_user.stories.each do |story| %>
                   <li class="pmd-ripple-effect">
-                    <%= link_to root_path do %>
+                    <%= link_to story_path(story.id) do %>
                       <i class="material-icons media-left media-middle">book</i><span 
                       class="media-body" style="font-size: 15px;"><%= story.title %></span>
                     <% end %>
