@@ -3,22 +3,28 @@
 <!-- Basic fixed sidebar -->
 
 <!-- Nav menu -->
-<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth">
-  <div class="container-fluid"> 
+<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth" id="navbar">
+  <div class="container-fluid">
       <!-- Sidebar Toggle Button-->
       <div class="navbar-header">
-          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons">menu</i></a>
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons" style="color: #5DBCD2;">menu</i></a>
           <!-- BRANDING LOCATION-->
-          <%= link_to root_path do %><span class="navbar-brand" style="color: white;">Xplor</span> <% end %> 
+
+          <%= link_to root_path do %><span class="navbar-brand" style="color: #5DBCD2;">Xplor<img src="assets/logomakr.png" id="image"></img></span> <% end %>
+
 
       </div>
-      
-      <!-- Navbar Right icon (Search) open up hidden search box -->    
-      <div class="pmd-navbar-right-icon pull-right"> 
-          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" id='navbar-search-container' onclick="clickShow('log-in')"><i class="material-icons pmd-sm" id='navbar-icons-search'>search</i></a>
-      </div> 
+
+      <!-- Navbar Right icon (Search) open up hidden search box -->
+      <div class="pmd-navbar-right-icon pull-right">
+
+
+      </div>
   </div>
+
+  <!-- Contains image on home page and title -->
 </nav>
+
 
 <!-- Open sidebar -->
 <section id="pmd-main">
@@ -27,6 +33,7 @@
       <ul class="nav pmd-sidebar-nav">
           <!-- My Account Info -->
           <li class="pmd-user-info">
+
             <%= link_to users_index_path do %>
               <div class="media-left">
                 <% if signed_in? -%>
@@ -55,6 +62,7 @@
               </div>
             <% end %>
           </li>          
+
 
           <!-- Sidebar Link Items -->
 
@@ -91,5 +99,7 @@
                 <a data-target="#form-dialog-signup" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Sign Up</span></a>
               </li>
             <% end %>
+
       </ul>
     </aside>
+

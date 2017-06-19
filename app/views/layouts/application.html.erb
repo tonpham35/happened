@@ -31,7 +31,7 @@
     </div> -->
 
 <%= render partial: "layouts/navbar" %>
-
+    
     <!-- Log In Modal -->
     <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
@@ -50,7 +50,7 @@
               <label for="first-name">Password</label>
               <input type="password" class="mat-input form-control" name=session[password]>
             </div>
-          
+
           </div>
           <div class="pmd-modal-action">
             <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Log In</button><% end %>
@@ -95,7 +95,7 @@
             </div>
             <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
               <input type="checkbox" value="">
-              <span class="pmd-checkbox"> Accept Terms and conditions</span> 
+              <span class="pmd-checkbox"> Accept Terms and conditions</span>
             </label>
           </div>
           <div class="pmd-modal-action">
@@ -108,7 +108,36 @@
         </div>
       </div>
     </div>
-    
+
+
+        <!-- New Story Modal -->
+    <div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header pmd-modal-bordered">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h2 class="pmd-card-title-text">Create A New Story</h2><!-- Title -->
+          </div>
+          <%= form_for :story, url: stories_path do |form| %>
+          <div class="modal-body">
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="title">Story Title</label>
+              <input type="text" class="mat-input form-control" name=story[title]>
+            </div>
+            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <label for="description">Why</label>
+              <input type="text-field" class="mat-input form-control" name=story[description]>
+            </div>
+
+          </div>
+          <div class="pmd-modal-action">
+            <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Create Story</button><% end %>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
     <%= yield %>
 
   <div class="pmd-sidebar-overlay"></div>

@@ -119,9 +119,6 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.string "first_name"
     t.string "last_name"
     t.string "profilepic"
-    t.datetime "datetime"
-    t.string "latituve"
-    t.string "longitude"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
