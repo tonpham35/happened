@@ -33,16 +33,7 @@
 <%= render partial: "layouts/navbar" %>
 
     <!-- Lower Left raised circle button with ripple effect -->
-    <div class="menu pmd-floating-action"  role="navigation"> 
-      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Event"> 
-        <span class="pmd-floating-hidden">New Event</span> 
-        <i class="material-icons">file_upload</i> 
-      </a> 
-      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="NEW STORY" data-target="#form-dialog-story" data-toggle="modal"> 
-        <span class="pmd-floating-hidden">Primary</span>
-        <i class="material-icons pmd-sm">add</i> 
-      </a> 
-    </div>
+  
 
     <!-- Log In Modal -->
     <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
@@ -62,7 +53,7 @@
               <label for="first-name">Password</label>
               <input type="password" class="mat-input form-control" name=session[password]>
             </div>
-          
+
           </div>
           <div class="pmd-modal-action">
             <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Log In</button><% end %>
@@ -107,7 +98,7 @@
             </div>
             <label class="checkbox-inline pmd-checkbox pmd-checkbox-ripple-effect">
               <input type="checkbox" value="">
-              <span class="pmd-checkbox"> Accept Terms and conditions</span> 
+              <span class="pmd-checkbox"> Accept Terms and conditions</span>
             </label>
           </div>
           <div class="pmd-modal-action">
@@ -139,7 +130,7 @@
               <label for="description">Why</label>
               <input type="text-field" class="mat-input form-control" name=story[description]>
             </div>
-          
+
           </div>
           <div class="pmd-modal-action">
             <%= form.submit do%><button data-dismiss="modal"  class="btn pmd-ripple-effect btn-primary" type="button">Create Story</button><% end %>

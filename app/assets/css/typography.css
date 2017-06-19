@@ -14,10 +14,10 @@ a:focus, a:hover { outline: none; outline-offset:-2px; text-decoration:none;}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { font-weight: normal;}
 
 /* small secondary heading text */
-h1 small, h2 small, h3 small, h4 small, h5 small, 
+h1 small, h2 small, h3 small, h4 small, h5 small,
 h6 small, .h1 small, .h2 small, .h3 small, .h4 small,
-.h5 small, .h6 small, h1 .small, h2 .small, h3 .small, 
-h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, 
+.h5 small, .h6 small, h1 .small, h2 .small, h3 .small,
+h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small,
 .h3 .small, .h4 .small, .h5 .small, .h6 .small { color:rgba(0,0,0,0.54);}
 
 /* Font size and color according to Google Material */

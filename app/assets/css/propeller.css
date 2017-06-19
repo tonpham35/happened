@@ -107,10 +107,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* small secondary heading text */
-h1 small, h2 small, h3 small, h4 small, h5 small, 
+h1 small, h2 small, h3 small, h4 small, h5 small,
 h6 small, .h1 small, .h2 small, .h3 small, .h4 small,
-.h5 small, .h6 small, h1 .small, h2 .small, h3 .small, 
-h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, 
+.h5 small, .h6 small, h1 .small, h2 .small, h3 .small,
+h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small,
 .h3 .small, .h4 .small, .h5 .small, .h6 .small {
   color: rgba(0,0,0,.54);
 }
@@ -548,7 +548,7 @@ h2.pmd-card-title-text {
   top: 0;
   right: -10px;
   bottom: 0;
-  left: -10px; 
+  left: -10px;
   margin: auto;
   content: "";
 }
@@ -2045,7 +2045,7 @@ h2.pmd-card-title-text {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4);
   transition: left .3s ease 0s, background .3s ease 0s, box-shadow .1s ease 0s;
 }
-.pmd-switch label input[type="checkbox][disabled"] + .pmd-switch-label::after, .pmd-switch label 
+.pmd-switch label input[type="checkbox][disabled"] + .pmd-switch-label::after, .pmd-switch label
 input[type="checkbox][disabled"]:checked + .pmd-switch-label::after {
   background-color: #bdbdbd;
 }
@@ -2208,7 +2208,7 @@ input[type="checkbox][disabled"]:checked + .pmd-switch-label::after {
     padding-top: 20px;
     padding-bottom: 20px;
   }
-} 
+}
 .pmd-navbar .navbar-nav > li > a {
   text-transform: uppercase;
 }
@@ -2923,7 +2923,7 @@ input[type="checkbox][disabled"]:checked + .pmd-switch-label::after {
 .pmd-tabs .nav .open > a,
 .pmd-tabs .nav .open > a:hover,
 .pmd-tabs .nav .open > a:focus,
-.pmd-tabs .nav > li > a:hover, 
+.pmd-tabs .nav > li > a:hover,
 .pmd-tabs .nav > li > a:focus {
   background-color: transparent;
   border-color: transparent;
@@ -2947,7 +2947,7 @@ input[type="checkbox][disabled"]:checked + .pmd-switch-label::after {
 .pmd-tabs-bg li a {
   color: #fff;
 }
-.pmd-tabs-bg .pmd-tabs-scroll-right, .pmd-tabs-bg .pmd-tabs-scroll-left, 
+.pmd-tabs-bg .pmd-tabs-scroll-right, .pmd-tabs-bg .pmd-tabs-scroll-left,
 .pmd-tabs-bg .pmd-tabs-scroll-container {
   color: #fff;
   background-color: #4285f4;
@@ -3440,7 +3440,7 @@ Ttable Reflow
 }
 .pmd-table.table-reflow > tbody > tr > td {
   border: none;
-  border-bottom: 1px solid #eceeef; 
+  border-bottom: 1px solid #eceeef;
   border-left: 1px solid #eceeef;
 }
 .pmd-table.table-reflow > thead > tr > th,
@@ -3672,7 +3672,7 @@ Ttable Reflow
 }
 .pmd-floating-action:hover .pmd-floating-action-btn, .menu--floating--open .pmd-floating-action-btn {
   position: relative;
-  bottom: auto; 
+  bottom: auto;
   opacity: 1;
   -ms-transform: none;
       transform: none;

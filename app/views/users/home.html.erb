@@ -1,30 +1,11 @@
-<h1 class='text-center'>This is the Home Page</h1>
 
-<% if signed_in? %>
-    <h3>My Google Maps Demo</h3>
-    <%= User.latitude(current_user.profilepic.path) %>
-    <%= User.longitude(current_user.profilepic.path) %>
-    <%= User.datetime(current_user.profilepic.path) %>
-    <%=current_user.profilepic.url%>
-    <div class='text-center'>
-		<div id="map"></div>
-	</div>
-    <script>
-      function initMap() {
-        var uluru = {lat: <%= User.latitude(current_user.profilepic.path) %>, lng: <%= User.longitude(current_user.profilepic.path) %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          icon: '<%=current_user.profilepic.thumb.url%>',
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLbpwsWUJL10f_2FxbJp4nFtRitbWjAFI&callback=initMap">
-    </script>
-<% end %>
 
+
+<div id="banner-home">
+    <div id="transbox">
+      <img id="logo" src="assets/logomakr.png" alt="Logo Xplor" width="10%" height="10%"></img>
+      <p id='brand'> Xplor </p>
+      <p id='slogan'> record your Xploration </p>
+
+    </div>
+</div>
