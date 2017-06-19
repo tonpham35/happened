@@ -42,25 +42,30 @@
 /*----- Body -----*/
 	body {
 		padding-top: 47px;
-		background-color: whitesmoke;
+		background-color: #EAE7DC;
 	}
 
 	a:hover {
 		background-color: transparent;
 	}
 
+/*----- Tab Panels -----*/
+.tab-pane.active, .tab-pane, {
+	background-color: #EAE7DC;
+}
+
 /*----- Navbar -----*/
 
 	/*navbar color*/
 	.navbar-inverse {
-	    background-color: #4285f4;
-	    border-color: #4285f4;
+	    background-color: #88BDBC;
+	    border-color: #88BDBC;
 	    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
 	}
 
 	/*navbar icons*/
 	#navbar-icons-menu, #navbar-icons-search, #navbar-search-container {
-		color: white;
+		color: #EAE7DC;
 		border: none;
 	}
 
@@ -79,7 +84,7 @@
 /*----- Floating Action Button -----*/
 	
 #floating-bottom-button {
-	background-color: #d32f2f;
+	background-color: #F64C72;
 	bottom: 24px;
 	color: white;
 	position: fixed;
