@@ -23,6 +23,9 @@
           <span class="pmd-floating-hidden">New Accomodations</span>
           <i class="material-icons">local_hotel</i>
         </a>
+        <a data-target="#form-dialog-participant" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Participant" >
+          <span class="pmd-floating-hidden">New Participant</span>
+        </a>
         <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
 
         	<span class="pmd-floating-hidden">Add a New Event</span>
@@ -30,7 +33,7 @@
         </a>
 
       </div>
-      
+
 
       <!-- New Event Modals -->
 
@@ -74,6 +77,39 @@
           </div>
         </div>
       </div>
+
+      <!-- New participant Modals -->
+      <div tabindex="-1" class="modal fade" id="form-dialog-participant" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header pmd-modal-bordered">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h2 class="pmd-card-title-text">New Participant</h2><!-- Title -->
+            </div>
+
+            <%= form_for :story_members, url: story_members_path do |form| %>
+            <div class="modal-body">
+              <div>
+                <%= form.hidden_field :story_id, :value => @story.id %>
+              </div>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                <label>New Participants</label>
+                <select class="select-tags form-control pmd-select2-tags" multiple name="story_members[participant][]" >
+                      <% current_user.friendships.each do |x| %>
+                      <%  y = x.friend_id %>
+                      <option><%= User.find(y).first_name %></option>
+                      <% end %>
+                  </select>
+              </div>
+            </div>
+            <div class="pmd-modal-action">
+              <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+            </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+
 
       <!-- New Transportation Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-transportation" style="display: none;" aria-hidden="true">
@@ -1090,4 +1126,3 @@
           initMap();
         }
      </script>
-

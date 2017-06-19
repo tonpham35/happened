@@ -153,3 +153,10 @@ $(document).ready( function() {
   });
 });
 
+$(document).ready(function() {
+<!-- Select Multiple Tags -->
+ $(".select-tags").select2({
+   tags: false,
+   theme: "bootstrap",
+  })
+ });
