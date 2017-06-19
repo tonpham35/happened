@@ -2,31 +2,31 @@
 
     <!-- Lower Right Floating Action Button with ripple effect -->
     <% if @story.user.id == current_user.id %><!-- Only available if User is owner -->
-      <div class="menu pmd-floating-action"  role="navigation" style="z-index: 1001;"> 
-        <a data-target="#form-dialog-written" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Entry"> 
-          <span class="pmd-floating-hidden">New Journal Entry</span> 
-          <i class="material-icons">book</i> 
-        </a> 
-         <a data-target="#form-dialog-photos" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Photo"> 
-          <span class="pmd-floating-hidden">New Photo</span> 
-          <i class="material-icons">add_a_photo</i> 
-        </a> 
-        <a data-target="#form-dialog-location-tag" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag"> 
-          <span class="pmd-floating-hidden">New Location Tag</span> 
-          <i class="material-icons">add_location</i> 
-        </a> 
-        <a data-target="#form-dialog-transportation" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Transportation"> 
-          <span class="pmd-floating-hidden">New Transportation</span> 
-          <i class="material-icons">navigation</i> 
-        </a> 
-        <a data-target="#form-dialog-accomodation" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Accomodations" > 
-          <span class="pmd-floating-hidden">New Accomodations</span> 
-          <i class="material-icons">local_hotel</i> 
-        </a> 
+      <div class="menu pmd-floating-action"  role="navigation" style="z-index: 1001;">
+        <a data-target="#form-dialog-written" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Entry">
+          <span class="pmd-floating-hidden">New Journal Entry</span>
+          <i class="material-icons">book</i>
+        </a>
+         <a data-target="#form-dialog-photos" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Photo">
+          <span class="pmd-floating-hidden">New Photo</span>
+          <i class="material-icons">add_a_photo</i>
+        </a>
+        <a data-target="#form-dialog-location-tag" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Location Tag">
+          <span class="pmd-floating-hidden">New Location Tag</span>
+          <i class="material-icons">add_location</i>
+        </a>
+        <a data-target="#form-dialog-transportation" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Transportation">
+          <span class="pmd-floating-hidden">New Transportation</span>
+          <i class="material-icons">navigation</i>
+        </a>
+        <a data-target="#form-dialog-accomodation" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Accomodations" >
+          <span class="pmd-floating-hidden">New Accomodations</span>
+          <i class="material-icons">local_hotel</i>
+        </a>
         <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
-        	<span class="pmd-floating-hidden">Add a New Event</span> 
-          <i class="material-icons pmd-sm">add</i> 
-        </a> 
+        	<span class="pmd-floating-hidden">Add a New Event</span>
+          <i class="material-icons pmd-sm">add</i>
+        </a>
       </div>
 
     	<!-- New Event Modals -->
@@ -42,8 +42,8 @@
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
             	<div>
-  	       	<%= form.hidden_field :story_id, :value => @story.id %>
-            	<%= form.hidden_field :type_of_event, :value => 'accomodation' %>
+  	       	     <%= form.hidden_field :story_id, :value => @story.id %>
+            	   <%= form.hidden_field :type_of_event, :value => 'accomodation' %>
             	</div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="What">What Accomodation</label>
@@ -53,13 +53,13 @@
                 <label for="Where">Where?</label>
                 <input type="text" class="mat-input form-control" name=event[accomodation_address]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="when">When?(Check-in)</label>
-                <input type="text" class="mat-input form-control" name=event[when]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">Select Check In Date</label>
+              	<input type="text" id="datetimepicker0" class="form-control" name=event[when]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="when">When?(Check-out)</label>
-                <input type="text" class="mat-input form-control" name=event[accomodation_checkout]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+                <label class="control-label" for="regular1">Select Check Out Date</label>
+                <input type="text" id="datetimepicker1" class="form-control" name=event[accomodation_checkout]>
               </div>
             </div>
             <div class="pmd-modal-action">
@@ -84,7 +84,7 @@
             	<%= form.hidden_field :story_id, :value => @story.id %>
             	<%= form.hidden_field :type_of_event, :value => 'transportation' %>
             	</div>
-  			<div class="form-group pmd-textfield pmd-textfield-floating-label">       
+  			<div class="form-group pmd-textfield pmd-textfield-floating-label">
   				<label>Mode of Transportation</label>
   				<select class="select-simple form-control pmd-select2" name=event[mode_of_transport]>
   			        <option></option>
@@ -99,13 +99,13 @@
                 <label for="What">Bus/Flight/Train Number</label>
                 <input type="text" class="mat-input form-control" name=event[flight_num]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="Where">Departure Time</label>
-                <input type="text" class="mat-input form-control" name=event[flight_time]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">Departure Time</label>
+              	<input type="text" id="timepicker" class="form-control" name=event[departure_time]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="when">Departure Date</label>
-                <input type="text" class="mat-input form-control" name=event[when]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">Departure Date</label>
+              	<input type="text" id="datetimepicker3" class="form-control" name=event[when]>
               </div>
             </div>
             <div class="pmd-modal-action">
@@ -141,9 +141,9 @@
             		<%= form.hidden_field :story_id, :value => @story.id %>
             		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
             	</div>
-            	<div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="when">When</label>
-                <input type="text" class="mat-input form-control" name=event[when]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">When</label>
+              	<input type="text" id="datetimepicker4" class="form-control" name=event[when]>
               </div>
             	<div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="why">Why</label>
@@ -176,9 +176,9 @@
                 <label for="What">What Happened</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="When">When</label>
-                <input type="text" class="mat-input form-control" name=event[when]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">When</label>
+              	<input type="text" id="datetimepicker5" class="form-control" name=event[when]>
               </div>
               <%= form.fields_for :eventphotos do |p| %>
                 <div class="form-group pmd-textfield pmd-textfield-floating-label">
@@ -216,9 +216,9 @@
                 <label for="What">Where?</label>
                 <input type="text" class="mat-input form-control" name=event[where]>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
-                <label for="What">When?</label>
-                <input type="text" class="mat-input form-control" name=event[when]>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              	<label class="control-label" for="regular1">When</label>
+              	<input type="text" id="datetimepicker6" class="form-control" name=event[when?]>
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="Entry">Entry</label>
@@ -254,7 +254,7 @@
       </div>
 
       <!--Content Tabs -->
-      <div class="pmd-card pmd-z-depth" style="background-color: #EAE7DC; box-shadow: 0px 0px black;"> 
+      <div class="pmd-card pmd-z-depth" style="background-color: #EAE7DC; box-shadow: 0px 0px black;">
         <div class="pmd-tabs pmd-tabs-bg">
           <div class="pmd-tab-active-bar"></div>
           <ul class="nav nav-tabs" role="tablist">
@@ -275,7 +275,7 @@
 
                 <% dates_arr.each do |date| %><!-- Loops each distinct date -->
                   <% day_arr = @story.events.where(when: date) %><!--  array of events that happen on that date -->
-                  
+
                   <div style="width: 100%; border-bottom: 2px rgba(0 0 0 0.7);"><!-- Display Date of Events -->
                     <h1><%= date.strftime('%b %d, %Y') %></h1>
                   </div>
@@ -287,10 +287,10 @@
                       <% day_arr.each_with_index do |event, index| %>
                         <% modulus = index % 3 %>
                         <% if modulus == 0 %><!-- MODULUS == 0 WILL BE FIRST COLUMN -->
-                          
+
                           <!-- ACCOMODATION CARDS -->
                           <% if event.type_of_event == 'accomodation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                               <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                                 <!-- Card media -->
@@ -298,11 +298,11 @@
                                   <!-- Card media heading -->
                                     <div class="media-body">
                                         <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br> 
+                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
                                         <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span> 
+                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <img width="152" height="152" src="/assets/cartoon-hotel-21.jpg">
@@ -314,7 +314,7 @@
 
                           <!-- TRANSPORTATION CARDS -->
                           <% if event.type_of_event == 'transportation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                             <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                               <!-- Card media -->
@@ -324,7 +324,7 @@
                                         <h3 class="pmd-card-title-text"><%= event.mode_of_transport.upcase %></h3>
                                         <% if event.flight_num != nil %>
                                           <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
-                                        <% end %> 
+                                        <% end %>
                                         <% if event.flight_date != nil %>
                                           <span class="pmd-card-subtitle-text">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                         <% end %>
@@ -332,7 +332,7 @@
                                         <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
                                         <% end %>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <% if event.mode_of_transport == 'Bus' %>
@@ -352,7 +352,7 @@
                           <% end %>
                           <!-- TRANSPORTATION CARDS END -->
 
-                          <!-- PHOTO CARDS -->  
+                          <!-- PHOTO CARDS -->
                           <% if event.type_of_event == 'photos' %>
                             <% count = event.eventphotos.count %>
                             <!--Media, Title, Description and Action area -->
@@ -369,7 +369,7 @@
                                       <li data-target="#myCarousel<%= event.id %>" data-slide-to="<%= i %>"></li>
                                       <% i += 1 %>
                                     <% end %>
-                                    
+
                                   </ol>
 
                                   <!-- Wrapper for slides -->
@@ -390,7 +390,7 @@
                                                     position: google.maps.ControlPosition.TOP_CENTER
                                                 },
                                               });
-                                                  
+
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
@@ -406,11 +406,11 @@
                                                   ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
                                                 <% end %>
                                               ];
-                                                  
+
                                               // Display multiple markers on a map
                                               var infoWindow = new google.maps.InfoWindow(), marker, i;
-                                              
-                                              // Loop through our array of markers & place each one on the map  
+
+                                              // Loop through our array of markers & place each one on the map
                                               for( i = 0; i < markers.length; i++ ) {
                                                   var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                                                   bounds.extend(position);
@@ -436,7 +436,7 @@
                                         <img src="<%= event.eventphotos[i].photo.card.url %>" style="width:100%;">
                                       </div>
                                       <% i += 1 %>
-                                    <% end %>                  
+                                    <% end %>
                                   </div>
 
                                   <!-- Left and right controls -->
@@ -453,7 +453,7 @@
                                 <div id='places-container' style="height: 100%; width: 100%;">
                                   <img src="<%= event.eventphotos[0].photo.card.url %>" style="width:100%;">
                                 </div>
-                                
+
                                 <div tabindex="-1" class="modal fade" id="photo-map<%= event.id %>" style="display: none;" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
@@ -496,7 +496,7 @@
 
                                 <% end %>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle"><a data-target="#photo-map<%= event.id %>" data-toggle="modal">
@@ -505,11 +505,11 @@
                               </div>
                             </div>
                           <% end %>
-                          <!-- PHOTO CARDS END -->  
+                          <!-- PHOTO CARDS END -->
 
-                          <!-- LOCATION TAG CARDS -->  
+                          <!-- LOCATION TAG CARDS -->
                           <% if event.type_of_event == 'location_tag' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
                               <!-- Card media -->
@@ -518,7 +518,7 @@
                                   <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
                                   <script>
                                     function initMap<%= event.id %>() {
-                                  
+
                                       var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
 
                                       var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -535,7 +535,7 @@
                                   </script>
                                 </div>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -547,14 +547,14 @@
 
                             </div>
                           <% end %>
-                          <!-- LOCATION TAG CARDS END --> 
+                          <!-- LOCATION TAG CARDS END -->
 
-                          <!-- WRITTEN ENTRY CARDS -->  
+                          <!-- WRITTEN ENTRY CARDS -->
                           <% if event.type_of_event == 'written' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -568,7 +568,7 @@
 
                             </div>
                           <% end %>
-                          <!-- WRITTEN ENTRY CARDS END --> 
+                          <!-- WRITTEN ENTRY CARDS END -->
 
                         <% end %>
                       <% end %>
@@ -580,10 +580,10 @@
                       <% day_arr.each_with_index do |event, index| %>
                         <% modulus = index % 3 %>
                         <% if modulus == 1 %><!-- MODULUS == 1 WILL BE SECOND COLUMN -->
-                          
+
                           <!-- ACCOMODATION CARDS -->
                           <% if event.type_of_event == 'accomodation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                               <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                                 <!-- Card media -->
@@ -591,11 +591,11 @@
                                   <!-- Card media heading -->
                                     <div class="media-body">
                                         <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br> 
+                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
                                         <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span> 
+                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <img width="152" height="152" src="/assets/cartoon-hotel-21.jpg">
@@ -606,7 +606,7 @@
 
                           <!-- TRANSPORTATION CARDS -->
                           <% if event.type_of_event == 'transportation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                             <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                               <!-- Card media -->
@@ -616,7 +616,7 @@
                                         <h3 class="pmd-card-title-text"><%= event.mode_of_transport.upcase %></h3>
                                         <% if event.flight_num != nil %>
                                           <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
-                                        <% end %> 
+                                        <% end %>
                                         <% if event.flight_date != nil %>
                                           <span class="pmd-card-subtitle-text">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                         <% end %>
@@ -624,7 +624,7 @@
                                         <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
                                         <% end %>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <% if event.mode_of_transport == 'Bus' %>
@@ -643,7 +643,7 @@
                             </div>
                           <% end %><!-- TRANSPORTATION CARDS END -->
 
-                          <!-- PHOTO CARDS -->  
+                          <!-- PHOTO CARDS -->
                           <% if event.type_of_event == 'photos' %>
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
@@ -658,7 +658,7 @@
                                       <li data-target="#myCarousel<%= event.id %>" data-slide-to="<%= i %>"></li>
                                       <% i += 1 %>
                                     <% end %>
-                                    
+
                                   </ol>
 
                                   <!-- Wrapper for slides -->
@@ -679,7 +679,7 @@
                                                     position: google.maps.ControlPosition.TOP_CENTER
                                                 },
                                               });
-                                                  
+
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
@@ -695,11 +695,11 @@
                                                   ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
                                                 <% end %>
                                               ];
-                                                  
+
                                               // Display multiple markers on a map
                                               var infoWindow = new google.maps.InfoWindow(), marker, i;
-                                              
-                                              // Loop through our array of markers & place each one on the map  
+
+                                              // Loop through our array of markers & place each one on the map
                                               for( i = 0; i < markers.length; i++ ) {
                                                   var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                                                   bounds.extend(position);
@@ -725,7 +725,7 @@
                                         <img src="<%= event.eventphotos[i].photo.card.url %>" style="width:100%;">
                                       </div>
                                       <% i += 1 %>
-                                    <% end %>                  
+                                    <% end %>
                                   </div>
 
                                   <!-- Left and right controls -->
@@ -739,7 +739,7 @@
                                   </a>
                                 </div>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -747,11 +747,11 @@
                                 </div>
                               </div>
                             </div>
-                          <% end %><!-- PHOTO CARDS END -->  
+                          <% end %><!-- PHOTO CARDS END -->
 
-                          <!-- LOCATION TAG CARDS -->  
+                          <!-- LOCATION TAG CARDS -->
                           <% if event.type_of_event == 'location_tag' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
                               <!-- Card media -->
@@ -776,7 +776,7 @@
                                   </script>
                                 </div>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -787,14 +787,14 @@
                               </div>
 
                             </div>
-                          <% end %><!-- LOCATION TAG CARDS END --> 
+                          <% end %><!-- LOCATION TAG CARDS END -->
 
-                          <!-- WRITTEN ENTRY CARDS -->  
+                          <!-- WRITTEN ENTRY CARDS -->
                           <% if event.type_of_event == 'written' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -807,7 +807,7 @@
                               </div>
 
                             </div>
-                          <% end %><!-- WRITTEN ENTRY CARDS END --> 
+                          <% end %><!-- WRITTEN ENTRY CARDS END -->
 
                         <% end %>
                       <% end %>
@@ -819,10 +819,10 @@
                       <% day_arr.each_with_index do |event, index| %>
                         <% modulus = index % 3 %>
                         <% if modulus == 2 %><!-- MODULUS == 2 WILL BE THIRD COLUMN -->
-                          
+
                           <!-- ACCOMODATION CARDS -->
                           <% if event.type_of_event == 'accomodation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                               <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                                 <!-- Card media -->
@@ -830,11 +830,11 @@
                                   <!-- Card media heading -->
                                     <div class="media-body">
                                         <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br> 
+                                        <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
                                         <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span> 
+                                        <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <img width="152" height="152" src="/assets/cartoon-hotel-21.jpg">
@@ -846,7 +846,7 @@
 
                           <!-- TRANSPORTATION CARDS -->
                           <% if event.type_of_event == 'transportation' %>
-                          
+
                             <!--Title, Media, and Action area -->
                             <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                               <!-- Card media -->
@@ -856,7 +856,7 @@
                                         <h3 class="pmd-card-title-text"><%= event.mode_of_transport.upcase %></h3>
                                         <% if event.flight_num != nil %>
                                           <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
-                                        <% end %> 
+                                        <% end %>
                                         <% if event.flight_date != nil %>
                                           <span class="pmd-card-subtitle-text">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                         <% end %>
@@ -864,7 +864,7 @@
                                         <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
                                         <% end %>
                                     </div>
-                                    
+
                                     <!-- Card media image -->
                                     <div class="media-right media-middle">
                                       <% if event.mode_of_transport == 'Bus' %>
@@ -884,7 +884,7 @@
                           <% end %>
                           <!-- TRANSPORTATION CARDS END -->
 
-                          <!-- PHOTO CARDS -->  
+                          <!-- PHOTO CARDS -->
                           <% if event.type_of_event == 'photos' %>
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
@@ -899,7 +899,7 @@
                                       <li data-target="#myCarousel<%= event.id %>" data-slide-to="<%= i %>"></li>
                                       <% i += 1 %>
                                     <% end %>
-                                    
+
                                   </ol>
 
                                   <!-- Wrapper for slides -->
@@ -920,7 +920,7 @@
                                                     position: google.maps.ControlPosition.TOP_CENTER
                                                 },
                                               });
-                                                  
+
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
@@ -936,8 +936,8 @@
                                                   ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
                                                 <% end %>
                                               ];
-                                              
-                                              // Loop through our array of markers & place each one on the map  
+
+                                              // Loop through our array of markers & place each one on the map
                                               for( i = 0; i < markers.length; i++ ) {
                                                   var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                                                   bounds.extend(position);
@@ -963,7 +963,7 @@
                                         <img src="<%= event.eventphotos[i].photo.card.url %>" style="width:100%;">
                                       </div>
                                       <% i += 1 %>
-                                    <% end %>                  
+                                    <% end %>
                                   </div>
 
                                   <!-- Left and right controls -->
@@ -977,7 +977,7 @@
                                   </a>
                                 </div>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -986,11 +986,11 @@
                               </div>
                             </div>
                           <% end %>
-                          <!-- PHOTO CARDS END -->  
+                          <!-- PHOTO CARDS END -->
 
-                          <!-- LOCATION TAG CARDS -->  
+                          <!-- LOCATION TAG CARDS -->
                           <% if event.type_of_event == 'location_tag' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
                               <!-- Card media -->
@@ -1015,7 +1015,7 @@
                                   </script>
                                 </div>
                               </div>
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -1027,14 +1027,14 @@
 
                             </div>
                           <% end %>
-                          <!-- LOCATION TAG CARDS END --> 
+                          <!-- LOCATION TAG CARDS END -->
 
-                          <!-- WRITTEN ENTRY CARDS -->  
+                          <!-- WRITTEN ENTRY CARDS -->
                           <% if event.type_of_event == 'written' %>
-                          
+
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
-                              
+
                               <!-- Card body -->
                               <div class="pmd-card-body">
                                 <div class="media-body media-middle">
@@ -1048,7 +1048,7 @@
 
                             </div>
                           <% end %>
-                          <!-- WRITTEN ENTRY CARDS END --> 
+                          <!-- WRITTEN ENTRY CARDS END -->
 
                         <% end %>
                       <% end %>
@@ -1077,7 +1077,7 @@
 
         </div>
         <!-- END OF TAB CONTENT -->
-      </div> 
+      </div>
       <!--End of Content Tabs -->
 
     <!-- GOOGLE MAP API KEY - initializemap function below -->
@@ -1099,6 +1099,5 @@
             <% end %>
           <% end %>
           initMap();
-        } 
+        }
      </script>
-
