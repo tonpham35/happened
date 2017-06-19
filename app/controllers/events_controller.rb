@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 	def create
 		@event = Event.new(event_params)
-		
+
 		if @event.save
       if params[:eventphotos_attributes] != nil
         params[:eventphotos_attributes]['photos'].each do |a|
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
       end
 
       redirect_to story_path(@event.story.id)
-    
+
     else
       format.html { render :new }
     end
