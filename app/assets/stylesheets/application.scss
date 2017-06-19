@@ -41,7 +41,6 @@
 
 /*----- Body -----*/
 	body {
-		padding-top: 47px;
 		background-color: #EAE7DC;
 	}
 
@@ -54,32 +53,88 @@
 	background-color: #EAE7DC;
 }
 
+/*----- Banner -----*/
+
+#banner-home {
+	background-image: image-url("backpack-4.jpg");
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: #4646464;
+	height: 735px;
+}
+
 /*----- Navbar -----*/
 
-	/*navbar color*/
-	.navbar-inverse {
-	    background-color: #88BDBC;
-	    border-color: #88BDBC;
-	    box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+#image {
+		  	display: inline;
+			max-width: 10%;
+			max-height: 10%;
+			margin-left: 10px;
 	}
 
-	/*navbar icons*/
-	#navbar-icons-menu, #navbar-icons-search, #navbar-search-container {
-		color: #EAE7DC;
+#navbar {
+		background: transparent;
 		border: none;
+		box-shadow: none;
 	}
+  /*----- Logo and slogan in the centre of page -----*/
 
-	/*navbar icons hover*/
-	#navbar-icons-menu:hover, #navbar-icons-search:hover, navbar-search-container:hover {
-		color: black;
-		background-color: transparent;
-	}
+#logo {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 150px;
+	padding-bottom: 1%;
+}
 
-	/*navbar brand hover*/
+#brand {
+	margin-top: 1px;
+	padding: 30px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 100px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+#slogan {
+
+	padding: 30px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 50px;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+
+/*----- Navbar -----*/
+
+/*navbar color*/
+.navbar-inverse {
+	background-color: #88BDBC;
+	border-color: #88BDBC;
+	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+}
+
+/*navbar icons*/
+#navbar-icons-menu, #navbar-icons-search, #navbar-search-container {
+	color: #EAE7DC;
+	border: none;
+}
+
+/*navbar icons hover*/
+#navbar-icons-menu:hover, #navbar-icons-search:hover, navbar-search-container:hover {
+	color: black;
+	background-color: transparent;
+}
+
+/*navbar brand hover*/
 	.navbar-brand:hover, .navbar-brand:focus {
-	    color: #fff;
-	    background-color: transparent;
-	}
+	color: #fff;
+	background-color: transparent;
+}
 
 /*----- Floating Action Button -----*/
 	

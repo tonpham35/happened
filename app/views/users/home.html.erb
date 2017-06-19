@@ -1,7 +1,102 @@
-<h1 class='text-center'>This is the Home Page</h1>
-<%= link_to "index", users_index_path %>
-<br>
-<% @user.each do |x| %>
-<%= link_to x.first_name, user_path(x.id) %>
-<br>
-<% end %>
+<!-- Nav menu -->
+<nav class="navbar navbar-inverse pmd-navbar navbar-fixed-top pmd-z-depth" style="background-color: transparent; border-color: transparent; box-shadow: none;" >
+  <div class="container-fluid"> 
+      <!-- Sidebar Toggle Button-->
+      <div class="navbar-header">
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons" style="color: #5DBCD2">menu</i></a>
+          <!-- BRANDING LOCATION-->
+          <%= link_to root_path do %><span class="navbar-brand" style="color: #5DBCD2;">Xplor</span> <% end %> 
+
+      </div>
+      
+      <!-- Navbar Right icon (Search) open up hidden search box -->    
+      <div class="pmd-navbar-right-icon pull-right"> 
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" id='navbar-search-container' onclick="clickShow('log-in')"><i class="material-icons pmd-sm" id='navbar-icons-search' style="color: #5DBCD2">search</i></a>
+      </div> 
+  </div>
+</nav>
+
+<!-- Open sidebar -->
+<section id="pmd-main">
+  <!-- Left sidebar -->
+  <aside class="pmd-sidebar sidebar-custom sidebar-default pmd-sidebar-slide-push pmd-sidebar-left pmd-z-depth sidebar-hide-custom" role="navigation" style="position: absolute;">
+      <ul class="nav pmd-sidebar-nav">
+          <!-- My Account Info -->
+          <li class="pmd-user-info">
+            <%= link_to users_index_path do %>
+              <div class="media-left">
+                <% if signed_in? -%>
+                  <!-- If Signed In Show Profile Pic Thumb -->
+                  <% if current_user.profilepic.thumb.url != nil %>
+                    <%=image_tag current_user.profilepic.thumb.url, class:"card-thumb"%>
+                  <% else -%> 
+                  <!-- If Signed In But No Profile Pic Thumb Show Blank Profile Pic-->
+                    <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                  <% end -%>
+                <% else -%> 
+                <!-- If Not Signed Show Blank Profile Pic-->
+                  <img width="40" height="40" alt="avatar" src="/assets/blank_profile_pic_Fotor1.png">
+                <% end -%>
+              </div>
+              <div class="media-body media-middle">
+                <% if signed_in? -%>
+                    <% if current_user.first_name != nil -%>
+                       <!-- If Signed In Show Full Name -->
+                      My Account: <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                    <% end -%>
+                  <% else -%> 
+                    <!-- If Not Signed In Show Name is Guest -->
+                    Guest
+                  <% end -%>
+              </div>
+            <% end %>
+          </li>          
+
+          <!-- Sidebar Link Items -->
+
+            <!-- Link to ???? -->
+            <% if signed_in? -%>
+              <% if current_user.stories != nil %>
+                <li class="pmd">
+                  <%= link_to root_path do %>
+                    <span class="media-body" style="font-size: 15px;">My Stories</span>
+                  <% end %>
+                <li>
+                <% current_user.stories.each do |story| %>
+                  <li class="pmd-ripple-effect">
+                    <%= link_to root_path do %>
+                      <i class="material-icons media-left media-middle">book</i><span 
+                      class="media-body" style="font-size: 15px;"><%= story.title %></span>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>  
+            <% end %>
+
+            <!-- Link to Log off if signed in -->
+            <% if signed_in? -%>
+              <li class="pmd-ripple-effect" style="position: absolute; bottom: 20px;">
+                <%= link_to sign_out_path(@users), method: :delete do %><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Logout</span><% end %>
+              </li>
+            <% else %>
+              <!-- Links to Log In or Sign up if not logged in Modals-->
+              <li class="pmd-ripple-effect">
+                <a data-target="#form-dialog" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Login</span></a>
+              </li>
+              <li class="pmd-ripple-effect">
+                <a data-target="#form-dialog-signup" data-toggle="modal"><i class="material-icons media-left media-middle">exit_to_app</i> <span class="media-body" style="font-size: 15px;">Sign Up</span></a>
+              </li>
+            <% end %>
+      </ul>
+    </aside>
+
+
+<div id="banner-home">
+    <div id="transbox">
+      <img id="logo" src="assets/logomakr.png" alt="Logo Xplor" width="10%" height="10%"></img>
+      <p id='brand'> Xplor </p>
+      <p id='slogan'> record your Xploration </p>
+
+    </div>
+</div>
+

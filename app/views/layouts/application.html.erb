@@ -29,8 +29,9 @@
         <div class="flash <%#= key %>"><%#= value %></div>
       <%# end %>
     </div> -->
-
-<%= render partial: "layouts/navbar" %>
+<% unless action_name == "home" %>
+   <%= render partial: "layouts/navbar" %>
+<% end %>
 
     <!-- Log In Modal -->
     <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
