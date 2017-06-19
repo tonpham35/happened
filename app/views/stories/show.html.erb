@@ -24,15 +24,15 @@
           <i class="material-icons">local_hotel</i> 
         </a> 
         <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
-        	<span class="pmd-floating-hidden">Add a New Event</span> 
+          <span class="pmd-floating-hidden">Add a New Event</span> 
           <i class="material-icons pmd-sm">add</i> 
         </a> 
       </div>
 
-    	<!-- New Event Modals -->
+      <!-- New Event Modals -->
 
-    	<!-- New Accomodation Modals -->
-    	<div tabindex="-1" class="modal fade" id="form-dialog-accomodation" style="display: none;" aria-hidden="true">
+      <!-- New Accomodation Modals -->
+      <div tabindex="-1" class="modal fade" id="form-dialog-accomodation" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
@@ -41,10 +41,10 @@
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
-            	<div>
-  	       	<%= form.hidden_field :story_id, :value => @story.id %>
-            	<%= form.hidden_field :type_of_event, :value => 'accomodation' %>
-            	</div>
+              <div>
+            <%= form.hidden_field :story_id, :value => @story.id %>
+              <%= form.hidden_field :type_of_event, :value => 'accomodation' %>
+              </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="What">What Accomodation</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
@@ -71,7 +71,7 @@
       </div>
 
       <!-- New Transportation Modals -->
-    	<div tabindex="-1" class="modal fade" id="form-dialog-transportation" style="display: none;" aria-hidden="true">
+      <div tabindex="-1" class="modal fade" id="form-dialog-transportation" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
@@ -80,21 +80,21 @@
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
-            	<div>
-            	<%= form.hidden_field :story_id, :value => @story.id %>
-            	<%= form.hidden_field :type_of_event, :value => 'transportation' %>
-            	</div>
-  			<div class="form-group pmd-textfield pmd-textfield-floating-label">       
-  				<label>Mode of Transportation</label>
-  				<select class="select-simple form-control pmd-select2" name=event[mode_of_transport]>
-  			        <option></option>
-  			        <option>Bus</option>
-  			        <option>Drive</option>
-  			        <option>Plane</option>
-  			        <option>Train</option>
-  			        <option>Walk</option>
-  			    </select>
-  			</div>
+              <div>
+              <%= form.hidden_field :story_id, :value => @story.id %>
+              <%= form.hidden_field :type_of_event, :value => 'transportation' %>
+              </div>
+        <div class="form-group pmd-textfield pmd-textfield-floating-label">       
+          <label>Mode of Transportation</label>
+          <select class="select-simple form-control pmd-select2" name=event[mode_of_transport]>
+                <option></option>
+                <option>Bus</option>
+                <option>Drive</option>
+                <option>Plane</option>
+                <option>Train</option>
+                <option>Walk</option>
+            </select>
+        </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="What">Bus/Flight/Train Number</label>
                 <input type="text" class="mat-input form-control" name=event[flight_num]>
@@ -117,7 +117,7 @@
       </div>
 
       <!-- New Location Tag Modals -->
-    	<div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
+      <div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" style="width: 90%;">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
@@ -125,27 +125,27 @@
               <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
             </div>
             <div class="modal-body">
-            	<div id='places-container' style="height: 100%; width: 100%;">
-  	 			       <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
-  				      <div id="map"></div>
-            	</div>
-            	<%= form_for :event, url: events_path do |form| %>
-            	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div id='places-container' style="height: 100%; width: 100%;">
+                 <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
+                <div id="map"></div>
+              </div>
+              <%= form_for :event, url: events_path do |form| %>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="what">What</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
-            	<div>
-            		<input type="hidden" id="locname" name=event[where]>
-  				<input type="hidden" id="longitude" name=event[location_longitude]>
-  				<input type="hidden" id="latitude" name=event[location_latitude]>
-            		<%= form.hidden_field :story_id, :value => @story.id %>
-            		<%= form.hidden_field :type_of_event, :value => 'location_tag' %>
-            	</div>
-            	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div>
+                <input type="hidden" id="locname" name=event[where]>
+          <input type="hidden" id="longitude" name=event[location_longitude]>
+          <input type="hidden" id="latitude" name=event[location_latitude]>
+                <%= form.hidden_field :story_id, :value => @story.id %>
+                <%= form.hidden_field :type_of_event, :value => 'location_tag' %>
+              </div>
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="when">When</label>
                 <input type="text" class="mat-input form-control" name=event[when]>
               </div>
-            	<div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="why">Why</label>
                 <input type="text" class="mat-input form-control" name=event[why]>
               </div>
@@ -159,7 +159,7 @@
       </div>
 
       <!-- New Photos Modals -->
-    	<div tabindex="-1" class="modal fade" id="form-dialog-photos" style="display: none;" aria-hidden="true">
+      <div tabindex="-1" class="modal fade" id="form-dialog-photos" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
@@ -168,10 +168,10 @@
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
-            	<div>
-            	<%= form.hidden_field :story_id, :value => @story.id %>
-            	<%= form.hidden_field :type_of_event, :value => 'photos' %>
-            	</div>
+              <div>
+              <%= form.hidden_field :story_id, :value => @story.id %>
+              <%= form.hidden_field :type_of_event, :value => 'photos' %>
+              </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="What">What Happened</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
@@ -182,7 +182,7 @@
               </div>
               <%= form.fields_for :eventphotos do |p| %>
                 <div class="form-group pmd-textfield pmd-textfield-floating-label">
-    			        <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
+                  <%= p.file_field :photo, multiple: true, name: "eventphotos_attributes[photos][]" %>
                 </div>
               <% end %>
             </div>
@@ -195,7 +195,7 @@
       </div>
 
       <!-- New Written Entry Modals -->
-    	<div tabindex="-1" class="modal fade" id="form-dialog-written" style="display: none;" aria-hidden="true">
+      <div tabindex="-1" class="modal fade" id="form-dialog-written" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
@@ -204,10 +204,10 @@
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
-            	<div>
-            		<%= form.hidden_field :story_id, :value => @story.id %>
-            		<%= form.hidden_field :type_of_event, :value => 'written' %>
-            	</div>
+              <div>
+                <%= form.hidden_field :story_id, :value => @story.id %>
+                <%= form.hidden_field :type_of_event, :value => 'written' %>
+              </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="What">What Happened?</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
@@ -227,7 +227,7 @@
             </div>
 
             <div class="pmd-modal-action">
-            	<%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+              <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
             </div>
             <%end%>
           </div>
@@ -419,11 +419,9 @@
                                                       map: map,
                                                       icon: markers[i][0]
                                                   });
-
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
-
                                             }
                                           </script>
 
@@ -466,15 +464,12 @@
                                         <div id="mapcard<%= event.id %>" style="width: 100%; height: 600px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
-
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
                                                 zoom: 12,
                                                 center: myLatLng
                                               });
-
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
@@ -484,7 +479,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(mylatlng);
                                               });
-
                                             }
                                           </script>
                                         <%end%>
@@ -520,13 +514,11 @@
                                     function initMap<%= event.id %>() {
                                   
                                       var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
-
                                       var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
                                         zoom: 15,
                                         scrollwheel: false,
                                         center: myLatLng<%= event.id %>
                                       });
-
                                       var marker<%= event.id %> = new google.maps.Marker({
                                         position: myLatLng<%= event.id %>,
                                         map: map<%= event.id %>,
@@ -708,11 +700,9 @@
                                                       map: map,
                                                       icon: markers[i][0]
                                                   });
-
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
-
                                             }
                                           </script>
 
@@ -761,13 +751,11 @@
                                   <script>
                                     function initMap<%= event.id %>() {
                                       var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
-
                                       var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
                                         zoom: 15,
                                         scrollwheel: false,
                                         center: myLatLng<%= event.id %>
                                       });
-
                                       var marker<%= event.id %> = new google.maps.Marker({
                                         position: myLatLng<%= event.id %>,
                                         map: map<%= event.id %>,
@@ -946,11 +934,9 @@
                                                       map: map,
                                                       icon: markers[i][0]
                                                   });
-
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
-
                                             }
                                           </script>
 
@@ -1000,13 +986,11 @@
                                   <script>
                                     function initMap<%= event.id %>() {
                                       var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
-
                                       var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
                                         zoom: 15,
                                         scrollwheel: false,
                                         center: myLatLng<%= event.id %>
                                       });
-
                                       var marker<%= event.id %> = new google.maps.Marker({
                                         position: myLatLng<%= event.id %>,
                                         map: map<%= event.id %>,
@@ -1087,18 +1071,13 @@
      <script>
         function initializemap() {
           initAutocomplete();
-
           <% @story.events.each do |event| %>
             <% if event.type_of_event == 'location_tag' %>
               initMap<%= event.id %>();
-            <% end %>
-          <% end %>
-          <% @story.events.each do |event| %>
-            <% if event.type_of_event == 'photos' %>
+            <% elsif event.type_of_event == 'photos' %>
               initMap<%= event.id %>();
             <% end %>
           <% end %>
           initMap();
         } 
      </script>
-
