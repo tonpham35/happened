@@ -297,22 +297,22 @@
           </div>
         </div>
       </div>
+      <div style="height: 100px;"></div>
 
-      <!--Content Tabs -->
-      <div class="pmd-card pmd-z-depth" style="background-color: #EAE7DC; box-shadow: 0px 0px black;">
-        <div class="pmd-tabs pmd-tabs-bg">
-          <div class="pmd-tab-active-bar"></div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Events</a></li>
-            <li role="presentation"><a data-target="#form-dialog-location-all" data-toggle="modal" id="maptab">Map</a></li>
-            <li role="presentation"><a href="#work" aria-controls="work" role="tab" data-toggle="tab">Scrollable</a></li>
-          </ul>
-        </div>
-        <div class="pmd-card-body" style="background-color: #EAE7DC;">
-          <!-- START OF TAB CONTENT -->
-          <div class="tab-content">
-            <!-- START OF EVENT CARD TAB -->
-            <div role="tabpanel" class="tab-pane active" id="home">
+      <!--Fixed tab example -->
+<div class="pmd-card pmd-z-depth">
+  <div class="pmd-tabs pmd-tabs-bg">
+    <div class="pmd-tab-active-bar"></div>
+    <ul role="tablist" class="nav nav-tabs nav-justified">
+    <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Default</a></li>
+    <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">Fixed</a></li>
+    <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Scrollable</a></li>
+    </ul>
+  </div>
+  <div class="pmd-card-body">
+    <div class="tab-content">
+    <!-- START OF EVENT CARD TAB -->
+    <div role="tabpanel" class="tab-pane active" id="home-fixed">
               <!-- CARDS -->
                 <!-- Organize Cards by Date -->
                 <% dates_arr = @story.events.distinct.pluck(:when) %><!-- Makes Array of Distinct Dates -->
@@ -331,7 +331,7 @@
                     <div id="eventcolumn" class="col-xs-4">
                       <% day_arr.each_with_index do |event, index| %>
                         <% modulus = index % 3 %>
-                        <% if modulus == 0 %><!-- MODULUS == 0 WILL BE FIRST COLUMN -->
+                        <% if modulus == 0 %><!-- MODULUS == 1 WILL BE SECOND COLUMN -->
 
                           <!-- ACCOMODATION CARDS -->
                           <% if event.type_of_event == 'accomodation' %>
@@ -354,8 +354,7 @@
                                     </div>
                                 </div>
                               </div>
-                          <% end %>
-                          <!-- ACCOMODATION CARDS END-->
+                          <% end %><!-- ACCOMODATION CARDS END-->
 
                           <!-- TRANSPORTATION CARDS -->
                           <% if event.type_of_event == 'transportation' %>
@@ -394,17 +393,14 @@
                                     </div>
                                 </div>
                             </div>
-                          <% end %>
-                          <!-- TRANSPORTATION CARDS END -->
+                          <% end %><!-- TRANSPORTATION CARDS END -->
 
                           <!-- PHOTO CARDS -->
                           <% if event.type_of_event == 'photos' %>
-                            <% count = event.eventphotos.count %>
                             <!--Media, Title, Description and Action area -->
                             <div class="pmd-card pmd-card-default pmd-z-depth">
                               <!-- Card media -->
                               <div class="pmd-card-media">
-                                <% if count > 1 %>
                                 <div id="myCarousel<%= event.id %>" class="carousel slide" data-interval="false" >
                                   <!-- Indicators -->
                                   <ol class="carousel-indicators">
@@ -492,59 +488,16 @@
                                     <span class="sr-only">Next</span>
                                   </a>
                                 </div>
-                                <% else %>
-                                <div id='places-container' style="height: 100%; width: 100%;">
-                                  <img src="<%= event.eventphotos[0].photo.card.url %>" style="width:100%;">
-                                </div>
-
-                                <div tabindex="-1" class="modal fade" id="photo-map<%= event.id %>" style="display: none;" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header pmd-modal-bordered">
-                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                        <h2 class="pmd-card-title-text">Location</h2><!-- Title -->
-                                      </div>
-                                      <%= form_for :event, url: events_path do |form| %>
-                                      <div class="modal-body">
-                                        <div id="mapcard<%= event.id %>" style="width: 100%; height: 600px;"></div>
-                                        <% if count == 1 %>
-                                          <script>
-                                            function initMap<%= event.id %>() {
-                                              var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
-                                              var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
-                                                zoom: 12,
-                                                center: myLatLng
-                                              });
-                                              var marker = new google.maps.Marker({
-                                                position: myLatLng,
-                                                map: map,
-                                                icon: '<%= event.eventphotos[0].photo.thumb.url %>'
-                                              });
-                                              $("#photo-map<%= event.id %>").on("shown.bs.modal", function () {
-                                                google.maps.event.trigger(map, "resize");
-                                                map.setCenter(mylatlng);
-                                              });
-                                            }
-                                          </script>
-                                        <%end%>
-                                      </div>
-                                      <%end%>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <% end %>
                               </div>
 
                               <!-- Card body -->
                               <div class="pmd-card-body">
-                                <div class="media-body media-middle"><a data-target="#photo-map<%= event.id %>" data-toggle="modal">
-                                  <h3 class="pmd-card-title-text"><%= event.what %></h3></a>
+                                <div class="media-body media-middle">
+                                  <h3 class="pmd-card-title-text"><%= event.what %></h3>
                                 </div>
                               </div>
                             </div>
-                          <% end %>
-                          <!-- PHOTO CARDS END -->
+                          <% end %><!-- PHOTO CARDS END -->
 
                           <!-- LOCATION TAG CARDS -->
                           <% if event.type_of_event == 'location_tag' %>
@@ -557,7 +510,6 @@
                                   <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
                                   <script>
                                     function initMap<%= event.id %>() {
-
                                       var myLatLng<%= event.id %> = {lat: <%= event.location_latitude %>, lng: <%= event.location_longitude %>};
                                       var map<%= event.id %> = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
                                         zoom: 15,
@@ -583,8 +535,7 @@
                               </div>
 
                             </div>
-                          <% end %>
-                          <!-- LOCATION TAG CARDS END -->
+                          <% end %><!-- LOCATION TAG CARDS END -->
 
                           <!-- WRITTEN ENTRY CARDS -->
                           <% if event.type_of_event == 'written' %>
@@ -604,8 +555,7 @@
                               </div>
 
                             </div>
-                          <% end %>
-                          <!-- WRITTEN ENTRY CARDS END -->
+                          <% end %><!-- WRITTEN ENTRY CARDS END -->
 
                         <% end %>
                       <% end %>
@@ -1086,28 +1036,15 @@
 
                   </div>
                   <!-- END OF CARD COLUMN ROW CLASS -->
-
                 <% end %>
-            </div>
-            <!-- END OF EVENT CARD TAB -->
+    </div>
+    <!-- END OF EVENT CARD TAB -->
+    <div role="tabpanel" class="tab-pane" id="about-fixed">Fixed tabs have equal width, calculated either as the view width divided by the number of tabs, or based on the widest tab label. To navigate between fixed tabs, touch the tab or swipe the content area left or right.</div>
+    <div role="tabpanel" class="tab-pane" id="work-fixed">To navigate between scrollable tabs, touch the tab or swipe the content area left or right. To scroll the tabs without navigating, swipe the tabs left or right.</div>
+    </div>
+  </div>
+</div> <!--Fixed tab example end-->
 
-            <!-- START OF MAP TAB -->
-            <div role="tabpanel" class="tab-pane" id="about">
-              <div id='places-container' style="height: 100%; width: 100%;">
-                <div id="initMal" style="width: 100%; height: 600px;"></div>
-              </div>
-            </div>
-            <!-- END OF MAP TAB -->
-
-            <!-- START OF TAB -->
-            <div role="tabpanel" class="tab-pane" id="work">To navigate between scrollable tabs, touch the tab or swipe the content area left or right. To scroll the tabs without navigating, swipe the tabs left or right.</div>
-            </div>
-            <!-- END OF MAP TAB -->
-
-        </div>
-        <!-- END OF TAB CONTENT -->
-      </div>
-      <!--End of Content Tabs -->
 
     <!-- GOOGLE MAP API KEY - initializemap function below -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn3JpsPAtnQ-XNPSVcka3aHYg3OG-PQHg&libraries=places&callback=initializemap" async defer></script>
