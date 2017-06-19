@@ -122,6 +122,7 @@ function initAutocomplete() {
   });
 }
 
+
 $(document).ready( function() {
   $('#datetimepicker0').datetimepicker({
     format: 'DD/MM/YYYY'
@@ -151,3 +152,4 @@ $(document).ready( function() {
     format: 'DD/MM/YYYY'
   });
 });
+
