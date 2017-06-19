@@ -40,9 +40,8 @@
 @import 'pmd-select2.css';
 
 /*----- Body -----*/
-	body {
-
-
+	a:hover {
+		background-color: transparent;
 	}
 
 /*----- Navbar -----*/
@@ -72,16 +71,6 @@
 	    background-color: transparent;
 	}
 
-/*----- Left Side Column -----*/
-
-#left-side-column {
-	width: 25%;
-	height: 100vh;
-	border: 1px;
-	background-color: green;
-	position: fixed;
-}
-
 /*----- Floating Action Button -----*/
 
 #floating-bottom-button {
@@ -99,6 +88,11 @@
 	width: 60%;
 	height: 400px;
 	background-color: grey;
+}
+
+/*----- Floating Action Button -----*/
+#card-photo {
+	width: 100%;
 }
 
 /*----- Propeller css for Floating Action Button -----*/
@@ -180,3 +174,192 @@
 		color: #FFFFFF;
 		text-align: center;
 	}
+
+/*----- New Story Card -----*/
+#new-story {
+	display: none;
+}
+
+/*----- Event Card -----*/
+#eventcolumn {
+	padding: 2px;
+}
+
+div.pmd-card.pmd-card-default.pmd-z-depth {
+	margin-bottom: 4px;
+}
+
+div.pmd-card.pmd-card-media-inline.pmd-z-depth {
+	margin-bottom: 4px;
+}
+
+/*----- Google Maps -----*/
+#gmap_canvas {
+height: 700px;
+position: relative;
+width: 900px;
+}
+.actions {
+background-color: #FFFFFF;
+bottom: 30px;
+padding: 10px;
+position: absolute;
+right: 30px;
+z-index: 2;
+border-top: 1px solid #abbbcc;
+border-left: 1px solid #a7b6c7;
+border-bottom: 1px solid #a1afbf;
+border-right: 1px solid #a7b6c7;
+-webkit-border-radius: 12px;
+-moz-border-radius: 12px;
+border-radius: 12px;
+}
+.actions label {
+display: block;
+margin: 2px 0 5px 10px;
+text-align: left;
+}
+.actions input, .actions select {
+width: 85%;
+}
+.button {
+background-color: #d7e5f5;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d7e5f5), color-stop(100%, #cbe0f5));
+background-image: -webkit-linear-gradient(top, #d7e5f5, #cbe0f5);
+background-image: -moz-linear-gradient(top, #d7e5f5, #cbe0f5);
+background-image: -ms-linear-gradient(top, #d7e5f5, #cbe0f5);
+background-image: -o-linear-gradient(top, #d7e5f5, #cbe0f5);
+background-image: linear-gradient(top, #d7e5f5, #cbe0f5);
+border-top: 1px solid #abbbcc;
+border-left: 1px solid #a7b6c7;
+border-bottom: 1px solid #a1afbf;
+border-right: 1px solid #a7b6c7;
+-webkit-border-radius: 12px;
+-moz-border-radius: 12px;
+border-radius: 12px;
+-webkit-box-shadow: inset 0 1px 0 0 white;
+-moz-box-shadow: inset 0 1px 0 0 white;
+box-shadow: inset 0 1px 0 0 white;
+color: #1a3e66;
+font: normal 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+line-height: 1;
+margin-bottom: 5px;
+padding: 6px 0 7px 0;
+text-align: center;
+text-shadow: 0 1px 1px #fff;
+width: 150px;
+}
+.button:hover {
+background-color: #ccd9e8;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccd9e8), color-stop(100%, #c1d4e8));
+background-image: -webkit-linear-gradient(top, #ccd9e8, #c1d4e8);
+background-image: -moz-linear-gradient(top, #ccd9e8, #c1d4e8);
+background-image: -ms-linear-gradient(top, #ccd9e8, #c1d4e8);
+background-image: -o-linear-gradient(top, #ccd9e8, #c1d4e8);
+background-image: linear-gradient(top, #ccd9e8, #c1d4e8);
+border-top: 1px solid #a1afbf;
+border-left: 1px solid #9caaba;
+border-bottom: 1px solid #96a3b3;
+border-right: 1px solid #9caaba;
+-webkit-box-shadow: inset 0 1px 0 0 #f2f2f2;
+-moz-box-shadow: inset 0 1px 0 0 #f2f2f2;
+box-shadow: inset 0 1px 0 0 #f2f2f2;
+color: #163659;
+cursor: pointer;
+}
+.button:active {
+border: 1px solid #8c98a7;
+-webkit-box-shadow: inset 0 0 4px 2px #abbccf, 0 0 1px 0 #eeeeee;
+-moz-box-shadow: inset 0 0 4px 2px #abbccf, 0 0 1px 0 #eeeeee;
+box-shadow: inset 0 0 4px 2px #abbccf, 0 0 1px 0 #eeeeee;
+}
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+div#map {
+  width: 100%;
+}
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+.modal-backdrop {
+    z-index: 10;
+}
+
+.pac-container {
+    background-color: #FFF;
+    z-index: 20;
+    position: fixed;
+    display: inline-block;
+    float: left;
+}
+
+.modal {
+    z-index: 20;   
+}

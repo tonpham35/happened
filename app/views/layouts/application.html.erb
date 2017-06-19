@@ -31,10 +31,7 @@
     </div> -->
 
 <%= render partial: "layouts/navbar" %>
-
-    <!-- Lower Left raised circle button with ripple effect -->
-  
-
+    
     <!-- Log In Modal -->
     <div tabindex="-1" class="modal fade" id="form-dialog" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
@@ -112,6 +109,7 @@
       </div>
     </div>
 
+
         <!-- New Story Modal -->
     <div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
@@ -139,8 +137,10 @@
         </div>
       </div>
     </div>
+
     <%= yield %>
 
-    </section>
+  <div class="pmd-sidebar-overlay"></div>
+</section>
   </body>
 </html>
