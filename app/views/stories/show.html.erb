@@ -280,6 +280,191 @@
           </div>
         </div>
       </div>
+
+      <!-- All Location Tag Modals -->
+      <div tabindex="-1" class="modal fade" id="form-dialog-location-tag-all" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" style="width: 90%;">
+          <div class="modal-content">
+            <div class="modal-header pmd-modal-bordered">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h2 class="pmd-card-title-text">All Location Tags</h2><!-- Title -->
+            </div>
+            <div class="modal-body">
+              <div id='places-container' style="height: 100%; width: 100%;">
+                <div id="mapall" style="height: 700px;"></div>
+                  <% allevents = Array.new %>
+                   <% photo = @story.events.where(type_of_event: "photos") %>
+                    <% if photo.count > 0 %>
+                      <% photo.each do |y|%>
+                        <% y.eventphotos.each do |x|%>
+                          <% allevents.push(x) %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  <% accom = @story.events.where(type_of_event: "accomodation") %>
+                    <% if accom.count > 0 %>
+                      <% accom.each do |x|%>
+                        <% allevents.push(x) %>
+                      <% end %>
+                    <% end %>
+                  <% local = @story.events.where(type_of_event: "location_tag") %>
+                    <% if local.count > 0 %>
+                      <% local.each do |x|%>
+                        <% allevents.push(x) %>
+                      <% end %>
+                    <% end %>
+                  <% count = allevents.count %>
+                <% if count == 1 %>
+                  <% if allevents[0].type_of_event == 'picfile' %>
+                    <% icon = allevents[0].photo.thumb.url %>
+                  <% elsif allevents[0].type_of_event == 'location_tag' %>
+                    <% icon = asset_path 'mapmarker.png' %>
+                  <% else %>
+                    <% icon = asset_path 'hotel.png' %>
+                  <% end %>   
+                  <script>
+                    function initMapAll() {
+                      var myLatLng = {lat: <%= allevents[0].lat %>, lng: <%= allevents[0].long %>};
+
+                      var map = new google.maps.Map(document.getElementById('mapall'), {
+                        zoom: 15,
+                        center: myLatLng
+                      });
+
+                      // Multiple Markers
+                      var markers = [
+                        <% if allevents[0].type_of_event == 'picfile' %>
+                            <% icon = allevents[0].photo.thumb.url %>
+                          <% elsif allevents[0].type_of_event == 'location_tag' %>
+                            <% icon = asset_path 'mapmarker.png' %>
+                          <% else %>
+                            <% icon = asset_path 'hotel.png' %>
+                         <% end %> 
+                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>]
+                      ];
+
+                      // Loop through our array of markers & place each one on the map
+                      for( i = 0; i < markers.length; i++ ) {
+                          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                          marker = new google.maps.Marker({
+                              position: position,
+                              map: map,
+                              icon: markers[i][0]
+                          });
+                      }
+
+                      $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                        google.maps.event.trigger(map, "resize");
+                        map.setCenter(myLatLng);
+                      });
+                    }
+                  </script>
+                <% elsif count == 2 %>
+                  <script>
+                    function initMapAll() {
+                      var bounds = new google.maps.LatLngBounds();
+                      var map = new google.maps.Map(document.getElementById('mapall'), {
+                        scrollwheel: false,
+                        zoomControl: true,
+                        mapTypeControl: false,
+                      });
+
+                      // Multiple Markers
+                      var markers = [
+                        <% if allevents[0].type_of_event == 'picfile' %>
+                            <% icon = allevents[0].photo.thumb.url %>
+                          <% elsif allevents[0].type_of_event == 'location_tag' %>
+                            <% icon = asset_path 'mapmarker.png' %>
+                          <% else %>
+                            <% icon = asset_path 'hotel.png' %>
+                         <% end %> 
+                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>],
+                        <% if allevents[1].type_of_event == 'picfile' %>
+                            <% icon = allevents[1].photo.thumb.url %>
+                          <% elsif allevents[1].type_of_event == 'location_tag' %>
+                            <% icon = asset_path 'mapmarker.png' %>
+                          <% else %>
+                            <% icon = 'assets/hotel.png' %>
+                         <% end %> 
+                         ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>]
+                      ];
+
+                      // Loop through our array of markers & place each one on the map
+                      for( i = 0; i < markers.length; i++ ) {
+                          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                          bounds.extend(position);
+                          marker = new google.maps.Marker({
+                              position: position,
+                              map: map,
+                              icon: markers[i][0]
+                          });
+                          // Automatically center the map fitting all markers on the screen
+                          map.fitBounds(bounds);
+                      }
+
+                      $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                          google.maps.event.trigger(map, "resize");
+                          map.fitBounds(bounds);
+                        });
+                      }
+                  </script>
+                <% else %>
+                <script>
+                  function initMapAll() {
+                    var bounds = new google.maps.LatLngBounds();
+                    var map = new google.maps.Map(document.getElementById('mapall'), {
+                      scrollwheel: false,
+                      zoomControl: true,
+                      mapTypeControl: false,
+                    });
+
+                    // Multiple Markers
+                    var markers = [
+                      <% for i in 0..(count-2) do %>
+                        <% if allevents[i].type_of_event == 'picfile' %>
+                          <% icon = allevents[i].photo.thumb.url %>
+                        <% elsif allevents[i].type_of_event == 'location_tag' %>
+                          <% icon = asset_path 'mapmarker.png' %>
+                        <% else %>
+                          <% icon = asset_path 'hotel.png' %>
+                        <% end %> 
+                        ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>],
+                      <% end %>
+                      <% if allevents[count - 1].type_of_event == 'picfile' %>
+                          <% icon = allevents[count - 1].photo.thumb.url %>
+                        <% elsif allevents[count - 1].type_of_event == 'location_tag' %>
+                          <% icon = asset_path 'mapmarker.png' %>
+                        <% else %>
+                          <% icon = 'assets/hotel.png' %>
+                       <% end %> 
+                       ['<%= icon %>', <%= allevents[count - 1].lat %>, <%= allevents[count - 1].long %>]
+                    ];
+
+                    // Loop through our array of markers & place each one on the map
+                    for( i = 0; i < markers.length; i++ ) {
+                        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                        bounds.extend(position);
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            icon: markers[i][0]
+                        });
+                        // Automatically center the map fitting all markers on the screen
+                        map.fitBounds(bounds);
+                    }
+
+                    $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                        google.maps.event.trigger(map, "resize");
+                        map.fitBounds(bounds);
+                      });
+                    }
+                  </script>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
 
       <!--Fixed tab example -->
@@ -288,7 +473,7 @@
           <div class="pmd-tab-active-bar"></div>
           <ul role="tablist" class="nav nav-tabs nav-justified">
           <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Events</a></li>
-          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">Map</a></li>
+          <li role="presentation"><a data-target="#form-dialog-location-tag-all" data-toggle="modal">Map</a></li>
           <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Participants</a></li>
           </ul>
         </div>
@@ -527,9 +712,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
@@ -1253,29 +1435,7 @@
           <!-- END OF EVENT CARD TAB -->
 
           <!--- Start of Maps Tab-->
-          <div role="tabpanel" class="tab-pane" id="about-fixed">
-            <div eventid="mapcardAll" style="width: 100%; height: 600px;"></div>
-            <script>
-              function initMapAll() {
-                var myLatLng = {lat: -25.363, lng: 131.044};
-                var map = new google.maps.Map(document.getElementById('mapcardAll'), {
-                  zoom: 4,
-                  center: myLatLng
-                });
 
-                var marker = new google.maps.Marker({
-                  position: myLatLng,
-                  map: map,
-                  title: 'Hello World!'
-                });
-
-                $('a[href="#about-fixed"]').on("shown.bs.tab", function () {
-                  google.maps.event.trigger(map, 'resize');
-                  map.setCenter(myLatLng);
-                });
-              }
-            </script>
-          </div>
           <!--- End of Maps Tab-->
 
           <!--- Start of Partipant Tab-->
