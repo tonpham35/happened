@@ -63,10 +63,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_limit: [nil, 300]
   end
 
-  version :carousel do
-    process :fix_exif_rotation
-    process resize_to_limit: [nil, 500]
-  end  
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
