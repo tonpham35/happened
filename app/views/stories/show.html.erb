@@ -1040,8 +1040,27 @@
     </div>
     <!-- END OF EVENT CARD TAB -->
     <div role="tabpanel" class="tab-pane" id="about-fixed">Fixed tabs have equal width, calculated either as the view width divided by the number of tabs, or based on the widest tab label. To navigate between fixed tabs, touch the tab or swipe the content area left or right.</div>
-    <div role="tabpanel" class="tab-pane" id="work-fixed">To navigate between scrollable tabs, touch the tab or swipe the content area left or right. To scroll the tabs without navigating, swipe the tabs left or right.</div>
-    </div>
+    <div role="tabpanel" class="tab-pane" id="work-fixed">
+      <div class="row">
+        <% @story.story_members.each do |x| %>
+          <div class="col-xs-4">
+          <% y = x.user_id %>
+          <% part = User.find(y) %>
+          <!--Media and Description area -->
+            <div class="pmd-card pmd-card-default pmd-z-depth">
+            	<!-- Card media -->
+              <div class="pmd-card-media">
+                <img style="width=100%;"class="img-responsive" src="<%= part.profilepic.card %>">
+              </div>
+              <!-- Card body -->
+              <div class="pmd-card-body">
+                <%= link_to part.first_name , user_path(y) %>
+              </div>
+            </div>
+          </div>
+          <%end %>
+      </div>
+    </div><!--- End of Div Work-fixed--->
   </div>
 </div> <!--Fixed tab example end-->
 
