@@ -335,12 +335,15 @@
                       var markers = [
                         <% if allevents[0].type_of_event == 'picfile' %>
                             <% icon = allevents[0].photo.thumb.url %>
+                            <% url = '#picture-window'+allevents[0].id %>
                           <% elsif allevents[0].type_of_event == 'location_tag' %>
                             <% icon = asset_path 'mapmarker.png' %>
+                            <% url = '' %>
                           <% else %>
                             <% icon = asset_path 'hotel.png' %>
+                            <% url = '' %>
                          <% end %> 
-                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>]
+                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>,'<%= url %>']
                       ];
 
                       // Loop through our array of markers & place each one on the map
@@ -349,9 +352,14 @@
                           marker = new google.maps.Marker({
                               position: position,
                               map: map,
+                              url: markers[i][3],
                               icon: markers[i][0]
                           });
                       }
+
+                      google.maps.event.addListener(marker, 'click', function() {
+                        $(marker.url).modal();
+                      });
 
                       $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
                         google.maps.event.trigger(map, "resize");
@@ -373,20 +381,26 @@
                       var markers = [
                         <% if allevents[0].type_of_event == 'picfile' %>
                             <% icon = allevents[0].photo.thumb.url %>
+                            <% url = '#picture-window'+allevents[0].id.to_s %>
                           <% elsif allevents[0].type_of_event == 'location_tag' %>
                             <% icon = asset_path 'mapmarker.png' %>
+                            <% url = '' %>
                           <% else %>
                             <% icon = asset_path 'hotel.png' %>
+                            <% url = '' %>
                          <% end %> 
-                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>],
+                        ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>, '<%= url %>'],
                         <% if allevents[1].type_of_event == 'picfile' %>
                             <% icon = allevents[1].photo.thumb.url %>
+                            <% url = '#picture-window'+allevents[1].id.to_s %>
                           <% elsif allevents[1].type_of_event == 'location_tag' %>
                             <% icon = asset_path 'mapmarker.png' %>
+                            <% url = '' %>
                           <% else %>
                             <% icon = 'assets/hotel.png' %>
+                            <% url = '' %>
                          <% end %> 
-                         ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>]
+                         ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>, '<%= url %>']
                       ];
 
                       // Loop through our array of markers & place each one on the map
@@ -398,9 +412,19 @@
                               map: map,
                               icon: markers[i][0]
                           });
+                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                            $(marker.url).modal();
+                            console.log(marker.url)
+                            }
+                          }) (marker, i));
                           // Automatically center the map fitting all markers on the screen
                           map.fitBounds(bounds);
                       }
+
+                      google.maps.event.addListener(marker, 'click', function() {
+                        $(marker.url).modal();
+                      });
 
                       $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
                           google.maps.event.trigger(map, "resize");
@@ -423,21 +447,27 @@
                       <% for i in 0..(count-2) do %>
                         <% if allevents[i].type_of_event == 'picfile' %>
                           <% icon = allevents[i].photo.thumb.url %>
+                           <% url = '#picture-window'+allevents[i].id.to_s %>
                         <% elsif allevents[i].type_of_event == 'location_tag' %>
                           <% icon = asset_path 'mapmarker.png' %>
+                          <% url = '' %>
                         <% else %>
                           <% icon = asset_path 'hotel.png' %>
+                          <% url = '' %>
                         <% end %> 
-                        ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>],
+                        ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>, '<%= url %>'],
                       <% end %>
                       <% if allevents[count - 1].type_of_event == 'picfile' %>
                           <% icon = allevents[count - 1].photo.thumb.url %>
+                          <% url = '#picture-window'+allevents[count-1].id.to_s %>
                         <% elsif allevents[count - 1].type_of_event == 'location_tag' %>
                           <% icon = asset_path 'mapmarker.png' %>
+                          <% url = '' %>
                         <% else %>
                           <% icon = 'assets/hotel.png' %>
+                          <% url = '' %>
                        <% end %> 
-                       ['<%= icon %>', <%= allevents[count - 1].lat %>, <%= allevents[count - 1].long %>]
+                       ['<%= icon %>', <%= allevents[count - 1].lat %>, <%= allevents[count - 1].long %>, '<%= url %>']
                     ];
 
                     // Loop through our array of markers & place each one on the map
@@ -447,8 +477,15 @@
                         marker = new google.maps.Marker({
                             position: position,
                             map: map,
+                            url: markers[i][3],
                             icon: markers[i][0]
                         });
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                          return function() {
+                          $(marker.url).modal();
+                          console.log(marker.url)
+                          }
+                        }) (marker, i));
                         // Automatically center the map fitting all markers on the screen
                         map.fitBounds(bounds);
                     }
@@ -525,7 +562,7 @@
                         </a>
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog" style="width: 75%;">
+                          <div class="modal-dialog" style="width: 50%;">
                             <div class="modal-content">
                               <div class="modal-header pmd-modal-bordered">
                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
@@ -533,7 +570,7 @@
                               </div>
                               <div class="modal-body">
                                 <div id='places-container' style="height: 100%; width: 100%;">
-                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
                                     <script>
                                       function initMap<%= event.id %>() {
                                         var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
@@ -604,6 +641,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -638,7 +694,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -654,15 +709,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -681,16 +742,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -701,8 +762,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -834,7 +902,7 @@
                         </a>
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog" style="width: 75%;">
+                          <div class="modal-dialog" style="width: 50%;">
                             <div class="modal-content">
                               <div class="modal-header pmd-modal-bordered">
                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
@@ -842,7 +910,7 @@
                               </div>
                               <div class="modal-body">
                                 <div id='places-container' style="height: 100%; width: 100%;">
-                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
                                     <script>
                                       function initMap<%= event.id %>() {
                                         var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
@@ -913,6 +981,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -947,7 +1034,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -963,15 +1049,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -990,16 +1082,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -1010,8 +1102,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -1021,9 +1120,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
@@ -1146,7 +1242,7 @@
                         </a>
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog" style="width: 75%;">
+                          <div class="modal-dialog" style="width: 50%;">
                             <div class="modal-content">
                               <div class="modal-header pmd-modal-bordered">
                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
@@ -1154,7 +1250,7 @@
                               </div>
                               <div class="modal-body">
                                 <div id='places-container' style="height: 100%; width: 100%;">
-                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
                                     <script>
                                       function initMap<%= event.id %>() {
                                         var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
@@ -1225,6 +1321,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -1259,7 +1374,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -1275,15 +1389,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -1302,16 +1422,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -1322,8 +1442,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -1333,9 +1460,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
