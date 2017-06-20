@@ -265,7 +265,7 @@
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
               	<label class="control-label" for="regular1">When</label>
-              	<input type="text" id="datetimepicker6" class="form-control" name=event[when?]>
+              	<input type="text" id="datetimepicker6" class="form-control" name=event[when]>
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="Entry">Entry</label>
@@ -1192,38 +1192,44 @@
             <% end %>
           </div>
           <!-- END OF EVENT CARD TAB -->
+
+          <!--- Start of Maps Tab-->
           <div role="tabpanel" class="tab-pane" id="about-fixed">
+          <% photos = @story.events.where(type_of_event: "photos") %>
+          <% accom = @story.events.where(type_of_event: "accomodation") %>
+          <% local = @story.events.where(type_of_event: "location_tag") %>
 
 
-
-
-             Fixed tabs have equal width, calculated either as the view width divided by the number of tabs, or based on the widest tab label. To navigate between fixed tabs, touch the tab or swipe the content area left or right.
-           </div>
-    <div role="tabpanel" class="tab-pane" id="work-fixed">
-      <div class="row">
-        <% @story.story_members.each do |x| %>
-          <div class="col-xs-4">
-          <% y = x.user_id %>
-          <% part = User.find(y) %>
-          <!--Media and Description area -->
-            <%= link_to user_path(y) do %>
-              <div class="pmd-card pmd-card-default pmd-z-depth">
-              	<!-- Card media -->
-                <div class="pmd-card-media">
-                  <img style="width=100%;"class="img-responsive" src="<%= part.profilepic.card %>">
-                </div>
-                <!-- Card body -->
-                <div class="pmd-card-body">
-                  <%= part.first_name %>
-                </div>
-              </div>
-            <%end %>
           </div>
-          <%end %>
-      </div>
-    </div><!--- End of Div Work-fixed-->
-  </div>
-</div> <!--Fixed tab example end-->
+          <!--- End of Maps Tab-->
+
+          <!--- Start of Partipant Tab-->
+          <div role="tabpanel" class="tab-pane" id="work-fixed">
+            <div class="row">
+              <% @story.story_members.each do |x| %>
+                <div class="col-lg-4 col-m-6 col-xs-12">
+                <% y = x.user_id %>
+                <% part = User.find(y) %>
+                <!--Media and Description area -->
+                  <%= link_to user_path(y) do %>
+                    <div class="pmd-card pmd-card-default pmd-z-depth">
+                    	<!-- Card media -->
+                      <div class="pmd-card-media">
+                      <%=image_tag part.profilepic.card.url, class:"img-responsive", id:"card-photo"%>
+                      </div>
+                      <!-- Card body -->
+                      <div class="pmd-card-body">
+                        <h3><%= part.first_name %> <%= part.last_name %></h3>
+                      </div>
+                    </div>
+                  <%end %>
+                </div>
+                <%end %>
+            </div>
+          </div>
+          <!--- End of Partipant Tab-->
+        </div>
+      </div> <!--Fixed tab example end-->
 
 
 

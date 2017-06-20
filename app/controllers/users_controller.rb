@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @friend = User.find(params[:id])
+    @users = User.find(params[:id])
   end
 
   # GET /users/1/edit
