@@ -1206,20 +1206,22 @@
           <% y = x.user_id %>
           <% part = User.find(y) %>
           <!--Media and Description area -->
-            <div class="pmd-card pmd-card-default pmd-z-depth">
-            	<!-- Card media -->
-              <div class="pmd-card-media">
-                <img style="width=100%;"class="img-responsive" src="<%= part.profilepic.card %>">
+            <%= link_to user_path(y) do %>
+              <div class="pmd-card pmd-card-default pmd-z-depth">
+              	<!-- Card media -->
+                <div class="pmd-card-media">
+                  <img style="width=100%;"class="img-responsive" src="<%= part.profilepic.card %>">
+                </div>
+                <!-- Card body -->
+                <div class="pmd-card-body">
+                  <%= part.first_name %>
+                </div>
               </div>
-              <!-- Card body -->
-              <div class="pmd-card-body">
-                <%= link_to part.first_name , user_path(y) %>
-              </div>
-            </div>
+            <%end %>
           </div>
           <%end %>
       </div>
-    </div><!--- End of Div Work-fixed--->
+    </div><!--- End of Div Work-fixed-->
   </div>
 </div> <!--Fixed tab example end-->
 
