@@ -8,7 +8,7 @@ class EventsController < ApplicationController
           @eventphotos = @event.eventphotos.create!(:photo => a)
           lat = Eventphoto.latitude(a.path)
           lng = Eventphoto.longitude(a.path)
-          @eventphotos.update(lat: lat, long: lng)
+          @eventphotos.update(lat: lat, long: lng, type_of_event: "picfile")
         end
       end
 

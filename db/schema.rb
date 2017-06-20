@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.string "lat"
     t.string "long"
     t.datetime "datetime"
+    t.string "type_of_event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_eventphotos_on_event_id"
