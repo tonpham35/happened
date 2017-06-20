@@ -68,18 +68,19 @@
 /*----- Navbar -----*/
 
 #image {
-		  	display: inline;
-			max-width: 10%;
-			max-height: 10%;
-			margin-left: 10px;
-	}
+	  	display: inline;
+		max-width: 10%;
+		max-height: 10%;
+		margin-left: 10px;
+}
 
 #navbar {
-		background: transparent;
-		border: none;
-		box-shadow: none;
-	}
-  /*----- Logo and slogan in the centre of page -----*/
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+/*----- Logo and slogan in the centre of page -----*/
 
 #logo {
 	display: block;
@@ -285,7 +286,7 @@ box-shadow: inset 0 0 4px 2px #abbccf, 0 0 1px 0 #eeeeee;
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-div#map {
+div#map, div#mapAll {
   width: 100%;
 }
 
@@ -307,7 +308,7 @@ div#map {
   display: inline;
 }
 
-.pac-card {
+.pac-card, .pac-card2 {
   margin: 10px 10px 0 0;
   border-radius: 2px 0 0 2px;
   box-sizing: border-box;
@@ -334,7 +335,7 @@ div#map {
   font-weight: 300;
 }
 
-#pac-input {
+#pac-input, #pac-input2 {
   background-color: #fff;
   font-family: Roboto;
   font-size: 15px;
