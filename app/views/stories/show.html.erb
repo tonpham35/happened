@@ -26,13 +26,13 @@
         </a>
         <a data-target="#form-dialog-participant" data-toggle="modal" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="New Participant" >
           <span class="pmd-floating-hidden">New Participant</span>
+          <i class="material-icons">person_add</i>
         </a>
         <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
 
         	<span class="pmd-floating-hidden">Add a New Event</span>
           <i class="material-icons pmd-sm">add</i>
         </a>
-
       </div>
 
 
@@ -48,11 +48,18 @@
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
+              <div id='places-container' style="height: 100%; width: 100%;">
+                <input id="pac-input2" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
+                <div id="mapAll" style="width: 570px; height: 400px;"></div>
+              </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="what">What</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
               <div>
+                <input type="hidden" id="locname2" name=event[where]>
+                <input type="hidden" id="longitude2" name=event[long]>
+                <input type="hidden" id="latitude2" name=event[lat]>
                 <%= form.hidden_field :story_id, :value => @story.id %>
             	  <%= form.hidden_field :type_of_event, :value => 'accomodation' %>
             	</div>
@@ -330,7 +337,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-
+                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -338,7 +345,7 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
+                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
@@ -349,6 +356,45 @@
                                 </div>
                             </div>
                           </div>
+                        </a>
+                        <!-- Accomodation Location Tag Modals -->
+                        <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
+                          <div class="modal-dialog" style="width: 75%;">
+                            <div class="modal-content">
+                              <div class="modal-header pmd-modal-bordered">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h2 class="pmd-card-title-text"><h3 class="pmd-card-title-text"><%= event.what.upcase %></h3></h2><!-- Title -->
+                              </div>
+                              <div class="modal-body">
+                                <div id='places-container' style="height: 100%; width: 100%;">
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
+                                    <script>
+                                      function initMap<%= event.id %>() {
+                                        var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
+                                        var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                                          zoom: 16,
+                                          scrollwheel: false,
+                                          center: myLatLng
+                                        });
+
+                                        var marker = new google.maps.Marker({
+                                          position: myLatLng,
+                                          map: map,
+                                         });
+                                        $("#form-dialog-location<%= event.id %>").on("shown.bs.modal", function () {
+                                          google.maps.event.trigger(map, "resize");
+                                          map.setCenter(myLatLng);
+                                        });
+                                      }
+                                    </script>
+                                  <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       <% end %><!-- ACCOMODATION CARDS END-->
 
                       <!-- TRANSPORTATION CARDS -->
@@ -1166,8 +1212,11 @@
      <script>
         function initializemap() {
           initAutocomplete();
+          initAutocomplete2();
           <% @story.events.each do |event| %>
             <% if event.type_of_event == 'location_tag' %>
+              initMap<%= event.id %>();
+            <% elsif event.type_of_event == 'accomodation' %>
               initMap<%= event.id %>();
             <% elsif event.type_of_event == 'photos' %>
               initMap<%= event.id %>();
