@@ -341,7 +341,7 @@
                             <% url = '' %>
                           <% else %>
                             <% icon = asset_path 'hotel.png' %>
-                            <% url = '' %>
+                            <% url = '#form-dialog-location'+allevents[0].id %>
                          <% end %> 
                         ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>,'<%= url %>']
                       ];
@@ -387,7 +387,7 @@
                             <% url = '' %>
                           <% else %>
                             <% icon = asset_path 'hotel.png' %>
-                            <% url = '' %>
+                            <% url = '#form-dialog-location'+allevents[0].id %>
                          <% end %> 
                         ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>, '<%= url %>'],
                         <% if allevents[1].type_of_event == 'picfile' %>
@@ -398,7 +398,7 @@
                             <% url = '' %>
                           <% else %>
                             <% icon = 'assets/hotel.png' %>
-                            <% url = '' %>
+                            <% url = '#form-dialog-location'+allevents[1].id %>
                          <% end %> 
                          ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>, '<%= url %>']
                       ];
@@ -453,7 +453,7 @@
                           <% url = '' %>
                         <% else %>
                           <% icon = asset_path 'hotel.png' %>
-                          <% url = '' %>
+                          <% url = '#form-dialog-location'+allevents[i].id.to_s %>
                         <% end %> 
                         ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>, '<%= url %>'],
                       <% end %>
@@ -462,7 +462,7 @@
                           <% url = '#picture-window'+allevents[count-1].id.to_s %>
                         <% elsif allevents[count - 1].type_of_event == 'location_tag' %>
                           <% icon = asset_path 'mapmarker.png' %>
-                          <% url = '' %>
+                          <% url = '#form-dialog-location'+allevents[i].id.to_s %>
                         <% else %>
                           <% icon = 'assets/hotel.png' %>
                           <% url = '' %>
@@ -560,6 +560,7 @@
                             </div>
                           </div>
                         </a>
+
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
                           <div class="modal-dialog" style="width: 50%;">
