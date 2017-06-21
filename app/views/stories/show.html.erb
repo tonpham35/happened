@@ -336,13 +336,13 @@
                         var markers = [
                           <% if allevents[0].type_of_event == 'picfile' %>
                               <% icon = allevents[0].photo.thumb.url %>
-                              <% url = '#picture-window'+allevents[0].id %>
+                              <% url = '#picture-window'+allevents[0].id.to_s %>
                             <% elsif allevents[0].type_of_event == 'location_tag' %>
                               <% icon = asset_path 'mapmarker.png' %>
                               <% url = '' %>
                             <% else %>
                               <% icon = asset_path 'hotel.png' %>
-                              <% url = '#form-dialog-location'+allevents[0].id %>
+                              <% url = '#form-dialog-location'+allevents[0].id.to_s %>
                            <% end %> 
                           ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>,'<%= url %>']
                         ];
@@ -388,7 +388,7 @@
                               <% url = '' %>
                             <% else %>
                               <% icon = asset_path 'hotel.png' %>
-                              <% url = '#form-dialog-location'+allevents[0].id %>
+                              <% url = '#form-dialog-location'+allevents[0].id.to_s %>
                            <% end %> 
                           ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>, '<%= url %>'],
                           <% if allevents[1].type_of_event == 'picfile' %>
@@ -399,7 +399,7 @@
                               <% url = '' %>
                             <% else %>
                               <% icon = 'assets/hotel.png' %>
-                              <% url = '#form-dialog-location'+allevents[1].id %>
+                              <% url = '#form-dialog-location'+allevents[1].id.to_s %>
                            <% end %> 
                            ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>, '<%= url %>']
                         ];
