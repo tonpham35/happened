@@ -65,8 +65,10 @@
                 <% current_user.stories.each do |story| %>
                   <li class="pmd-ripple-effect">
 
+
                     <%= link_to story_path(story.id) do %>
                       <i class="material-icons media-left media-middle">book</i><span 
+
 
                       class="media-body" style="font-size: 15px;"><%= story.title %></span>
                     <% end %>
@@ -94,10 +96,51 @@
 
 
 <div id="banner-home">
-    <div id="transbox">
-      <img id="logo" src="assets/logomakr.png" alt="Logo Xplor" width="10%" height="10%"></img>
+
       <p id='brand'> Xplor </p>
       <p id='slogan'> record your Xploration </p>
 
-    </div>
+
+      <div id="transbox">
+
+        <%= form_for :session, url: session_path do |form| %>
+            <!-- <label for="first-name">Email Address</label> -->
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                 <input type="text" placeholder="Email Address" class="form-control" name=session[email]>
+            </div>
+            <br>
+            <!-- <label for="first-name">Password</label> -->
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                 <input type="password" placeholder ="Password" class="form-control" name=session[password]>
+            </div>
+
+            <div class="row">
+                <div class="pmd-modal-action" id="login">
+                    <div class="col-md-4">
+                        <%= form.submit "Sign In", class: "pmd-ripple-effect btn btn-primary", id: "sign-in-button"%>
+                    </div>
+          <% end %>
+                 <div class="col-md-4">
+                      <a  id="sign-up-button" class="btn btn-primary" data-target="#form-dialog-signup" data-toggle="modal">Sign Up</a>
+                 </div>
+               </div>
+            </div>
+
+            <table width="100%">
+              <td><hr /></td>
+              <td style="width:1px; padding: 0 10px; white-space: nowrap; color: white;">OR</td>
+              <td><hr /></td>
+            </table>
+            <br>
+            <%= link_to "/auth/facebook" do %>
+              <img id="fb_login" class=".pmd-z-depth-3" src="/assets/fblogin.png" alt="Log In With Facebook" height='40px'>
+            <% end %>
+
+
+      </div>
+
+ 
+
 </div>
