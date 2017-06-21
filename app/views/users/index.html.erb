@@ -22,12 +22,14 @@
       </p>
     <% end %>
     <% if @searched_users.present?%>
-    <% @searched_users.each do |x| %>
-    <%= link_to x.first_name + " " + x.last_name, user_path(x.id) %>
-    <% end %>
+      <% @searched_users.each do |x| %>
+        <%= link_to x.first_name + " " + x.last_name, user_path(x.id) %>
+      <% end %>
     <% end %>
     <% else %>
-    <p> no result </p>
+
+    <br>
+    <span style="font-size: 18px; padding-left: 10px;">My Friends</span><br>
     <% for friendship in current_user.friendships %>
       <span style="font-size: 18px; padding-left: 10px;">
         <%= link_to user_path(friendship.friend.id) do %><%= friendship.friend.first_name %> <%= friendship.friend.last_name %><% end %>
