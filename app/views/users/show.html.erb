@@ -14,7 +14,18 @@
     <span style="font-size: 18px; padding-left: 10px;">Email Address: <%= @user.email %></span><br>
     <br>
 	<span style="font-size: 18px; padding-left: 10px;"><%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %></span>
-    
+    <%= form_tag users_index_path, :method => 'get', remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<div id="search_result">
+<% if @stories.present? %>
+<% @stories.each do |x| %>
+  <%= x.title %>
+  <% end %>
+<% end %>
     <div style="width: 100%; background-color: #588C8B;">
       <span style="font-size: 22px; color: black; padding-left: 10px;">Friends List</span><br>
     </div>

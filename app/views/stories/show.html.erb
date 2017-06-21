@@ -1565,6 +1565,8 @@
 
           <!--- Start of Partipant Tab-->
           <div role="tabpanel" class="tab-pane" id="work-fixed">
+            <a onclick="clickShow('grudge')"><i class="material-icons pmd-sm">search</i></a>
+            <img src="/assets/grudge.jpg" style="display: none;"" id="grudge">
             <div class="row">
               <% @story.story_members.each do |x| %>
                 <div class="col-xs-4">
