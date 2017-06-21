@@ -126,12 +126,11 @@
 
 }
 
-#sign-in-button {
+#sign-in-button, #sign-up-button {
 	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
-}
-
-#sign-up-button {
-	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+	background-color: #88BDBC;
+	border-color: #588C8B;
+	color: black;
 }
 
 #fb_login {
@@ -179,7 +178,7 @@
 /*----- Floating Action Button -----*/
 #map {
 	width: 60%;
-	height: 400px;
+	height: 350px;
 	background-color: grey;
 }
 
