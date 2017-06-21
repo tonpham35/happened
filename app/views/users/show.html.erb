@@ -1,15 +1,117 @@
 <p id="notice"><%= notice %></p>
 
-<h2> Friends <h2>
-  <ul>
-    <% for friendship in @user.friendships %>
-    <li>
-      <%= friendship.friend.first_name %>
-      <%= link_to "remove", friendship, :method => :delete %>
-      <br>
+<p id="notice"><%= notice %></p>
+  <div id="profile-info" style="background-color: white; height: 1000px; width: 25%; box-shadow: 2px 2px 1px rgba(0,0,0,0.3); padding-right: 0px; padding-top: 50px; float: left;">
+    <div style="width: 100%; background-color: #588C8B; margin-top: 0px; margin-bottom: 0px;">
+      <h1 style="padding-left: 20px; padding-top: 15px; margin-top: 0px; margin-bottom: 0px;" class='text-center'><%= @user.first_name %> <%= @user.last_name %>'s Profile</h1>
+    </div>
+    <div class='text-center'>
+      <% if @user.profilepic.url != nil %>
+        <%= image_tag @user.profilepic.card.url, :style => "max-height: 400px; max-width: 100%;"%><br>
       <% end %>
+    </div>
+    <span style="font-size: 18px;">Full Name: <%= @user.first_name %> <%= @user.last_name %></span><br>
+    <span style="font-size: 18px;">Email Address: <%= @user.email %></span><br>
+    <br>
+	<span style="font-size: 18px;"><%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %></span>
+    
+    <div style="width: 100%; background-color: #588C8B;">
+      <span style="font-size: 22px; color: black;">Friends List</span><br>
+    </div>
+    <% for friendship in @user.friendships %>
+      <span style="font-size: 18px;">
+        <%= link_to user_path(friendship.friend.id) do %><%= friendship.friend.first_name %> <%= friendship.friend.last_name %><% end %>
+      </span><br>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
 
-<%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %>
+
+<div class="text-center" style="padding-top: 70px;">
+  <%= form_tag users_index_path, :method => 'get', remote: true do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+</div>
+<div id="search_result">
+<% if @stories.present? %>
+<% @stories.each do |x| %>
+  <%= x.title %>
+  <% end %>
+<% end %>
+</div>
+
+
+<div id="all_content" class="row">
+
+    <!-- Media, Title, and Description area -->
+    <% if signed_in? %>
+        <% if @user.stories != nil %>
+            <% count = @user.stories.count %>
+            <% @user.stories.each do |story| %>
+                <%= link_to story_path(story.id) do %>
+                    <div class="col-sm-4" style="padding: 15px 2px 2px 2px;">
+                        <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 2px;">
+
+                            <!-- Card media -->
+                            <div class="pmd-card-media">
+                              <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
+                            </div>
+
+                            <!-- Card header -->
+                            <div class="pmd-card-title" style="text-decoration: none;">
+                              <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
+                              <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+
+</div>
+
+<!-- New Story Modal -->
+<div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pmd-modal-bordered">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h2 class="pmd-card-title-text">Make A New Travel Story</h2><!-- Title -->
+      </div>
+      <%= form_for :story, url: stories_path do |form| %>
+      <div class="modal-body">
+        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+          <label for="Title">Title</label>
+          <input type="text" class="mat-input form-control" name=story[title]>
+        </div>
+        <div class="form-group pmd-textfield pmd-textfield-floating-label">
+          <label for="description">Description</label>
+          <input type="text" class="mat-input form-control" name=story[description]>
+        </div>
+        <div class="form-group pmd-textfield">
+          <label for="photo">Story Photo</label>
+          <%= form.file_field :photo %>
+        </div>
+      </div>
+      <div class="pmd-modal-action">
+        <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
+      </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Lower Left raised circle button with ripple effect -->
+<div class="pmd-floating-action"  role="navigation" style="z-index: 1001;">
+  <a data-target="#form-dialog-story" data-toggle="modal" class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="New Travel Story">
+    <span class="pmd-floating-hidden">New Travel Story</span>
+    <i class="material-icons pmd-sm">add</i>
+  </a>
+</div>
+
