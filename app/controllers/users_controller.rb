@@ -9,14 +9,21 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = current_user
-  end
+
+    @users = User.all
+
+    @stories = Story.search(params[:search])
+
+    respond_to do |format|
+  format.html # index.html.erb
+  format.js
+end
+
 
   # GET /users/1
   # GET /users/1.json
   def show
     @friend = User.find(params[:id])
-    @users = User.find(params[:id])
   end
 
   # GET /users/1/edit
