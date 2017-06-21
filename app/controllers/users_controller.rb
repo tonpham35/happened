@@ -9,13 +9,14 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = current_user
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @friend = User.find(params[:id])
+    @users = User.find(params[:id])
   end
 
   # GET /users/1/edit

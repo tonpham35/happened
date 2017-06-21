@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.string "lat"
     t.string "long"
     t.datetime "datetime"
+    t.string "type_of_event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_eventphotos_on_event_id"
@@ -52,8 +53,8 @@ ActiveRecord::Schema.define(version: 20170616032718) do
     t.string "why"
     t.datetime "when"
     t.string "where"
-    t.float "location_latitude"
-    t.float "location_longitude"
+    t.float "lat"
+    t.float "long"
     t.string "mode_of_transport"
     t.string "flight_num"
     t.datetime "flight_time"

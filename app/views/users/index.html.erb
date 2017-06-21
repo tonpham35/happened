@@ -1,6 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
+  <div id="profile-info" class="col-sm-4"> 
+    <h1 style="padding-left: 20px;" class='text-center'><%= current_user.first_name %> <%= current_user.last_name %>'s Profile</h1> 
+    <div class='text-center'> 
+      <% if current_user.profilepic.url != nil %>
+        <%= image_tag current_user.profilepic.card.url %><br>
+      <% end %>
+    </div>
+    <span>Full Name: <%= current_user.first_name %> <%= current_user.last_name %></span><br>
+    <span>Email Address: <%= current_user.email %></span><br>
+    <span><%= link_to edit_user_path(@users) do %> Edit Profile <% end %></span><br>
+
+  </div>
 
     <!-- Media, Title, and Description area -->
     <% if signed_in? %>
@@ -8,12 +20,11 @@
             <% count = current_user.stories.count %>
             <% current_user.stories.each do |story| %>
                 <%= link_to story_path(story.id) do %>
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="col-sm-4">
                         <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 10px;">
 
                             <!-- Card media -->
                             <div class="pmd-card-media">
-                       <!--          <img width="1184" height="666" class="img-responsive" src="http://propeller.in/assets/images/profile-pic.png"> -->
                        <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
                             </div>
                             

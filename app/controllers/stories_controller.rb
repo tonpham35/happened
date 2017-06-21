@@ -3,7 +3,8 @@ class StoriesController < ApplicationController
 		@story = current_user.stories.new(story_params)
 
 		if @story.save
-        redirect_to users_index_path
+      	@story.story_members.create(story_id: @story.id, user_id: current_user.id)
+				redirect_to users_index_path
       else
         format.html { render :new }
       end
