@@ -12,7 +12,6 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-
     @x = ENV["MAPS_API_KEY"]
   end
 

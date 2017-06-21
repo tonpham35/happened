@@ -1,0 +1,4 @@
+
+$('#search_result').html('')
+$('#all_stories').html('')
+$('#search_result').prepend('<%=  escape_javascript(render :partial => 'search_result.html.erb', :locals => {stories: @stories}) %>')

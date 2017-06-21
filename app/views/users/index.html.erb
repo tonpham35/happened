@@ -1,4 +1,23 @@
 <p id="notice"><%= notice %></p>
+<br>
+<br>
+<br>
+<br>
+
+
+<%= form_tag users_index_path, :method => 'get', remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<div id="search_result">
+<% if @stories.present? %>
+<% @stories.each do |x| %>
+  <%= x.title %>
+  <% end %>
+<% end %>
+</div>
 
 <div class="row" style="padding-top: 49px;">
   <div id="profile-info" class="col-sm-4" style="background-color: white; height: 1000px; box-shadow: 2px 2px 1px rgba(0,0,0,0.3); padding-right: 0px;">
@@ -22,6 +41,7 @@
         <%= friendship.friend.first_name %> <%= friendship.friend.last_name %>
       </span><br>
     <% end %>
+
 
   </div>
   <div class="col-sm-8">
@@ -83,6 +103,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- Lower Left raised circle button with ripple effect -->
