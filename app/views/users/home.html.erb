@@ -3,15 +3,15 @@
   <div class="container-fluid">
       <!-- Sidebar Toggle Button-->
       <div class="navbar-header">
-          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons" style="color: #5DBCD2">menu</i></a>
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary pull-left margin-r8 pmd-sidebar-toggle" id='navbar-icons-menu'><i class="material-icons" style="color: #5DBCD2; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">menu</i></a>
           <!-- BRANDING LOCATION-->
-          <%= link_to root_path do %><span class="navbar-brand" style="color: #5DBCD2;">Xplor</span> <% end %>
+          <%= link_to root_path do %><span class="navbar-brand" style="color: #5DBCD2; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">Xplor</span> <% end %>
 
       </div>
 
       <!-- Navbar Right icon (Search) open up hidden search box -->
       <div class="pmd-navbar-right-icon pull-right">
-          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" id='navbar-search-container' onclick="clickShow('log-in')"><i class="material-icons pmd-sm" id='navbar-icons-search' style="color: #5DBCD2">search</i></a>
+          <a class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" id='navbar-search-container' onclick="clickShow('log-in')"><i class="material-icons pmd-sm" id='navbar-icons-search' style="color: #5DBCD2; text-shadow: 1px 1px 1px rgba(0,0,0,0.3);">search</i></a>
       </div>
   </div>
 </nav>
@@ -67,7 +67,7 @@
 
 
                     <%= link_to story_path(story.id) do %>
-                      <i class="material-icons media-left media-middle">book</i><span 
+                      <i class="material-icons media-left media-middle">book</i><span
 
 
                       class="media-body" style="font-size: 15px;"><%= story.title %></span>
@@ -141,6 +141,6 @@
 
       </div>
 
- 
+
 
 </div>
