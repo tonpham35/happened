@@ -39,7 +39,7 @@
 
 /*----- Body -----*/
 	body {
-		background-color: #EAE7DC;
+		background-color: #F5F5F6;
 	}
 
 	a:hover {
@@ -48,7 +48,7 @@
 
 /*----- Tab Panels -----*/
 .tab-pane.active, .tab-pane, {
-	background-color: #EAE7DC;
+	background-color: #F5F5F6;
 }
 
 /*----- Banner -----*/
@@ -73,7 +73,9 @@
 // 			margin-left: 10px;
 // 	}
 
-
+#card-pic {
+	max-height: 400px;
+}
 
 #navbar {
 	background: transparent;
@@ -183,6 +185,7 @@
 
 /*----- Floating Action Button -----*/
 #card-photo {
+	max-height: 500px;
 	width: 100%;
 }
 

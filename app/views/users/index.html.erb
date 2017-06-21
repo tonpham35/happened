@@ -1,26 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <div id="profile-info" class="col-sm-4"> 
+<div class="row" style="padding-top: 49px;">
+  <div id="profile-info" class="col-sm-4" style="background-color: white; height: 1000px; box-shadow: 2px 2px 1px rgba(0,0,0,0.3); padding-right: 0px;"> 
     <h1 style="padding-left: 20px;" class='text-center'><%= current_user.first_name %> <%= current_user.last_name %>'s Profile</h1> 
     <div class='text-center'> 
       <% if current_user.profilepic.url != nil %>
-        <%= image_tag current_user.profilepic.card.url %><br>
+        <%= image_tag current_user.profilepic.card.url, :style => "max-height: 400px; max-width: 100%;"%><br>
       <% end %>
     </div>
-    <span>Full Name: <%= current_user.first_name %> <%= current_user.last_name %></span><br>
-    <span>Email Address: <%= current_user.email %></span><br>
-    <span><%= link_to edit_user_path(@users) do %> Edit Profile <% end %></span><br>
+    <span style="font-size: 18px;">Full Name: <%= current_user.first_name %> <%= current_user.last_name %></span><br>
+    <span style="font-size: 18px;">Email Address: <%= current_user.email %></span><br>
+    <span style="font-size: 18px;"><%= link_to edit_user_path(@users) do %> Edit Profile <% end %></span><br>
+    <br>
+    <div style="width: 100%; border: solid #EAE7DC; background-color: #88BDBC">
+      <span style="font-size: 22px; color: #EAE7DC">Friends List</span><br>
+    </div>
+    <% for friendship in current_user.friendships %>
+      <span style="font-size: 18px;">
+        <%= friendship.friend.first_name %> <%= friendship.friend.last_name %>
+      </span><br>
+    <% end %>
 
   </div>
-
+  <div class="col-sm-8">
     <!-- Media, Title, and Description area -->
     <% if signed_in? %>
         <% if current_user.stories != nil %>
             <% count = current_user.stories.count %>
             <% current_user.stories.each do |story| %>
                 <%= link_to story_path(story.id) do %>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 10px;">
 
                             <!-- Card media -->
@@ -39,6 +48,7 @@
             <% end %>
         <% end %>
     <% end %>
+  </div>
 </div>  
 
 <!-- New Story Modal -->

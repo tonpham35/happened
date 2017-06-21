@@ -507,16 +507,16 @@
 
 
       <!--Fixed tab example -->
-      <div class="pmd-card pmd-z-depth" style="position: absolute; background-color: #EAE7DC; box-shadow: 0 0 black; padding-top: 49px;">
-        <div class="pmd-tabs pmd-tabs-bg" style="background-color: green;">
+      <div class="pmd-card pmd-z-depth" style="position: absolute; background-color: #F5F5F6; box-shadow: 0 0 black; padding-top: 49px;">
+        <div class="pmd-tabs pmd-tabs-bg" style="background-color: #588C8B; box-shadow: 0 0 black;">
           <div class="pmd-tab-active-bar"></div>
           <ul role="tablist" class="nav nav-tabs nav-justified">
-          <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Events</a></li>
-          <li role="presentation"><a data-target="#form-dialog-location-tag-all" data-toggle="modal">Map</a></li>
-          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Participants</a></li>
+          <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed" style="color: black;">Events</a></li>
+          <li role="presentation"><a data-target="#form-dialog-location-tag-all" data-toggle="modal" style="color: black;">Map</a></li>
+          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed" style="color: black;">Participants</a></li>
           </ul>
         </div>
-        <div class="pmd-card-body" style="background-color: #EAE7DC">
+        <div class="pmd-card-body" style="background-color: #F5F5F6">
           <div class="tab-content">
           <!-- START OF EVENT CARD TAB -->
           <div role="tabpanel" class="tab-pane active" id="home-fixed">
@@ -1561,15 +1561,11 @@
           </div>
           <!-- END OF EVENT CARD TAB -->
 
-          <!--- Start of Maps Tab-->
-
-          <!--- End of Maps Tab-->
-
           <!--- Start of Partipant Tab-->
           <div role="tabpanel" class="tab-pane" id="work-fixed">
             <div class="row">
               <% @story.story_members.each do |x| %>
-                <div class="col-lg-4 col-m-6 col-xs-12">
+                <div class="col-xs-4">
                 <% y = x.user_id %>
                 <% part = User.find(y) %>
                 <!--Media and Description area -->
