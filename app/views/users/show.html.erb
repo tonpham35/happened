@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p id="notice"><%= notice %></p>
-  <div id="profile-info" style="background-color: white; height: 1000px; width: 25%; box-shadow: 2px 2px 1px rgba(0,0,0,0.3); padding-right: 0px; padding-top: 50px; float: left;">
+  <div id="profile-info" style="background-color: white; height: 1000px; width: 25%; box-shadow: 2px 2px 1px rgba(0,0,0,0.3); padding-right: 0px; padding-top: 43px; float: left;">
     <div style="width: 100%; background-color: #588C8B; margin-top: 0px; margin-bottom: 0px;">
       <h1 style="padding-left: 20px; padding-top: 15px; margin-top: 0px; margin-bottom: 0px;" class='text-center'><%= @user.first_name %> <%= @user.last_name %>'s Profile</h1>
     </div>
@@ -10,16 +10,16 @@
         <%= image_tag @user.profilepic.card.url, :style => "max-height: 400px; max-width: 100%;"%><br>
       <% end %>
     </div>
-    <span style="font-size: 18px;">Full Name: <%= @user.first_name %> <%= @user.last_name %></span><br>
-    <span style="font-size: 18px;">Email Address: <%= @user.email %></span><br>
+    <span style="font-size: 18px; padding-left: 10px;">Full Name: <%= @user.first_name %> <%= @user.last_name %></span><br>
+    <span style="font-size: 18px; padding-left: 10px;">Email Address: <%= @user.email %></span><br>
     <br>
-	<span style="font-size: 18px;"><%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %></span>
+	<span style="font-size: 18px; padding-left: 10px;"><%= link_to "Add Friend", friendships_path(:friend_id => @friend.id), :method => :post %></span>
     
     <div style="width: 100%; background-color: #588C8B;">
-      <span style="font-size: 22px; color: black;">Friends List</span><br>
+      <span style="font-size: 22px; color: black; padding-left: 10px;">Friends List</span><br>
     </div>
     <% for friendship in @user.friendships %>
-      <span style="font-size: 18px;">
+      <span style="font-size: 18px; padding-left: 10px;">
         <%= link_to user_path(friendship.friend.id) do %><%= friendship.friend.first_name %> <%= friendship.friend.last_name %><% end %>
       </span><br>
     <% end %>
