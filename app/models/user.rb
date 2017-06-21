@@ -28,12 +28,16 @@ class User < ApplicationRecord
 	      return user
 	    end
 
-
-
 	    # grab fb_token to access Facebook for user data
 	    def fb_token
 	      x = self.authentications.find_by(provider: 'facebook')
 	      return x.token unless x.nil?
 	    end
+	 end
+
+	 def self.search(search)
+		 if search
+			 where("first_name ILIKE ?", "%#{search}%") || where("last_name ILIKE ?", "%#{search}%")
+		 end
 	 end
 end

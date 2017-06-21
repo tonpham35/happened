@@ -36,6 +36,19 @@
     <div style="width: 100%; background-color: #588C8B;">
       <span style="font-size: 22px; color: black;">Friends List</span><br>
     </div>
+    <%= form_tag users_home_path, :method => 'get' do %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search for users", :name => nil %>
+      </p>
+    <% end %>
+    <% if @searched_users.present?%>
+    <% @searched_users.each do |x| %>
+    <%= link_to x.first_name + " " + x.last_name, user_path(x.id) %>
+    <% end %>
+    <% end %>
+    <% else %>
+    <p> no result </p>
     <% for friendship in current_user.friendships %>
       <span style="font-size: 18px;">
         <%= friendship.friend.first_name %> <%= friendship.friend.last_name %>
