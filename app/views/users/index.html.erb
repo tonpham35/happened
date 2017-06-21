@@ -1,6 +1,23 @@
 <p id="notice"><%= notice %></p>
+<br>
+<br>
+<br>
+<br>
 
-<div class="row">
+<%= form_tag users_index_path, :method => 'get', remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<div id="search_result">
+<% if @stories.present? %>
+<% @stories.each do |x| %>
+  <%= x.title %>
+  <% end %>
+<% end %>
+</div>
+<div class="row", id="all_stories">
 
     <!-- Media, Title, and Description area -->
     <% if signed_in? %>
@@ -15,7 +32,7 @@
                             <div class="pmd-card-media">
                        <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
                             </div>
-                            
+
                             <!-- Card header -->
                             <div class="pmd-card-title" style="text-decoration: none;">
                                 <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
@@ -23,11 +40,11 @@
                             </div>
                         </div>
                     </div>
-                <% end %>    
+                <% end %>
             <% end %>
         <% end %>
     <% end %>
-</div>  
+</div>
 
 <!-- New Story Modal -->
 <div tabindex="-1" class="modal fade" id="form-dialog-story" style="display: none;" aria-hidden="true">
@@ -61,10 +78,11 @@
 </div>
 
 
+
 <!-- Lower Left raised circle button with ripple effect -->
-<div class="pmd-floating-action"  role="navigation" style="z-index: 1001;"> 
+<div class="pmd-floating-action"  role="navigation" style="z-index: 1001;">
   <a data-target="#form-dialog-story" data-toggle="modal" class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="New Travel Story">
-    <span class="pmd-floating-hidden">New Travel Story</span> 
-    <i class="material-icons pmd-sm">add</i> 
-  </a> 
+    <span class="pmd-floating-hidden">New Travel Story</span>
+    <i class="material-icons pmd-sm">add</i>
+  </a>
 </div>

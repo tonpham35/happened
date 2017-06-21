@@ -28,6 +28,8 @@ class User < ApplicationRecord
 	      return user
 	    end
 
+
+
 	    # grab fb_token to access Facebook for user data
 	    def fb_token
 	      x = self.authentications.find_by(provider: 'facebook')

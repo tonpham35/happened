@@ -1,0 +1,23 @@
+      <% if @stories.present? %>
+        <% @stories.each do |story| %>
+            <%= link_to story_path(story.id) do %>
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 10px;">
+
+                        <!-- Card media -->
+                        <div class="pmd-card-media">
+                   <%=image_tag story.photo.card.url, class:"img-responsive", id:"card-photo"%>
+                        </div>
+
+                        <!-- Card header -->
+                        <div class="pmd-card-title" style="text-decoration: none;">
+                            <h2 class="pmd-card-title-text" style="font-size: 20px;"><%= story.title.upcase %></h2>
+                            <span class="pmd-card-subtitle-text"><%= story.description.capitalize %></span>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+          <% end %>
+          <% else %>
+          <p> no result </p>
+          <% end %>
