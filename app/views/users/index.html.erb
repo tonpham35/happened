@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
-  <div id="profile-info" class="col-sm-4"> 
+<div class="row" style="padding-top: 50px;">
+  <div id="profile-info" class="col-sm-4" style="background-color: white; height: 900px;"> 
     <h1 style="padding-left: 20px;" class='text-center'><%= current_user.first_name %> <%= current_user.last_name %>'s Profile</h1> 
     <div class='text-center'> 
       <% if current_user.profilepic.url != nil %>
@@ -13,14 +13,14 @@
     <span><%= link_to edit_user_path(@users) do %> Edit Profile <% end %></span><br>
 
   </div>
-
+  <div class="col-sm-8">
     <!-- Media, Title, and Description area -->
     <% if signed_in? %>
         <% if current_user.stories != nil %>
             <% count = current_user.stories.count %>
             <% current_user.stories.each do |story| %>
                 <%= link_to story_path(story.id) do %>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="pmd-card pmd-card-default pmd-z-depth" style="margin: 10px;">
 
                             <!-- Card media -->
@@ -39,6 +39,7 @@
             <% end %>
         <% end %>
     <% end %>
+  </div>
 </div>  
 
 <!-- New Story Modal -->
