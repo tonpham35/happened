@@ -6,19 +6,24 @@ class UsersController < ApplicationController
 
   def home
     @user = User.all
+
   end
 
   def index
 
     @users = User.all
-
+    @searched_users = User.search(params[:search])
     @stories = Story.search(params[:search])
+    # @events = Event.search(params[:search])
+    # @users = User.search(params[:search])
+    # @results = @stories + @events + @users
+    # + Event.search(params[:search]) + User.search(params[:search])
 
     respond_to do |format|
-  format.html # index.html.erb
-  format.js
+      format.html # index.html.erb
+      format.js
+    end
   end
-end
 
 
   # GET /users/1
