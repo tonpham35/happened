@@ -39,17 +39,17 @@
 
       <!-- New Accomodation Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-accomodation" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 540px;">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">New Accomodation</h2><!-- Title -->
             </div>
             <%= form_for :event, url: events_path do |form| %>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
               <div id='places-container' style="height: 100%; width: 100%;">
-                <input id="pac-input2" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
-                <div id="mapAll" style="width: 570px; height: 400px;"></div>
+                <input id="pac-input2" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px; width: 350px">
+                <div id="mapAll" style="width: 500px; height: 300px;"></div>
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="what">What</label>
@@ -71,7 +71,7 @@
                 <input type="text" id="datetimepicker1" class="form-control" name=event[accomodation_checkout]>
               </div>
             </div>
-            <div class="pmd-modal-action">
+            <div class="pmd-modal-action" style="padding-top: 0px; padding-bottom: 0px;">
               <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
             </div>
             <%end%>
@@ -81,8 +81,8 @@
 
       <!-- New participant Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-participant" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+        <div class="modal-dialog" style="width: 35%;">
+          <div class="modal-content" style="width: 100%;">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">New Participant</h2><!-- Title -->
@@ -95,7 +95,7 @@
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label>New Participants</label>
-                <select class="select-tags form-control pmd-select2-tags" multiple name="story_members[participant][]" >
+                <select class="select-tags form-control pmd-select2-tags" multiple name="story_members[participant][]" style="width: 100%;">
                       <% current_user.friendships.each do |x| %>
                       <%  y = x.friend_id %>
                       <option><%= User.find(y).first_name %></option>
@@ -162,19 +162,19 @@
 
       <!-- New Location Tag Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-dialog" style="width: 70%;">
           <div class="modal-content">
-            <div class="modal-header pmd-modal-bordered">
+            <div class="modal-header pmd-modal-bordered" style="margin-bottom: 0px;">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;" >
               <div id='places-container' style="height: 100%; width: 100%;">
                  <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
                 <div id="map"></div>
               </div>
               <%= form_for :event, url: events_path do |form| %>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label" style="margin-bottom: 0px;">
                 <label for="what">What</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
@@ -186,12 +186,12 @@
                 <%= form.hidden_field :story_id, :value => @story.id %>
                 <%= form.hidden_field :type_of_event, :value => 'location_tag' %>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" style="margin-bottom: 0px;">
                 <label class="control-label" for="regular1">When</label>
                 <input type="text" id="datetimepicker4" class="form-control" name=event[when]>
 
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label" style="margin-bottom: 0px;">
                 <label for="why">Why</label>
                 <input type="text" class="mat-input form-control" name=event[why]>
               </div>
@@ -314,7 +314,7 @@
               <% count = allevents.count %>
               <% if count > 0 %>
                 <div id='places-container' style="height: 100%; width: 100%;">
-                  <div id="mapall" style="height: 700px;"></div>
+                  <div id="mapall" style="height: 560px;"></div>
                   <% if count == 1 %>
                     <% if allevents[0].type_of_event == 'picfile' %>
                       <% icon = allevents[0].photo.thumb.url %>
@@ -322,7 +322,7 @@
                       <% icon = asset_path 'mapmarker.png' %>
                     <% else %>
                       <% icon = asset_path 'hotel.png' %>
-                    <% end %>   
+                    <% end %>
                     <script>
                       function initMapAll() {
                         var myLatLng = {lat: <%= allevents[0].lat %>, lng: <%= allevents[0].long %>};
@@ -343,7 +343,7 @@
                             <% else %>
                               <% icon = asset_path 'hotel.png' %>
                               <% url = '#form-dialog-location'+allevents[0].id.to_s %>
-                           <% end %> 
+                           <% end %>
                           ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>,'<%= url %>']
                         ];
 
@@ -389,7 +389,7 @@
                             <% else %>
                               <% icon = asset_path 'hotel.png' %>
                               <% url = '#form-dialog-location'+allevents[0].id.to_s %>
-                           <% end %> 
+                           <% end %>
                           ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>, '<%= url %>'],
                           <% if allevents[1].type_of_event == 'picfile' %>
                               <% icon = allevents[1].photo.thumb.url %>
@@ -400,7 +400,7 @@
                             <% else %>
                               <% icon = 'assets/hotel.png' %>
                               <% url = '#form-dialog-location'+allevents[1].id.to_s %>
-                           <% end %> 
+                           <% end %>
                            ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>, '<%= url %>']
                         ];
 
@@ -455,7 +455,7 @@
                           <% else %>
                             <% icon = asset_path 'hotel.png' %>
                             <% url = '#form-dialog-location'+allevents[i].id.to_s %>
-                          <% end %> 
+                          <% end %>
                           ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>, '<%= url %>'],
                         <% end %>
                         <% if allevents[count - 1].type_of_event == 'picfile' %>
@@ -467,7 +467,7 @@
                           <% else %>
                             <% icon = 'assets/hotel.png' %>
                             <% url = '' %>
-                         <% end %> 
+                         <% end %>
                          ['<%= icon %>', <%= allevents[count - 1].lat %>, <%= allevents[count - 1].long %>, '<%= url %>']
                       ];
 
@@ -528,8 +528,10 @@
             <% dates_arr.each do |date| %><!-- Loops each distinct date -->
               <% day_arr = @story.events.where(when: date) %><!--  array of events that happen on that date -->
 
-              <div style="width: 100%; border-bottom: 2px rgba(0 0 0 0.7);"><!-- Display Date of Events -->
-                <h1><%= date.strftime('%b %d, %Y') %></h1>
+              <div style="width: 100%; border-bottom: 2px rgba(0 0 0 0.7);  border-bottom: thick;"><!-- Display Date of Events -->
+                <h1 style="border-bottom: solid #87BCBB; width: 100%; padding-bottom: 10px;">
+                  <%= date.strftime('%b %d, %Y') %>
+                </h1>
               </div>
 
               <div class="row" style="margin: 30px 10px 0px 10px;">
@@ -816,7 +818,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
@@ -1156,7 +1158,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
@@ -1496,7 +1498,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
