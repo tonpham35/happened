@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
 @import "bootstrap-sprockets";
@@ -41,7 +39,7 @@
 
 /*----- Body -----*/
 	body {
-		background-color: #EAE7DC;
+		background-color: #F5F5F6;
 	}
 
 	a:hover {
@@ -50,7 +48,7 @@
 
 /*----- Tab Panels -----*/
 .tab-pane.active, .tab-pane, {
-	background-color: #EAE7DC;
+	background-color: #F5F5F6;
 }
 
 /*----- Banner -----*/
@@ -62,16 +60,21 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-color: #4646464;
-	height: 735px;
+	height: 790px;
 }
 
 /*----- Navbar -----*/
 
-#image {
-	  	display: inline;
-		max-width: 10%;
-		max-height: 10%;
-		margin-left: 10px;
+
+// #image {
+// 		  display: inline;
+// 			max-width: 10%;
+// 			max-height: 10%;
+// 			margin-left: 10px;
+// 	}
+
+#card-pic {
+	max-height: 400px;
 }
 
 #navbar {
@@ -82,34 +85,57 @@
 
 /*----- Logo and slogan in the centre of page -----*/
 
-#logo {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 150px;
-	padding-bottom: 1%;
-}
+// #logo {
+// 	display: block;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	padding-top: 150px;
+// 	padding-bottom: 1%;
+// }
 
 #brand {
 	margin-top: 1px;
-	padding: 30px;
+	padding-top: 125px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 100px;
 	font-weight: bold;
 	color: #FFFFFF;
 	text-align: center;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 #slogan {
 
-	padding: 30px;
+	padding: 10px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 50px;
 	color: #FFFFFF;
 	text-align: center;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
+#transbox {
+	text-align: center;
+	margin-left: 30%;
+	margin-right: 30%;
 
+}
+
+#login {
+	display: inline-block;
+
+}
+
+#sign-in-button, #sign-up-button {
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+	background-color: #88BDBC;
+	border-color: #588C8B;
+	color: black;
+}
+
+#fb_login {
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
 /*----- Navbar -----*/
 
 /*navbar color*/
@@ -152,12 +178,13 @@
 /*----- Floating Action Button -----*/
 #map {
 	width: 60%;
-	height: 400px;
+	height: 350px;
 	background-color: grey;
 }
 
 /*----- Floating Action Button -----*/
 #card-photo {
+	max-height: 500px;
 	width: 100%;
 }
 
@@ -286,7 +313,7 @@ box-shadow: inset 0 0 4px 2px #abbccf, 0 0 1px 0 #eeeeee;
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-div#map, div#mapAll {
+div#map, div#mapAll, div#mallall {
   width: 100%;
 }
 

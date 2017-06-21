@@ -6,6 +6,7 @@ class CreateEventphotos < ActiveRecord::Migration[5.1]
       t.string :lat
       t.string :long
       t.datetime :datetime
+      t.string :type_of_event
 
       t.timestamps
     end

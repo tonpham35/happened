@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
+
     @users = User.all
 
     @stories = Story.search(params[:search])
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
   format.html # index.html.erb
   format.js
 end
-  end
+
 
   # GET /users/1
   # GET /users/1.json

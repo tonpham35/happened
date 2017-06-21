@@ -29,7 +29,6 @@
           <i class="material-icons">person_add</i>
         </a>
         <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add a New Event">
-
         	<span class="pmd-floating-hidden">Add a New Event</span>
           <i class="material-icons pmd-sm">add</i>
         </a>
@@ -40,17 +39,17 @@
 
       <!-- New Accomodation Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-accomodation" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 540px;">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">New Accomodation</h2><!-- Title -->
             </div>
             <%= form_for :event, url: events_path do |form| %>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
               <div id='places-container' style="height: 100%; width: 100%;">
-                <input id="pac-input2" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
-                <div id="mapAll" style="width: 570px; height: 400px;"></div>
+                <input id="pac-input2" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px; width: 350px">
+                <div id="mapAll" style="width: 500px; height: 300px;"></div>
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label for="what">What</label>
@@ -72,7 +71,7 @@
                 <input type="text" id="datetimepicker1" class="form-control" name=event[accomodation_checkout]>
               </div>
             </div>
-            <div class="pmd-modal-action">
+            <div class="pmd-modal-action" style="padding-top: 0px; padding-bottom: 0px;">
               <%= form.submit :Submit, class: 'btn pmd-ripple-effect btn-primary' %>
             </div>
             <%end%>
@@ -82,8 +81,8 @@
 
       <!-- New participant Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-participant" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+        <div class="modal-dialog" style="width: 35%;">
+          <div class="modal-content" style="width: 100%;">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">New Participant</h2><!-- Title -->
@@ -96,7 +95,7 @@
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label">
                 <label>New Participants</label>
-                <select class="select-tags form-control pmd-select2-tags" multiple name="story_members[participant][]" >
+                <select class="select-tags form-control pmd-select2-tags" multiple name="story_members[participant][]" style="width: 100%;">
                       <% current_user.friendships.each do |x| %>
                       <%  y = x.friend_id %>
                       <option><%= User.find(y).first_name %></option>
@@ -119,7 +118,7 @@
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-              <h2 class="pmd-card-title-text">New Mode of Transporation</h2><!-- Title -->
+              <h2 class="pmd-card-title-text">New Mode of Transportation</h2><!-- Title -->
             </div>
             <%= form_for :event, url: events_path do |form| %>
             <div class="modal-body">
@@ -146,7 +145,7 @@
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
               	<label class="control-label" for="regular1">Departure Time</label>
-              	<input type="text" id="timepicker" class="form-control" name=event[departure_time]>
+              	<input type="text" id="timepicker" class="form-control" name=event[when]>
               </div>
               <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
               	<label class="control-label" for="regular1">Departure Date</label>
@@ -163,19 +162,19 @@
 
       <!-- New Location Tag Modals -->
       <div tabindex="-1" class="modal fade" id="form-dialog-location-tag" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-dialog" style="width: 70%;">
           <div class="modal-content">
-            <div class="modal-header pmd-modal-bordered">
+            <div class="modal-header pmd-modal-bordered" style="margin-bottom: 0px;">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
               <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-top: 0px; margin-bottom: 0px; padding-bottom: 0px;" >
               <div id='places-container' style="height: 100%; width: 100%;">
                  <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-top: 10px;">
                 <div id="map"></div>
               </div>
               <%= form_for :event, url: events_path do |form| %>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label" style="margin-bottom: 0px;">
                 <label for="what">What</label>
                 <input type="text" class="mat-input form-control" name=event[what]>
               </div>
@@ -187,12 +186,12 @@
                 <%= form.hidden_field :story_id, :value => @story.id %>
                 <%= form.hidden_field :type_of_event, :value => 'location_tag' %>
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label pmd-textfield-floating-label-completed" style="margin-bottom: 0px;">
                 <label class="control-label" for="regular1">When</label>
                 <input type="text" id="datetimepicker4" class="form-control" name=event[when]>
 
               </div>
-              <div class="form-group pmd-textfield pmd-textfield-floating-label">
+              <div class="form-group pmd-textfield pmd-textfield-floating-label" style="margin-bottom: 0px;">
                 <label for="why">Why</label>
                 <input type="text" class="mat-input form-control" name=event[why]>
               </div>
@@ -282,36 +281,242 @@
       </div>
     <% end %>
 
-      <!-- All Location Tag Modals -->
-      <div tabindex="-1" class="modal fade" id="form-dialog-location-all" style="display: none;" aria-hidden="true">
+    <!-- All Location Tag Modals -->
+      <div tabindex="-1" class="modal fade" id="form-dialog-location-tag-all" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" style="width: 90%;">
           <div class="modal-content">
             <div class="modal-header pmd-modal-bordered">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-              <h2 class="pmd-card-title-text">Tag a Location</h2><!-- Title -->
+              <h2 class="pmd-card-title-text">All Location Tags</h2><!-- Title -->
             </div>
             <div class="modal-body">
-              <div id='places-container' style="height: 100%; width: 100%;">
-                <div id="mapcardAll" style="width: 100%; height: 600px;"></div>
+              <% allevents = Array.new %>
+               <% photo = @story.events.where(type_of_event: "photos") %>
+                <% if photo.count > 0 %>
+                  <% photo.each do |y|%>
+                    <% y.eventphotos.each do |x|%>
+                      <% allevents.push(x) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% accom = @story.events.where(type_of_event: "accomodation") %>
+                <% if accom.count > 0 %>
+                  <% accom.each do |x|%>
+                    <% allevents.push(x) %>
+                  <% end %>
+                <% end %>
+              <% local = @story.events.where(type_of_event: "location_tag") %>
+                <% if local.count > 0 %>
+                  <% local.each do |x|%>
+                    <% allevents.push(x) %>
+                  <% end %>
+                <% end %>
+              <% count = allevents.count %>
+              <% if count > 0 %>
+                <div id='places-container' style="height: 100%; width: 100%;">
+                  <div id="mapall" style="height: 560px;"></div>
+                  <% if count == 1 %>
+                    <% if allevents[0].type_of_event == 'picfile' %>
+                      <% icon = allevents[0].photo.thumb.url %>
+                    <% elsif allevents[0].type_of_event == 'location_tag' %>
+                      <% icon = asset_path 'mapmarker.png' %>
+                    <% else %>
+                      <% icon = asset_path 'hotel.png' %>
+                    <% end %>
+                    <script>
+                      function initMapAll() {
+                        var myLatLng = {lat: <%= allevents[0].lat %>, lng: <%= allevents[0].long %>};
 
-              </div>
+                        var map = new google.maps.Map(document.getElementById('mapall'), {
+                          zoom: 15,
+                          center: myLatLng
+                        });
+
+                        // Multiple Markers
+                        var markers = [
+                          <% if allevents[0].type_of_event == 'picfile' %>
+                              <% icon = allevents[0].photo.thumb.url %>
+                              <% url = '#picture-window'+allevents[0].id.to_s %>
+                            <% elsif allevents[0].type_of_event == 'location_tag' %>
+                              <% icon = asset_path 'mapmarker.png' %>
+                              <% url = '' %>
+                            <% else %>
+                              <% icon = asset_path 'hotel.png' %>
+                              <% url = '#form-dialog-location'+allevents[0].id.to_s %>
+                           <% end %>
+                          ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>,'<%= url %>']
+                        ];
+
+                        // Loop through our array of markers & place each one on the map
+                        for( i = 0; i < markers.length; i++ ) {
+                            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                            marker = new google.maps.Marker({
+                                position: position,
+                                map: map,
+                                url: markers[i][3],
+                                icon: markers[i][0]
+                            });
+                        }
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                          $(marker.url).modal();
+                        });
+
+                        $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                          google.maps.event.trigger(map, "resize");
+                          map.setCenter(myLatLng);
+                        });
+                      }
+                    </script>
+                  <% elsif count == 2 %>
+                    <script>
+                      function initMapAll() {
+                        var bounds = new google.maps.LatLngBounds();
+                        var map = new google.maps.Map(document.getElementById('mapall'), {
+                          scrollwheel: false,
+                          zoomControl: true,
+                          mapTypeControl: false,
+                        });
+
+                        // Multiple Markers
+                        var markers = [
+                          <% if allevents[0].type_of_event == 'picfile' %>
+                              <% icon = allevents[0].photo.thumb.url %>
+                              <% url = '#picture-window'+allevents[0].id.to_s %>
+                            <% elsif allevents[0].type_of_event == 'location_tag' %>
+                              <% icon = asset_path 'mapmarker.png' %>
+                              <% url = '' %>
+                            <% else %>
+                              <% icon = asset_path 'hotel.png' %>
+                              <% url = '#form-dialog-location'+allevents[0].id.to_s %>
+                           <% end %>
+                          ['<%= icon %>', <%= allevents[0].lat %>, <%= allevents[0].long %>, '<%= url %>'],
+                          <% if allevents[1].type_of_event == 'picfile' %>
+                              <% icon = allevents[1].photo.thumb.url %>
+                              <% url = '#picture-window'+allevents[1].id.to_s %>
+                            <% elsif allevents[1].type_of_event == 'location_tag' %>
+                              <% icon = asset_path 'mapmarker.png' %>
+                              <% url = '' %>
+                            <% else %>
+                              <% icon = 'assets/hotel.png' %>
+                              <% url = '#form-dialog-location'+allevents[1].id.to_s %>
+                           <% end %>
+                           ['<%= icon %>', <%= allevents[1].lat %>, <%= allevents[1].long %>, '<%= url %>']
+                        ];
+
+                        // Loop through our array of markers & place each one on the map
+                        for( i = 0; i < markers.length; i++ ) {
+                            var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                            bounds.extend(position);
+                            marker = new google.maps.Marker({
+                                position: position,
+                                map: map,
+                                icon: markers[i][0]
+                            });
+                            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                              return function() {
+                              $(marker.url).modal();
+                              console.log(marker.url)
+                              }
+                            }) (marker, i));
+                            // Automatically center the map fitting all markers on the screen
+                            map.fitBounds(bounds);
+                        }
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                          $(marker.url).modal();
+                        });
+
+                        $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                            google.maps.event.trigger(map, "resize");
+                            map.fitBounds(bounds);
+                          });
+                        }
+                    </script>
+                  <% else %>
+                  <script>
+                    function initMapAll() {
+                      var bounds = new google.maps.LatLngBounds();
+                      var map = new google.maps.Map(document.getElementById('mapall'), {
+                        scrollwheel: false,
+                        zoomControl: true,
+                        mapTypeControl: false,
+                      });
+
+                      // Multiple Markers
+                      var markers = [
+                        <% for i in 0..(count-2) do %>
+                          <% if allevents[i].type_of_event == 'picfile' %>
+                            <% icon = allevents[i].photo.thumb.url %>
+                             <% url = '#picture-window'+allevents[i].id.to_s %>
+                          <% elsif allevents[i].type_of_event == 'location_tag' %>
+                            <% icon = asset_path 'mapmarker.png' %>
+                            <% url = '' %>
+                          <% else %>
+                            <% icon = asset_path 'hotel.png' %>
+                            <% url = '#form-dialog-location'+allevents[i].id.to_s %>
+                          <% end %>
+                          ['<%= icon %>', <%= allevents[i].lat %>, <%= allevents[i].long %>, '<%= url %>'],
+                        <% end %>
+                        <% if allevents[count - 1].type_of_event == 'picfile' %>
+                            <% icon = allevents[count - 1].photo.thumb.url %>
+                            <% url = '#picture-window'+allevents[count-1].id.to_s %>
+                          <% elsif allevents[count - 1].type_of_event == 'location_tag' %>
+                            <% icon = asset_path 'mapmarker.png' %>
+                            <% url = '#form-dialog-location'+allevents[i].id.to_s %>
+                          <% else %>
+                            <% icon = 'assets/hotel.png' %>
+                            <% url = '' %>
+                         <% end %>
+                         ['<%= icon %>', <%= allevents[count - 1].lat %>, <%= allevents[count - 1].long %>, '<%= url %>']
+                      ];
+
+                      // Loop through our array of markers & place each one on the map
+                      for( i = 0; i < markers.length; i++ ) {
+                          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                          bounds.extend(position);
+                          marker = new google.maps.Marker({
+                              position: position,
+                              map: map,
+                              url: markers[i][3],
+                              icon: markers[i][0]
+                          });
+                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                            $(marker.url).modal();
+                            console.log(marker.url)
+                            }
+                          }) (marker, i));
+                          // Automatically center the map fitting all markers on the screen
+                          map.fitBounds(bounds);
+                      }
+
+                      $("#form-dialog-location-tag-all").on("shown.bs.modal", function () {
+                          google.maps.event.trigger(map, "resize");
+                          map.fitBounds(bounds);
+                        });
+                      }
+                  </script>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-      <div style="height: 49px;"></div>
+
 
       <!--Fixed tab example -->
-      <div class="pmd-card pmd-z-depth" style="position: absolute; background-color: #EAE7DC; box-shadow: 0 0 black;">
-        <div class="pmd-tabs pmd-tabs-bg" style="background-color: green;">
+      <div class="pmd-card pmd-z-depth" style="position: absolute; background-color: #F5F5F6; box-shadow: 0 0 black; padding-top: 49px;">
+        <div class="pmd-tabs pmd-tabs-bg" style="background-color: #588C8B; box-shadow: 0 0 black;">
           <div class="pmd-tab-active-bar"></div>
           <ul role="tablist" class="nav nav-tabs nav-justified">
-          <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Events</a></li>
-          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">Map</a></li>
-          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Participants</a></li>
+          <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed" style="color: black;">Events</a></li>
+          <li role="presentation"><a data-target="#form-dialog-location-tag-all" data-toggle="modal" style="color: black;">Map</a></li>
+          <li role="presentation"><a data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed" style="color: black;">Participants</a></li>
           </ul>
         </div>
-        <div class="pmd-card-body" style="background-color: #EAE7DC">
+        <div class="pmd-card-body" style="background-color: #F5F5F6">
           <div class="tab-content">
           <!-- START OF EVENT CARD TAB -->
           <div role="tabpanel" class="tab-pane active" id="home-fixed">
@@ -323,8 +528,10 @@
             <% dates_arr.each do |date| %><!-- Loops each distinct date -->
               <% day_arr = @story.events.where(when: date) %><!--  array of events that happen on that date -->
 
-              <div style="width: 100%; border-bottom: 2px rgba(0 0 0 0.7);"><!-- Display Date of Events -->
-                <h1><%= date.strftime('%b %d, %Y') %></h1>
+              <div style="width: 100%; border-bottom: 2px rgba(0 0 0 0.7);  border-bottom: thick;"><!-- Display Date of Events -->
+                <h1 style="border-bottom: solid #87BCBB; width: 100%; padding-bottom: 10px;">
+                  <%= date.strftime('%b %d, %Y') %>
+                </h1>
               </div>
 
               <div class="row" style="margin: 30px 10px 0px 10px;">
@@ -357,9 +564,10 @@
                             </div>
                           </div>
                         </a>
+
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog" style="width: 75%;">
+                          <div class="modal-dialog" style="width: 50%;">
                             <div class="modal-content">
                               <div class="modal-header pmd-modal-bordered">
                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
@@ -367,7 +575,7 @@
                               </div>
                               <div class="modal-body">
                                 <div id='places-container' style="height: 100%; width: 100%;">
-                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
                                     <script>
                                       function initMap<%= event.id %>() {
                                         var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
@@ -438,6 +646,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -472,7 +699,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -488,15 +714,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -515,16 +747,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -535,8 +767,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -546,9 +785,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
@@ -582,7 +818,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
@@ -649,7 +885,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-
+                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -657,7 +893,7 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
+                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
@@ -668,6 +904,45 @@
                                 </div>
                             </div>
                           </div>
+                        </a>
+                        <!-- Accomodation Location Tag Modals -->
+                        <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
+                          <div class="modal-dialog" style="width: 50%;">
+                            <div class="modal-content">
+                              <div class="modal-header pmd-modal-bordered">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h2 class="pmd-card-title-text"><h3 class="pmd-card-title-text"><%= event.what.upcase %></h3></h2><!-- Title -->
+                              </div>
+                              <div class="modal-body">
+                                <div id='places-container' style="height: 100%; width: 100%;">
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
+                                    <script>
+                                      function initMap<%= event.id %>() {
+                                        var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
+                                        var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                                          zoom: 16,
+                                          scrollwheel: false,
+                                          center: myLatLng
+                                        });
+
+                                        var marker = new google.maps.Marker({
+                                          position: myLatLng,
+                                          map: map,
+                                         });
+                                        $("#form-dialog-location<%= event.id %>").on("shown.bs.modal", function () {
+                                          google.maps.event.trigger(map, "resize");
+                                          map.setCenter(myLatLng);
+                                        });
+                                      }
+                                    </script>
+                                  <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       <% end %><!-- ACCOMODATION CARDS END-->
 
                       <!-- TRANSPORTATION CARDS -->
@@ -711,6 +986,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -745,7 +1039,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -761,15 +1054,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -788,16 +1087,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -808,8 +1107,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -819,9 +1125,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
@@ -855,7 +1158,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
@@ -922,7 +1225,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-
+                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -930,7 +1233,7 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.accomodation_address %></span><br>
+                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                     <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
@@ -941,6 +1244,45 @@
                                 </div>
                             </div>
                           </div>
+                        </a>
+                        <!-- Accomodation Location Tag Modals -->
+                        <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
+                          <div class="modal-dialog" style="width: 50%;">
+                            <div class="modal-content">
+                              <div class="modal-header pmd-modal-bordered">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h2 class="pmd-card-title-text"><h3 class="pmd-card-title-text"><%= event.what.upcase %></h3></h2><!-- Title -->
+                              </div>
+                              <div class="modal-body">
+                                <div id='places-container' style="height: 100%; width: 100%;">
+                                  <div id="mapcard<%= event.id %>" style="width: 100%; height: 450px;"></div>
+                                    <script>
+                                      function initMap<%= event.id %>() {
+                                        var myLatLng = {lat: <%= event.lat %>, lng: <%= event.long %>};
+                                        var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
+                                          zoom: 16,
+                                          scrollwheel: false,
+                                          center: myLatLng
+                                        });
+
+                                        var marker = new google.maps.Marker({
+                                          position: myLatLng,
+                                          map: map,
+                                         });
+                                        $("#form-dialog-location<%= event.id %>").on("shown.bs.modal", function () {
+                                          google.maps.event.trigger(map, "resize");
+                                          map.setCenter(myLatLng);
+                                        });
+                                      }
+                                    </script>
+                                  <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                  <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       <% end %><!-- ACCOMODATION CARDS END-->
 
                       <!-- TRANSPORTATION CARDS -->
@@ -984,6 +1326,25 @@
 
                       <!-- PHOTO CARDS -->
                       <% if event.type_of_event == 'photos' %>
+                        <% event.eventphotos.each_with_index do |photo, j| %>
+                          <div tabindex="-1" class="modal fade" id="picture-window<%= event.eventphotos[j].id %>" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 50%;">
+                              <div class="modal-content">
+                                <div class="modal-header pmd-modal-bordered">
+                                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                  <h2 class="pmd-card-title-text">Map Image</h2><!-- Title -->
+                                </div>
+                                <div class="modal-body">
+                                  <div class="pmd-card-media">
+                                    <%=image_tag event.eventphotos[j].photo.card.url, class:"img-responsive", id:"card-photo"%>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
@@ -1018,7 +1379,6 @@
                                       <div id="mapcard<%= event.id %>" style="width: 100%; height: 400px;"></div>
                                         <% if count == 1 %>
                                           <script>
-
                                             function initMap<%= event.id %>() {
                                               var myLatLng = {lat: <%= event.eventphotos[0].lat %>, lng: <%= event.eventphotos[0].long %>};
                                               var map = new google.maps.Map(document.getElementById('mapcard<%= event.id %>'), {
@@ -1034,15 +1394,21 @@
                                               var marker = new google.maps.Marker({
                                                 position: myLatLng,
                                                 map: map,
+                                                url: '#picture-window<%= event.eventphotos[0].id %>',
                                                 icon: '<%= event.eventphotos[0].photo.thumb.url %>',
                                               });
+
+                                              google.maps.event.addListener(marker, 'click', function() {
+                                                $(marker.url).modal();
+                                              });
+
+
                                               $('#myCarousel<%= event.id %>').on('slid.bs.carousel', function () {
                                                 // Fetch map from maps object by key from element's data attribute
                                                 google.maps.event.trigger(map, "resize");
                                                 map.setCenter(myLatLng);
                                               });
                                             }
-
                                           </script>
                                         <% else %>
                                           <script>
@@ -1061,16 +1427,16 @@
                                               // Multiple Markers
                                               var markers = [
                                                 <% if event.eventphotos.count == 1 %>
-                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>]
+                                                  ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>']
                                                 <% elsif event.eventphotos.count == 2 %>
-                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>],
-                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>]
+                                                    ['<%= event.eventphotos[0].photo.thumb.url %>', <%= event.eventphotos[0].lat %>, <%= event.eventphotos[0].long %>, '#picture-window<%= event.eventphotos[0].id %>'],
+                                                    ['<%= event.eventphotos[1].photo.thumb.url %>', <%= event.eventphotos[1].lat %>, <%= event.eventphotos[1].long %>, '#picture-window<%= event.eventphotos[1].id %>']
                                                 <% elsif event.eventphotos.count > 2 %>
                                                   <% for j in 0..(count-2) %>
-                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>],
+                                                    ['<%= event.eventphotos[j].photo.thumb.url %>', <%= event.eventphotos[j].lat %>, <%= event.eventphotos[j].long %>, '#picture-window<%= event.eventphotos[j].id %>'],
                                                     <% j += 1 %>
                                                   <% end %>
-                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>]
+                                                  ['<%= event.eventphotos[count-1].photo.thumb.url %>', <%= event.eventphotos[count-1].lat %>, <%= event.eventphotos[count-1].long %>, '#picture-window<%= event.eventphotos[count-1].id %>']
                                                 <% end %>
                                               ];
 
@@ -1081,8 +1447,15 @@
                                                   marker = new google.maps.Marker({
                                                       position: position,
                                                       map: map,
+                                                      url: markers[i][3],
                                                       icon: markers[i][0]
                                                   });
+                                                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                                    return function() {
+                                                    $(marker.url).modal();
+                                                    console.log(marker.url)
+                                                    }
+                                                  }) (marker, i));
                                                   // Automatically center the map fitting all markers on the screen
                                                   map.fitBounds(bounds);
                                               }
@@ -1092,9 +1465,6 @@
                                                 google.maps.event.trigger(map, "resize");
                                                 map.fitBounds(bounds);
                                               });
-
-
-
                                             }
                                           </script>
                                         <% end %>
@@ -1128,7 +1498,7 @@
                         <!--Media, Title, Description and Action area -->
                         <div class="pmd-card pmd-card-default pmd-z-depth">
                           <!-- Card media -->
-                          <div class="pmd-card-media">       
+                          <div class="pmd-card-media">
 
                             <div id='places-container' style="height: 100%; width: 100%;">
                               <div id="mapcard<%= event.id %>" style="width: 100%; height: 300px;"></div>
@@ -1193,21 +1563,11 @@
           </div>
           <!-- END OF EVENT CARD TAB -->
 
-          <!--- Start of Maps Tab-->
-          <div role="tabpanel" class="tab-pane" id="about-fixed">
-          <% photos = @story.events.where(type_of_event: "photos") %>
-          <% accom = @story.events.where(type_of_event: "accomodation") %>
-          <% local = @story.events.where(type_of_event: "location_tag") %>
-
-
-          </div>
-          <!--- End of Maps Tab-->
-
           <!--- Start of Partipant Tab-->
           <div role="tabpanel" class="tab-pane" id="work-fixed">
             <div class="row">
               <% @story.story_members.each do |x| %>
-                <div class="col-lg-4 col-m-6 col-xs-12">
+                <div class="col-xs-4">
                 <% y = x.user_id %>
                 <% part = User.find(y) %>
                 <!--Media and Description area -->
@@ -1232,8 +1592,6 @@
       </div> <!--Fixed tab example end-->
 
 
-
-
     <!-- GOOGLE MAP API KEY - initializemap function below -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn3JpsPAtnQ-XNPSVcka3aHYg3OG-PQHg&libraries=places&callback=initializemap" async defer></script>
 
@@ -1251,5 +1609,6 @@
               initMap<%= event.id %>();
             <% end %>
           <% end %>
+          initMapAll();
         }
      </script>
