@@ -545,7 +545,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
+                        <a style="color: black;" data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -553,9 +553,9 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                    <span class="pmd-card-text" style="font-size: 16px;"><%= event.where %></span><br>
+                                    <span class="pmd-card-text style="font-size: 16px;">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                    <span class="pmd-card-text" style="font-size: 16px;">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
 
                                 <!-- Card media image -->
@@ -617,13 +617,13 @@
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.mode_of_transport.upcase %></h3>
                                     <% if event.flight_num != nil %>
-                                      <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
+                                      <span class="pmd-card-text" style="font-size: 16px;"><%= event.flight_num %></span><br>
                                     <% end %>
                                     <% if event.flight_date != nil %>
-                                      <span class="pmd-card-subtitle-text">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                      <span class="pmd-card-text" style="font-size: 16px;">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                     <% end %>
                                     <% if event.flight_time != nil %>
-                                    <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
+                                    <span class="pmd-card-text" style="font-size: 16px;">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
                                     <% end %>
                                 </div>
 
@@ -845,7 +845,7 @@
                           <div class="pmd-card-body">
                             <div class="media-body media-middle">
                                 <h3 class="pmd-card-title-text"><%= event.what %></h3>
-                                <span class="pmd-card-subtitle-text"><%= event.where %></span>
+                                <span class="pmd-card-text"><%= event.where %></span>
                             </div>
                             <%= event.why %>
                           </div>
@@ -886,7 +886,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
+                        <a style="color: black;" data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -894,9 +894,9 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                    <span class="pmd-card-text" style="font-size: 16px;"><%= event.where %></span><br>
+                                    <span class="pmd-card-text style="font-size: 16px;">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                    <span class="pmd-card-text" style="font-size: 16px;">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
 
                                 <!-- Card media image -->
@@ -906,6 +906,7 @@
                             </div>
                           </div>
                         </a>
+
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
                           <div class="modal-dialog" style="width: 50%;">
@@ -1185,7 +1186,7 @@
                           <div class="pmd-card-body">
                             <div class="media-body media-middle">
                                 <h3 class="pmd-card-title-text"><%= event.what %></h3>
-                                <span class="pmd-card-subtitle-text"><%= event.where %></span>
+                                <span class="pmd-card-text"><%= event.where %></span>
                             </div>
                             <%= event.why %>
                           </div>
@@ -1226,7 +1227,7 @@
 
                       <!-- ACCOMODATION CARDS -->
                       <% if event.type_of_event == 'accomodation' %>
-                        <a data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
+                        <a style="color: black;" data-target="#form-dialog-location<%= event.id %>" data-toggle="modal" style="text-decoration: none; text-decoration-color: black;" >
                         <!--Title, Media, and Action area -->
                           <div class="pmd-card pmd-card-media-inline pmd-z-depth">
                             <!-- Card media -->
@@ -1234,9 +1235,9 @@
                               <!-- Card media heading -->
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.what.upcase %></h3>
-                                    <span class="pmd-card-subtitle-text"><%= event.where %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
-                                    <span class="pmd-card-subtitle-text">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
+                                    <span class="pmd-card-text" style="font-size: 16px;"><%= event.where %></span><br>
+                                    <span class="pmd-card-text style="font-size: 16px;">Check-in: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                    <span class="pmd-card-text" style="font-size: 16px;">Check-out: <%= event.accomodation_checkout.strftime('%b %d, %Y') %></span>
                                 </div>
 
                                 <!-- Card media image -->
@@ -1246,6 +1247,7 @@
                             </div>
                           </div>
                         </a>
+
                         <!-- Accomodation Location Tag Modals -->
                         <div tabindex="-1" class="modal fade" id="form-dialog-location<%= event.id %>" style="display: none;" aria-hidden="true">
                           <div class="modal-dialog" style="width: 50%;">
@@ -1297,13 +1299,13 @@
                                 <div class="media-body">
                                     <h3 class="pmd-card-title-text"><%= event.mode_of_transport.upcase %></h3>
                                     <% if event.flight_num != nil %>
-                                      <span class="pmd-card-subtitle-text"><%= event.flight_num %></span><br>
+                                      <span class="pmd-card-text" style="font-size: 16px;"><%= event.flight_num %></span><br>
                                     <% end %>
                                     <% if event.flight_date != nil %>
-                                      <span class="pmd-card-subtitle-text">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
+                                      <span class="pmd-card-text" style="font-size: 16px;">Date: <%= event.when.strftime('%b %d, %Y') %></span><br>
                                     <% end %>
                                     <% if event.flight_time != nil %>
-                                    <span class="pmd-card-subtitle-text">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
+                                    <span class="pmd-card-text" style="font-size: 16px;">Time: <%= event.flight_time.strftime('%I:%M %p') %></span>
                                     <% end %>
                                 </div>
 
@@ -1525,7 +1527,7 @@
                           <div class="pmd-card-body">
                             <div class="media-body media-middle">
                                 <h3 class="pmd-card-title-text"><%= event.what %></h3>
-                                <span class="pmd-card-subtitle-text"><%= event.where %></span>
+                                <span class="pmd-card-text"><%= event.where %></span>
                             </div>
                             <%= event.why %>
                           </div>
